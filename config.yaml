@@ -1,0 +1,167 @@
+dynvariables:
+  user: whoami
+
+actions:
+  pre:
+    zprezto-install: scripts/zprezto-install.sh
+
+  post:
+    dunst-link: scripts/dunst-link.sh
+    i3lock-link: scripts/i3lock-link.sh
+    ranger-plug: scripts/ranger-plug.sh
+    vim-plug: scripts/vim-plug.sh
+    wal-apply: scripts/wal-apply.sh
+
+config:
+  backup: true
+  create: true
+  dotpath: dotfiles
+
+dotfiles:
+  # base
+  f_nvim_init:
+    dst: ~/.config/nvim/init.vim
+    src: base/.config/nvim/init.vim
+    actions:
+      - vim-plug
+  f_radare2rc:
+    dst: ~/.radare2rc
+    src: base/.radare2rc
+  f_zprezto:
+    dst: ~/.zprezto/runcoms/
+    src: base/.zprezto/runcoms/
+    actions:
+      - zprezto-install
+
+  # core
+  f_alacritty:
+    dst: ~/.config/alacritty/alacritty.yml
+    src: core/.config/alacritty/alacritty.yml
+  f_fcitx-config:
+    dst: ~/.config/fcitx/config
+    src: core/.config/fcitx/config
+  f_fcitx-skin:
+    dst: ~/.config/fcitx/skin/dark/fcitx_skin.conf
+    src: core/.config/fcitx/skin/dark/fcitx_skin.conf
+  f_fcitx-profile:
+    dst: ~/.config/fcitx/profile
+    src: core/.config/fcitx/profile
+  f_gtk2:
+    dst: ~/.gtkrc-2.0
+    src: core/.gtkrc-2.0
+  f_gtk3:
+    dst: ~/.config/gtk-3.0/settings.ini
+    src: core/.config/gtk-3.0/settings.ini
+  f_i3lock:
+    dst: ~/.local/src/lock.sh
+    src: core/.local/src/lock.sh
+    actions:
+      - i3lock-link
+  f_mpv:
+    dst: ~/.config/mpv/
+    src: core/.config/mpv/
+  f_qbittorrent:
+    dst: ~/.config/qBittorrent/
+    src: core/.config/qBittorrent/
+  f_ranger-rifle:
+    dst: ~/.config/ranger/rifle.conf
+    src: core/.config/ranger/rifle.conf
+  f_ranger-rc:
+    dst: ~/.config/ranger/rc.conf
+    src: core/.config/ranger/rc.conf
+    actions:
+      - ranger-plug
+  f_rofi:
+    dst: ~/.config/rofi/config
+    src: core/.config/rofi/config
+  f_wal:
+    dst: ~/.config/wal/colorschemes/dark/blank.json
+    src: core/.config/wal/colorschemes/dark/blank.json
+    actions:
+      - wal-apply
+
+  # desktop
+  f_d_dunstrc:
+    dst: ~/.config/wal/templates/dunstrc
+    src: desktop/.config/wal/templates/dunstrc
+    actions:
+      - dunst-link
+  f_d_fehbg:
+    dst: ~/.fehbg
+    src: desktop/.fehbg
+  f_d_i3:
+    dst: ~/.config/i3/
+    src: desktop/.config/i3/
+  f_d_polybar:
+    dst: ~/.config/polybar/
+    src: desktop/.config/polybar/
+  f_d_xinit:
+    dst: ~/.xinitrc
+    src: desktop/.xinitrc
+
+  # laptop
+  f_l_dunstrc:
+    dst: ~/.config/wal/templates/dunstrc
+    src: laptop/.config/wal/templates/dunstrc
+    actions:
+      - dunst-link
+  f_l_fehbg:
+    dst: ~/.fehbg
+    src: laptop/.fehbg
+  f_l_i3:
+    dst: ~/.config/i3/
+    src: laptop/.config/i3/
+  f_l_polybar:
+    dst: ~/.config/polybar/
+    src: laptop/.config/polybar/
+  f_l_xinit:
+    dst: ~/.xinitrc
+    src: laptop/.xinitrc
+
+profiles:
+  base:
+    dotfiles:
+      - f_nvim_init
+      - f_radare2rc
+      - f_zprezto
+
+  core:
+    include:
+      - base
+    dotfiles:
+      - f_alacritty
+      - f_fcitx-config
+      - f_fcitx-skin
+      - f_fcitx-profile
+      - f_gtk2
+      - f_gtk3
+      - f_i3lock
+      - f_mpv
+      - f_qbittorrent
+      - f_ranger-rifle
+      - f_ranger-rc
+      - f_rofi
+      - f_wal
+
+  server:
+    include:
+      - base
+
+  desktop:
+    include:
+      - core
+    dotfiles:
+      - f_d_dunstrc
+      - f_d_fehbg
+      - f_d_i3
+      - f_d_polybar
+      - f_d_xinit
+
+  laptop:
+    include:
+      - core
+    dotfiles:
+      - f_l_fehbg
+      - f_l_i3
+      - f_l_polybar
+      - f_l_xinit

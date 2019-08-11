@@ -1,0 +1,37 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+  source "/etc/profile.d/autojump.zsh"
+fi
+
+# Pywal cache & colours
+(cat ~/.cache/wal/sequences &)
+
+# Vi mode
+bindkey -v
+bindkey '^r' history-incremental-search-backward
+bindkey '^s' history-incremental-search-forward
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+
+# Aliases
+alias amnt='simple-mtpfs --device 1 /media/android'
+alias aumnt='fusermount -u /media/android'
+alias diff='diff --color=auto'
+alias dotdrop='dotdrop --cfg=$HOME/.dotfiles/config.yaml'
+alias xclip='xclip -selection clipboard'
+
+# Functions
+function mkcdir()
+{
+    /bin/mkdir -p $@ && cd "$_"
+}
