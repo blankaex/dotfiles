@@ -74,6 +74,12 @@ dotfiles:
   f_rofi:
     dst: ~/.config/rofi/config
     src: core/.config/rofi/config
+  f_vol:
+    dst: ~/.local/src/vol.sh
+    src: core/.local/src/vol.sh
+    actions:
+        # TODO
+      - vol-link
   f_wal:
     dst: ~/.config/wal/colorschemes/dark/blank.json
     src: core/.config/wal/colorschemes/dark/blank.json
@@ -100,6 +106,12 @@ dotfiles:
     src: desktop/.xinitrc
 
   # laptop
+  f_bright:
+    dst: ~/.local/src/bright.sh
+    src: laptop/.local/src/bright.sh
+    actions:
+        # TODO
+      - bright-link
   f_l_dunstrc:
     dst: ~/.config/wal/templates/dunstrc
     src: laptop/.config/wal/templates/dunstrc
@@ -114,6 +126,12 @@ dotfiles:
   f_l_polybar:
     dst: ~/.config/polybar/
     src: laptop/.config/polybar/
+  f_screens:
+    dst: ~/.local/src/screens.sh
+    src: laptop/.local/src/screens.sh
+    actions:
+        # TODO
+      - screens-link
   f_l_xinit:
     dst: ~/.xinitrc
     src: laptop/.xinitrc
