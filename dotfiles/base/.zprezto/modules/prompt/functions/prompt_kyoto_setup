@@ -1,0 +1,46 @@
+#
+# Kyoto
+#
+#
+# Features:
+#   - Uses (requires) `zsh_git_prompt` to display git status.
+#   - Alternate prompt while in git repository.
+#   - Shows exit status.
+#
+
+function +prompt_kyoto_precmd {
+  # Replace '/home/<user>' with '~'.
+  _prompt_kyoto_pwd="${PWD/#$HOME/~}"
+
+  _vci=$(git_super_status)
+  if [ -z "$_vci" ]; then
+    _prompt_kyoto_symbol='ツ'
+  else
+    _prompt_kyoto_symbol='メ'
+  fi 
+}
+
+function prompt_kyoto_setup {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+  prompt_opts=(cr percent subst)
+
+  # Load required functions.
+  autoload -Uz add-zsh-hook
+  source $HOME/.local/src/zsh-git-prompt/zshrc.sh
+
+  # Add hook to set up prompt parameters before each command.
+  add-zsh-hook precmd +prompt_kyoto_precmd
+
+  # Define prompts.
+  #PROMPTUSER="someone"
+  PROMPT='
+%(?..%F{red}%B¬[%?]%b%f
+)%B%F{magenta}${PROMPTUSER:-`whoami`}%f%F{white}@%F{cyan}%m%f%b %F{green}${_prompt_kyoto_pwd}%f ${_vci}
+%F{255}${_prompt_kyoto_symbol}%f '
+  RPROMPT='${editor_info[keymap]}'
+  SPROMPT='zsh: correct %F{magenta}%R%f to %F{green}%r%f [nyae]? '
+}
+
+prompt_kyoto_setup "$@"
+

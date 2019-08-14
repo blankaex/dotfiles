@@ -32,6 +32,9 @@ dotfiles:
     src: base/.zprezto/runcoms/
     actions:
       - zprezto-install
+  f_zprezto_theme:
+    dst: ~/.zprezto/modules/prompt/functions/prompt_kyoto_setup
+    src: base/.zprezto/modules/prompt/functions/prompt_kyoto_setup
 
   # core
   f_alacritty:
