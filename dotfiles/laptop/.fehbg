@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill '/home/blankaex/Pictures/Wallpapers/Monogatari Kuro Koma.png' 
