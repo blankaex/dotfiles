@@ -85,10 +85,14 @@ bindsym $mod+bracketright exec --no-startup-id gaps -u
 bindsym $mod+Shift+bracketleft exec --no-startup-id gaps -z
 bindsym $mod+Shift+bracketright exec --no-startup-id gaps -r
 
-# pulse audio
+# volume controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id vol -u 5
 bindsym XF86AudioLowerVolume exec --no-startup-id vol -d 5
 bindsym XF86AudioMute exec --no-startup-id vol -m
+
+# screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id bright -u 10
+bindsym XF86MonBrightnessDown exec --no-startup-id bright -d 10
 
 # change focus
 focus_follows_mouse no
@@ -142,27 +146,6 @@ set $ws7 "7:漆"
 set $ws8 "8:捌"
 set $ws9 "9:玖"
 
-set $ws10 "10:東"
-set $ws11 "11:西"
-set $ws12 "12:北"
-set $ws13 "13:南"
-
-# Workspace creens
-workspace $ws1 output DVI-I-1
-workspace $ws2 output DVI-I-1
-workspace $ws3 output DVI-I-1
-workspace $ws4 output DVI-I-1
-workspace $ws5 output DVI-I-1
-workspace $ws6 output DVI-I-1
-workspace $ws7 output DVI-I-1
-workspace $ws8 output DVI-I-1
-workspace $ws9 output DVI-I-1
-
-workspace $ws10 output DVI-D-0
-workspace $ws11 output DVI-D-0
-workspace $ws12 output DVI-D-0
-workspace $ws13 output DVI-D-0
-
 # Switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -174,10 +157,8 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 
-bindsym $mod+F1 workspace $ws10
-bindsym $mod+F2 workspace $ws11
-bindsym $mod+F3 workspace $ws12
-bindsym $mod+F4 workspace $ws13
+bindsym XF86Back workspace prev
+bindsym XF86Forward workspace next
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -190,11 +171,6 @@ bindsym $mod+Ctrl+7 move container to workspace $ws7
 bindsym $mod+Ctrl+8 move container to workspace $ws8
 bindsym $mod+Ctrl+9 move container to workspace $ws9
 
-bindsym $mod+Ctrl+F1 move container to workspace $ws10
-bindsym $mod+Ctrl+F2 move container to workspace $ws11
-bindsym $mod+Ctrl+F3 move container to workspace $ws12
-bindsym $mod+Ctrl+F4 move container to workspace $ws13
-
 # Move to workspace with focused container
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
@@ -206,13 +182,8 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 
-bindsym $mod+Shift+F1 move container to workspace $ws10; workspace $ws10
-bindsym $mod+Shift+F2 move container to workspace $ws11; workspace $ws11
-bindsym $mod+Shift+F3 move container to workspace $ws12; workspace $ws12
-bindsym $mod+Shift+F4 move container to workspace $ws13; workspace $ws13
-
 # Open applications on specific workspaces
-# assign [class="Firefox"] $ws6
+assign [class="Firefox"] $ws2
 
 # floating windows
 # for_window [class=^.*] floating enable
@@ -252,15 +223,3 @@ client.placeholder	    $color6 $background	$foreground	$color6	$color6
 
 # Polybar launch script (located ~/.config/polybar/launch.sh) 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-# Layouts
-exec --no-startup-id "i3-msg 'workspace 10:東; append_layout ~/.config/i3/workspace-10.json'"
-exec --no-startup-id "i3-msg 'workspace 11:西; append_layout ~/.config/i3/workspace-11.json'"
-
-# Auto start programs
-# exec --no-startup-id i3-msg 'workspace 東; exec firefox'
-exec alacritty -e cmus
-exec firefox
-exec alacritty -e weechat
-exec vivaldi-stable
-

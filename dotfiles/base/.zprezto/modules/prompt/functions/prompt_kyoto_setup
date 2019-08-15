@@ -27,7 +27,7 @@ function prompt_kyoto_setup {
 
   # Load required functions.
   autoload -Uz add-zsh-hook
-  source $HOME/.local/src/zsh-git-prompt/zshrc.sh
+  source /usr/lib/zsh-git-prompt/zshrc.sh
 
   # Add hook to set up prompt parameters before each command.
   add-zsh-hook precmd +prompt_kyoto_precmd

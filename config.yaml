@@ -4,18 +4,19 @@ dynvariables:
 # actions:
 #   pre:
 #     - prezto-install: scripts/prezto-install.zsh
-#   post:
-#     - ranger-plug: scripts/ranger-plug.sh
-#     - vim-plug: scripts/vim-plug.sh
-#     - wal-apply: wal --theme blank
-    # - i3lock-link: test -e ~/.local/bin/lock ||
-    #     ln -s ~/.local/src/lock.sh ~/.local/bin/lock
-    # - dunst-link: test -e ~/.config/dunst/dunstrc ||
-    #     ln -s ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
-    # - vol-link: test -e ~/.local/bin/vol ||
-    #     ln -s ~/.local/src/vol.sh ~/.local/bin/vol
-    # - bright-link: test -e ~/.local/bin/bright ||
-    #     ln -s ~/.local/src/bright.sh ~/.local/bin/bright
+
+  # post:
+  #   - ranger-plug: scripts/ranger-plug.sh
+  #   - vim-plug: scripts/vim-plug.sh
+  #   - wal-apply: wal --theme blank
+  #   - i3lock-link: test -e ~/.local/bin/lock ||
+  #       ln -s ~/.local/src/lock.sh ~/.local/bin/lock
+  #   - dunst-link: test -e ~/.config/dunst/dunstrc ||
+  #       ln -s ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
+  #   - vol-link: test -e ~/.local/bin/vol ||
+  #       ln -s ~/.local/src/vol.sh ~/.local/bin/vol
+  #   - bright-link: test -e ~/.local/bin/bright ||
+  #       ln -s ~/.local/src/bright.sh ~/.local/bin/bright
 
 config:
   create: true
