@@ -66,6 +66,9 @@ dotfiles:
   f_gtk3:
     dst: ~/.config/gtk-3.0/settings.ini
     src: core/.config/gtk-3.0/settings.ini
+  f_gtk_themes:
+    dst: ~/.themes/
+    src: core/.themes/
   f_i3lock:
     dst: ~/.local/src/lock.sh
     src: core/.local/src/lock.sh
@@ -159,6 +162,7 @@ profiles:
       - f_fcitx-profile
       - f_gtk2
       - f_gtk3
+      - f_gtk_themes
       - f_i3lock
       - f_mpv
       - f_qbittorrent

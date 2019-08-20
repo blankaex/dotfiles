@@ -15,6 +15,12 @@ fi
 setxkbmap -option caps:super
 xcape -e "Super_L=Escape"
 
+# Configure screens
+xrandr --output DVI-I-1 --auto --primary --pos 1080x340 --output DVI-D-0 --rotate left --pos 0x0
+xset -dpms
+xset s off
+xset s noblank
+
 # Start services
 start-pulseaudio-x11 &
 dunst &
