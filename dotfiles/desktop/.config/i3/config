@@ -263,7 +263,7 @@ exec --no-startup-id "i3-msg 'workspace 11:西; append_layout ~/.config/i3/works
 
 # Auto start programs
 # exec --no-startup-id i3-msg 'workspace 東; exec firefox'
-exec alacritty -t ncmpcpp -e ncmpcpp
+exec alacritty -t ncmpcpp -e ncmpcpp --config $HOME/.config/ncmpcpp/config --bindings $HOME/.config/ncmpcpp/bindings
 exec firefox
 exec alacritty -t weechat -e weechat
 exec vivaldi-stable

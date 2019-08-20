@@ -74,9 +74,18 @@ dotfiles:
     src: core/.local/src/lock.sh
     # actions:
     #   - i3lock-link
+  f_mpd:
+    dst: ~/.config/mpd/mpd.conf
+    src: core/.config/mpd/mpd.conf
   f_mpv:
     dst: ~/.config/mpv/
     src: core/.config/mpv/
+  f_ncmpcpp_bindings:
+    dst: ~/.config/ncmpcpp/bindings
+    src: core/.config/ncmpcpp/bindings
+  f_ncmpcpp_config:
+    dst: ~/.config/ncmpcpp/bindings
+    src: core/.config/ncmpcpp/bindings
   f_qbittorrent:
     dst: ~/.config/qBittorrent/
     src: core/.config/qBittorrent/
@@ -164,7 +173,10 @@ profiles:
       - f_gtk3
       - f_gtk_themes
       - f_i3lock
+      - f_mpd
       - f_mpv
+      - f_ncmpcpp_bindings
+      - f_ncmpcpp_config
       - f_qbittorrent
       - f_ranger-rifle
       - f_ranger-rc
