@@ -84,6 +84,9 @@ dotfiles:
   f_ncmpcpp_config:
     dst: ~/.config/ncmpcpp/bindings
     src: core/.config/ncmpcpp/bindings
+  f_qbittorrent:
+    dst: ~/.config/qBittorrent/rss/feeds.json
+    src: core/.config/qBittorrent/rss/feeds.json
   f_radare2rc:
     dst: ~/.radare2rc
     src: base/.radare2rc
@@ -178,6 +181,7 @@ profiles:
       - f_mpv
       - f_ncmpcpp_bindings
       - f_ncmpcpp_config
+      - f_qbittorrent
       - f_ranger-rifle
       - f_ranger-rc
       - f_rofi
