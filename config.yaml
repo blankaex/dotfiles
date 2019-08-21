@@ -30,6 +30,11 @@ dotfiles:
     src: base/.config/nvim/init.vim
     actions:
       - vim-plug
+  f_wal:
+    dst: ~/.config/wal/colorschemes/dark/blank.json
+    src: base/.config/wal/colorschemes/dark/blank.json
+    actions:
+      - wal-apply
   f_zprezto:
     dst: ~/.zprezto/runcoms/
     src: base/.zprezto/runcoms/
@@ -106,11 +111,6 @@ dotfiles:
     src: core/.local/src/vol.sh
     actions:
       - vol-link
-  f_wal:
-    dst: ~/.config/wal/colorschemes/dark/blank.json
-    src: core/.config/wal/colorschemes/dark/blank.json
-    actions:
-      - wal-apply
 
   # desktop
   f_d_dunstrc:
