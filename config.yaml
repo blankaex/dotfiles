@@ -43,11 +43,6 @@ dotfiles:
   f_alacritty:
     dst: ~/.config/alacritty/alacritty.yml
     src: core/.config/alacritty/alacritty.yml
-  f_bright:
-    dst: ~/.local/src/bright.sh
-    src: laptop/.local/src/bright.sh
-    # actions:
-    #   - bright-link
   f_fcitx-config:
     dst: ~/.config/fcitx/config
     src: core/.config/fcitx/config
@@ -66,6 +61,9 @@ dotfiles:
   f_gtk3:
     dst: ~/.config/gtk-3.0/settings.ini
     src: core/.config/gtk-3.0/settings.ini
+  f_gtk_icons:
+    dst: ~/.icons/
+    src: core/.icons/
   f_gtk_themes:
     dst: ~/.themes/
     src: core/.themes/
@@ -86,9 +84,6 @@ dotfiles:
   f_ncmpcpp_config:
     dst: ~/.config/ncmpcpp/bindings
     src: core/.config/ncmpcpp/bindings
-  f_qbittorrent:
-    dst: ~/.config/qBittorrent/
-    src: core/.config/qBittorrent/
   f_radare2rc:
     dst: ~/.radare2rc
     src: base/.radare2rc
@@ -134,6 +129,11 @@ dotfiles:
     src: desktop/.xinitrc
 
   # laptop
+  f_l_bright:
+    dst: ~/.local/src/bright.sh
+    src: laptop/.local/src/bright.sh
+    # actions:
+    #   - bright-link
   f_l_dunstrc:
     dst: ~/.config/wal/templates/dunstrc
     src: laptop/.config/wal/templates/dunstrc
@@ -171,13 +171,13 @@ profiles:
       - f_fcitx-profile
       - f_gtk2
       - f_gtk3
+      - f_gtk_icons
       - f_gtk_themes
       - f_i3lock
       - f_mpd
       - f_mpv
       - f_ncmpcpp_bindings
       - f_ncmpcpp_config
-      - f_qbittorrent
       - f_ranger-rifle
       - f_ranger-rc
       - f_rofi
@@ -201,7 +201,7 @@ profiles:
     include:
       - core
     dotfiles:
-      - f_bright
+      - f_l_bright
       - f_l_dunstrc
       - f_l_fehbg
       - f_l_i3
