@@ -1,12 +1,13 @@
 # Dotfiles
 
-Repository for dotfile & workspace configuration management.
+Repository for managing configuration files for Arch Linux.
 
 ## Preview
 
 ![preview](https://raw.githubusercontent.com/blankaex/dotfiles/master/screenshot.png)
 
-Wallpaper: [source](https://whvn.cc/wy1lyr)
+* [Start page](https://github.com/blankaex/dawn)
+* [Wallpaper](https://whvn.cc/wy1lyr)
 
 ## Requirements
 
