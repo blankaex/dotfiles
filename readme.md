@@ -6,6 +6,8 @@ Repository for dotfile & workspace configuration management.
 
 ![preview](https://raw.githubusercontent.com/blankaex/dotfiles/master/screenshot.png)
 
+Wallpaper: [source](https://whvn.cc/wy1lyr)
+
 ## Requirements
 
 [Dotdrop](https://github.com/deadc0de6/dotdrop) installed globally (i.e. via AUR) or [as a submodule](https://github.com/deadc0de6/dotdrop#as-a-submodule).
