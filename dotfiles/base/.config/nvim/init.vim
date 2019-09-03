@@ -39,15 +39,7 @@ set enc=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf8,prc
 filetype plugin indent on
-au FileType c,cpp,cs,java setlocal commentstring=//\ %s
 au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" Auto commands
-augroup latex
-    au!
-    au BufWritePost *.tex silent Make!
-    au VimLeave *.tex silent make cean
-augroup END
 
 " Keybinds
 let mapleader =" "
@@ -67,3 +59,16 @@ nmap <buffer> <silent> j gj
 nmap <buffer> <silent> 0 g0
 nmap <buffer> <silent> $ g$
 
+" Auto commands
+augroup ass
+    au!
+    au BufRead,BufNewFile *.ass nmap <leader>- i—<Esc>
+    au BufRead,BufNewFile *.ass nmap <leader>i i{\i1}<Esc>
+    au BufRead,BufNewFile *.ass nmap <leader>o a{\i0}<Esc>
+augroup END
+
+augroup latex
+    au!
+    au BufWritePost *.tex silent Make!
+    au VimLeave *.tex silent make cean
+augroup END
