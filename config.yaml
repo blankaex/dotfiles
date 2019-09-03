@@ -6,17 +6,11 @@ actions:
     prezto-install: scripts/prezto-install.zsh
 
   post:
+    dunst-link: scripts/dunst-link.sh
+    link-scripts: scripts/link-scripts.sh
     ranger-plug: scripts/ranger-plug.sh
     vim-plug: scripts/vim-plug.sh
     wal-apply: wal --theme blank
-    i3lock-link: test -e ~/.local/bin/lock ||
-      ln -s ~/.local/src/lock.sh ~/.local/bin/lock
-    dunst-link: test -e ~/.config/dunst/dunstrc ||
-      ln -s ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
-    vol-link: test -e ~/.local/bin/vol ||
-      ln -s ~/.local/src/vol.sh ~/.local/bin/vol
-    bright-link: test -e ~/.local/bin/bright ||
-      ln -s ~/.local/src/bright.sh ~/.local/bin/bright
 
 config:
   create: true
@@ -72,11 +66,6 @@ dotfiles:
   f_gtk_themes:
     dst: ~/.themes/
     src: core/.themes/
-  f_i3lock:
-    dst: ~/.local/src/lock.sh
-    src: core/.local/src/lock.sh
-    actions:
-      - i3lock-link
   f_mpd:
     dst: ~/.config/mpd/mpd.conf
     src: core/.config/mpd/mpd.conf
@@ -106,11 +95,11 @@ dotfiles:
   f_rofi:
     dst: ~/.config/rofi/config
     src: core/.config/rofi/config
-  f_vol:
-    dst: ~/.local/src/vol.sh
-    src: core/.local/src/vol.sh
+  f_scripts:
+    dst: ~/.local/src/scripts/
+    src: core/.local/src/scripts/
     actions:
-      - vol-link
+      - link-scripts
 
   # desktop
   f_d_dunstrc:
@@ -132,11 +121,6 @@ dotfiles:
     src: desktop/.xinitrc
 
   # laptop
-  f_l_bright:
-    dst: ~/.local/src/bright.sh
-    src: laptop/.local/src/bright.sh
-    actions:
-      - bright-link
   f_l_dunstrc:
     dst: ~/.config/wal/templates/dunstrc
     src: laptop/.config/wal/templates/dunstrc
@@ -160,6 +144,7 @@ profiles:
     dotfiles:
       - f_nvim_init
       - f_radare2rc
+      - f_wal
       - f_zprezto
       - f_zprezto_theme
 
@@ -176,7 +161,6 @@ profiles:
       - f_gtk3
       - f_gtk_icons
       - f_gtk_themes
-      - f_i3lock
       - f_mpd
       - f_mpv
       - f_ncmpcpp_bindings
@@ -185,7 +169,7 @@ profiles:
       - f_ranger-rifle
       - f_ranger-rc
       - f_rofi
-      - f_wal
+      - f_scripts
 
   server:
     include:
@@ -205,7 +189,6 @@ profiles:
     include:
       - core
     dotfiles:
-      - f_l_bright
       - f_l_dunstrc
       - f_l_fehbg
       - f_l_i3
