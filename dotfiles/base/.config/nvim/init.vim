@@ -62,6 +62,9 @@ nmap <buffer> <silent> $ g$
 " Auto commands
 augroup ass
     au!
+    au BufRead,BufNewFile *.ass imap -- —
+    au BufRead,BufNewFile *.ass imap !! {\i1}
+    au BufRead,BufNewFile *.ass imap !" {\i0}
     au BufRead,BufNewFile *.ass nmap <leader>- i—<Esc>
     au BufRead,BufNewFile *.ass nmap <leader>i i{\i1}<Esc>
     au BufRead,BufNewFile *.ass nmap <leader>o a{\i0}<Esc>
@@ -71,4 +74,10 @@ augroup latex
     au!
     au BufWritePost *.tex silent Make!
     au VimLeave *.tex silent make cean
+augroup END
+
+augroup ass
+    au!
+    au BufRead,BufNewFile *.yaml,*.yml set shiftwidth=2
+    au BufRead,BufNewFile *.yaml,*.yml imap -- —
 augroup END
