@@ -62,6 +62,12 @@ if (( $#commands[(i)lesspipe(|.sh)] )); then
 fi
 
 #
+# Misc
+#
+
+export KEYTIMEOUT=1
+
+#
 # Paths
 #
 
