@@ -16,12 +16,21 @@ fi
 
 # Vi mode
 bindkey -v
+bindkey -v '^?' backward-delete-char
 bindkey '^r' history-incremental-search-backward
 bindkey '^s' history-incremental-search-forward
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
+# Command editing
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^v' edit-command-line
 
 # Aliases
 alias amnt='simple-mtpfs --device 1 /media/android'
@@ -40,4 +49,15 @@ function mkcdir()
 function 0x0()
 {
     curl -F file=@"$1" https://0x0.st
+}
+
+function rcd()
+{
+    tmp="$(mktemp)"
+    ranger --choosedir="$tmp"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
 }
