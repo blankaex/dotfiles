@@ -45,7 +45,12 @@ au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 let mapleader =" "
 nmap S :%s//g<Left><Left>
 " Plugins
-nmap <leader>c gcc
+nmap <silent><leader>d dd
+nmap <silent><leader>y yy
+nmap <silent><leader>w :w<cr>
+nmap <silent><leader>q :q<cr>
+nmap <silent><leader>x :x<cr>
+nmap <silent><leader>c gcc
 nmap <silent><leader>n :NERDTreeToggle<cr>
 nmap <silent><leader>g :Goyo<cr>
 " Switch splits with leader+[hjkl]
@@ -76,7 +81,7 @@ augroup latex
     au VimLeave *.tex silent make cean
 augroup END
 
-augroup ass
+augroup yaml, yml
     au!
     au BufRead,BufNewFile *.yaml,*.yml set shiftwidth=2
     au BufRead,BufNewFile *.yaml,*.yml imap -- —
