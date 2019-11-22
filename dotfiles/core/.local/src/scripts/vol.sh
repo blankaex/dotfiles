@@ -2,6 +2,7 @@
 
 # "vol" ascii -> dec
 id="118111108"
+sink=`pactl list sinks | head -1 | sed 's/^Sink #\([0-9]\)$/\1/'`
 
 changeVol () 
 {
@@ -10,7 +11,7 @@ changeVol ()
         exit 0
 	fi
 
-	pactl set-sink-volume 0 $1%
+	pactl set-sink-volume $sink $1%
 	vol=$(pactl list sinks | rg '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) |\
         tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
 	dunstify -r $id "ボリューム："$vol
@@ -18,7 +19,7 @@ changeVol ()
 
 toggleMute ()
 {
-	pactl set-sink-mute 0 toggle
+	pactl set-sink-mute $sink toggle
 	if pactl list sinks | rg "Mute: yes"; then
         dunstify -r $id "ミュート"
 	else
