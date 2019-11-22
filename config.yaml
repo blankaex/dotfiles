@@ -100,6 +100,9 @@ dotfiles:
     src: core/.local/src/scripts/
     actions:
       - link-scripts
+  f_syncplay:
+    dst: /home/blankaex/.config/syncplay.ini
+    src: core/.config/syncplay.ini
 
   # desktop
   f_d_dunstrc:
@@ -170,6 +173,7 @@ profiles:
       - f_ranger-rc
       - f_rofi
       - f_scripts
+      - f_syncplay
 
   server:
     include:
