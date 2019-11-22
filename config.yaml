@@ -19,6 +19,9 @@ config:
 
 dotfiles:
   # base
+  f_gitconfig:
+    dst: ~/.gitconfig
+    src: base/.gitconfig
   f_nvim_init:
     dst: ~/.config/nvim/init.vim
     src: base/.config/nvim/init.vim
@@ -145,6 +148,7 @@ dotfiles:
 profiles:
   base:
     dotfiles:
+      - f_gitconfig
       - f_nvim_init
       - f_radare2rc
       - f_wal
