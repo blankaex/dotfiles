@@ -24,7 +24,7 @@ xset s noblank
 # Start services
 start-pulseaudio-x11 &
 dunst &
-redshift &
+redshift & 
 fcitx &
 wal -R &
 $HOME/.fehbg &
