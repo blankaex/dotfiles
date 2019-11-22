@@ -453,8 +453,10 @@ key_bindings:
   # (Windows/Linux only)
   - { key: V,        mods: Control|Shift, action: Paste            }
   - { key: C,        mods: Control|Shift, action: Copy             }
-  - { key: K,        mods: Alt,           action: ScrollLineUp     }
+  - { key: H,        mods: Alt,           action: ScrollPageUp     }
   - { key: J,        mods: Alt,           action: ScrollLineDown   }
+  - { key: K,        mods: Alt,           action: ScrollLineUp     }
+  - { key: L,        mods: Alt,           action: ScrollPageDown   }
   - { key: RBracket, mods: Control,       action: IncreaseFontSize }
   - { key: LBracket, mods: Control,       action: DecreaseFontSize }
   - { key: Colon,    mods: Control,       action: ResetFontSize    }
