@@ -226,7 +226,7 @@ def_key "l"
 def_key "l"
   slave_screen
 
-def_key "l"
+def_key "K"
   volume_up
 #
 #def_key "+"
@@ -238,7 +238,7 @@ def_key "h"
 def_key "h"
   master_screen
 
-def_key "h"
+def_key "J"
   volume_down
 #
 #def_key "-"
@@ -319,11 +319,11 @@ def_key "h"
 #def_key "backspace"
 #  replay_song
 #
-#def_key "f"
-#  seek_forward
+def_key "l"
+  seek_forward
 #
-#def_key "b"
-#  seek_backward
+def_key "h"
+  seek_backward
 #
 #def_key "r"
 #  toggle_repeat
@@ -430,8 +430,8 @@ def_key "h"
 #def_key "g"
 #  jump_to_position_in_song
 #
-def_key "L"
-  show_lyrics
+#def_key "L"
+#  show_lyrics
 #
 #def_key "ctrl-v"
 #  select_range
