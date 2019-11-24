@@ -40,7 +40,7 @@ alias amnt='simple-mtpfs --device 1 /media/android'
 alias aumnt='fusermount -u /media/android'
 alias diff='diff --color=auto'
 alias dotdrop='dotdrop --cfg=$HOME/.dotfiles/config.yaml'
-alias syncplay='syncplay --no-gui -p $SYNCPLAY_PASSWORD'
+alias syncplay='syncplay --no-store --no-gui -p $SYNCPLAY_PASSWORD'
 alias xclip='xclip -selection clipboard'
 alias :q='exit'
 
