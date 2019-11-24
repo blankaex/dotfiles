@@ -207,7 +207,8 @@ colors:
 
   # Need to specify otherwise it resets in some programs
   bright:
-    black: '0x121010'
+    # black: '0x121010'
+    black: '0x4f4f4f'
     red: '0x6b4949'
     green: '0x5f4040'
     yellow: '0xb35959'
