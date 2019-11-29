@@ -8,7 +8,6 @@ actions:
   post:
     dunst-link: scripts/dunst-link.sh
     link-scripts: scripts/link-scripts.sh
-    ranger-plug: scripts/ranger-plug.sh
     vim-plug: scripts/vim-plug.sh
     wal-apply: wal --theme blank
 
@@ -27,6 +26,9 @@ dotfiles:
     src: base/.config/nvim/init.vim
     actions:
       - vim-plug
+  f_ranger:
+    dst: ~/.config/ranger/
+    src: base/.config/ranger/
   f_wal:
     dst: ~/.config/wal/colorschemes/dark/blank.json
     src: base/.config/wal/colorschemes/dark/blank.json
@@ -87,14 +89,6 @@ dotfiles:
   f_radare2rc:
     dst: ~/.radare2rc
     src: core/.radare2rc
-  f_ranger-rifle:
-    dst: ~/.config/ranger/rifle.conf
-    src: core/.config/ranger/rifle.conf
-  f_ranger-rc:
-    dst: ~/.config/ranger/rc.conf
-    src: core/.config/ranger/rc.conf
-    actions:
-      - ranger-plug
   f_rofi:
     dst: ~/.config/rofi/config
     src: core/.config/rofi/config
@@ -150,7 +144,7 @@ profiles:
     dotfiles:
       - f_gitconfig
       - f_nvim_init
-      - f_radare2rc
+      - f_ranger
       - f_wal
       - f_zprezto
       - f_zprezto_theme
@@ -173,8 +167,7 @@ profiles:
       - f_ncmpcpp_bindings
       - f_ncmpcpp_config
       - f_qbittorrent
-      - f_ranger-rifle
-      - f_ranger-rc
+      - f_radare2rc
       - f_rofi
       - f_scripts
       - f_syncplay
