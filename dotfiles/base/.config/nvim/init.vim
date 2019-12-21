@@ -44,6 +44,9 @@ au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Keybinds
 let mapleader =" "
 nmap S :%s//g<Left><Left>
+nmap <silent><leader>f zA
+nmap <silent><leader>a zR
+nmap <silent><leader>s zM
 " Plugins
 nmap <silent><leader>d dd
 nmap <silent><leader>y yy
@@ -65,6 +68,10 @@ nmap <buffer> <silent> 0 g0
 nmap <buffer> <silent> $ g$
 
 " Auto commands
+augroup python
+    au BufRead,BufNewFile *.py set foldmethod=indent
+augroup END
+
 augroup ass
     au!
     au BufRead,BufNewFile *.ass imap -- —
