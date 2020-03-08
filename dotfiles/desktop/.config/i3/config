@@ -70,7 +70,6 @@ bindsym --whole-window $mod+button3 nop
 # program shortcuts
 bindsym $mod+x exec --no-startup-id lock
 bindsym $mod+d exec --no-startup-id rofi -show run -m primary
-bindsym $mod+e exec alacritty -e ranger
 bindsym $mod+Return exec alacritty
 
 # screenshots
@@ -116,10 +115,12 @@ bindsym $mod+space floating toggle
 # change focus between tiling / floating windows
 bindsym Mod1+Tab focus mode_toggle
 
-# split in horizontal orientation
-bindsym $mod+c split h
+# change container layout (stacking, toggle split)
+bindsym $mod+w layout stacking
+bindsym $mod+e layout toggle split
 
-# split in vertical orientation
+# change split orientation
+bindsym $mod+c split h
 bindsym $mod+v split v
 
 # toggle sticky
