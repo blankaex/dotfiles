@@ -126,6 +126,10 @@ bindsym $mod+v split v
 # toggle sticky
 bindsym $mod+s sticky toggle
 
+# scratchpad toggle commands
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
 # focus the parent container
 bindsym $mod+a focus parent
 
