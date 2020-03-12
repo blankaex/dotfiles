@@ -8,13 +8,9 @@
 # Execute code only if STDERR is bound to a TTY.
 [[ -o INTERACTIVE && -t 2 ]] && {
 
-SAYINGS=(
-    "Peaceful days are over. Let's survive.\n  --女神異聞録デビルサバイバー"
-    "何でもは知らないわよ。知ってることだけ。\n  --羽川翼"
-    "その幻想をぶち殺す！\n  --上条当麻"
-)
-
-# Print a randomly-chosen message:
-echo $SAYINGS[$(($RANDOM % ${#SAYINGS} + 1))]
+echo -n "Peaceful days are over."
+sleep 1
+echo -n "\nLet's survive."
+sleep 2
 
 } >&2
