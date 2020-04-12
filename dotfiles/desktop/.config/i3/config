@@ -46,8 +46,9 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec i3-msg exit
 
-# kill focused window
+# kill windows
 bindsym $mod+q kill
+bindsym --release $mod+Shift+q exec xkill
 
 # resize mode
 bindsym $mod+r mode "resize"
@@ -71,6 +72,7 @@ bindsym --whole-window $mod+button3 nop
 bindsym $mod+x exec --no-startup-id lock
 bindsym $mod+d exec --no-startup-id rofi -show run -m primary
 bindsym $mod+Return exec alacritty
+bindsym $mod+t exec alacritty -e ranger 
 
 # screenshots
 bindsym Print exec --no-startup-id escrotum -C
@@ -156,7 +158,7 @@ set $ws11 "11:西"
 set $ws12 "12:北"
 set $ws13 "13:南"
 
-# Workspace creens
+# Workspace screens
 workspace $ws1 output DVI-I-1
 workspace $ws2 output DVI-I-1
 workspace $ws3 output DVI-I-1
@@ -220,6 +222,10 @@ bindsym $mod+Shift+F2 move container to workspace $ws11; workspace $ws11
 bindsym $mod+Shift+F3 move container to workspace $ws12; workspace $ws12
 bindsym $mod+Shift+F4 move container to workspace $ws13; workspace $ws13
 
+# Resolution toggles
+bindsym F7 exec xrandr --output DVI-I-1 --auto --primary --pos 1080x340 --output DVI-D-0 --rotate left --pos 0x0
+bindsym F8 exec xrandr --output DVI-I-1 --auto --primary --pos 1920x0 --output DVI-D-0 --rotate normal --pos 0x0
+
 # Open applications on specific workspaces
 # assign [class="Firefox"] $ws6
 
@@ -272,4 +278,3 @@ exec alacritty -t ncmpcpp -e ncmpcpp --config $HOME/.config/ncmpcpp/config --bin
 exec firefox
 exec alacritty -t weechat -e weechat
 exec vivaldi-stable
-
