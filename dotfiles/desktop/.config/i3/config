@@ -75,10 +75,9 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+t exec alacritty -e ranger 
 
 # screenshots
-bindsym Print exec --no-startup-id escrotum -C
-bindsym $mod+Print exec --no-startup-id escrotum -sC
-bindsym Ctrl+Print exec --no-startup-id escrotum
-bindsym Ctrl+$mod+Print exec --no-startup-id escrotum -s
+bindsym Print exec --no-startup-id maim $HOME/$(date -Iseconds).jpg
+bindsym $mod+Print exec --no-startup-id maim -sf jpg | xclip -selection clipboard -t image/jpeg
+bindsym $mod+Shift+Print exec --no-startup-id maim -s $HOME/$(date -Iseconds).jpg
 
 # gaps ~/.local/bin/gaps
 bindsym $mod+bracketleft exec --no-startup-id gaps -d
@@ -115,7 +114,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym Mod1+Tab focus mode_toggle
+bindsym $mod+shift+ focus mode_toggle
 
 # change container layout (stacking, toggle split)
 bindsym $mod+w layout stacking
@@ -278,3 +277,5 @@ exec alacritty -t ncmpcpp -e ncmpcpp --config $HOME/.config/ncmpcpp/config --bin
 exec firefox
 exec alacritty -t weechat -e weechat
 exec vivaldi-stable
+
+bindsym --release F6 exec xdotool search --onlyvisible --name runescape windowactivate key $(xclip -o | sed 's/./& /g')
