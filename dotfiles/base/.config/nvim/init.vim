@@ -18,6 +18,7 @@ execute pathogen#infect()
 
 syntax on
 colorscheme wal
+hi StatusLine ctermfg=2
 set t_Co=256
 set splitbelow
 set splitright
@@ -140,11 +141,6 @@ aug END
 
 aug latex
     au!
-    au BufWritePost *.tex silent Make!
-    au VimLeave *.tex silent make clean
-aug END
-
-aug python
-    au!
-    au BufRead,BufNewFile *.py set foldmethod=indent
+    au BufWritePost *.tex silent !make
+    au VimLeave *.tex silent !make clean
 aug END
