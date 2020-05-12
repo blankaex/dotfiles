@@ -11,6 +11,13 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
 fi
 
 #
+# XDG Base Directory
+#
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+
+#
 # Browser
 #
 
@@ -71,7 +78,7 @@ export KEYTIMEOUT=1
 # Secrets
 #
 
-source $HOME/.config/.secrets
+source $XDG_CONFIG_HOME/.secrets
 
 #
 # Paths
