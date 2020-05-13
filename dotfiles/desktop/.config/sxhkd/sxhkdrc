@@ -54,5 +54,5 @@ mod4 + shift + Print
 # Misc
 F1
     xdotool click 1
-F6
-    xdotool search --onlyvisible --name runescape windowactivate key $(xclip -o | sed 's/./& /g')
+@F6
+    xdotool search --onlyvisible --class runescape windowactivate type $(xclip -o)
