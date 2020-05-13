@@ -38,17 +38,21 @@ XF86AudioMute
     vol -m
 XF86Audio{Lower,Raise}Volume
     vol -{d,u} 5
-ctrl + XF86Audio{Mute,LowerVolume,RaiseVolume}
-    mpc {toggle,prev,next}
+mod4 + p; i
+    mpc prev
+mod4 + p; o
+    mpc next
+mod4 + p; p
+    mpc toggle
 
 
 # Screen Capture
 Print
-    maim $HOME/$(date -Iseconds).jpg
+    maim -u $HOME/$(date -Iseconds).jpg
 mod4 + Print
-    maim -s | xclip -selection clipboard -t image/png
+    maim -su | xclip -selection clipboard -t image/png
 mod4 + shift + Print
-    maim -s $HOME/$(date -Iseconds).jpg
+    maim -su $HOME/$(date -Iseconds).jpg
 
 
 # Misc
