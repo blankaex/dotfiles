@@ -11,7 +11,7 @@ Repository for managing configuration files for Arch Linux.
 
 ## Requirements
 
-[Dotdrop](https://github.com/deadc0de6/dotdrop) installed globally (i.e. via AUR) or [as a submodule](https://github.com/deadc0de6/dotdrop#as-a-submodule).
+* [Dotdrop](https://github.com/deadc0de6/dotdrop)
 
 ## Installation
 
@@ -24,6 +24,7 @@ $ dotdrop install -p desktop
 ## Tools
 
 * [i3-gaps](https://github.com/Airblader/i3)
+* [sxhkd] (https://github.com/baskerville/sxhkd)
 * [polybar](https://github.com/polybar/polybar)
 * [rofi](https://github.com/davatorium/rofi)
 * [dunst](https://dunst-project.org/)
