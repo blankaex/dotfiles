@@ -1,0 +1,46 @@
+# Window Management
+mod4 + shift + q
+    xkill
+
+
+# Launch Processes
+mod4 + Return
+    $TERM
+mod4 + d
+    rofi -show run -m primary
+mod4 + t
+    $TERM -e ranger
+mod4 + o; {n,q,t,w}
+    {$TERM -e ncmpcpp,qbittorrent,thunderbird,$BROWSER}
+
+
+# Device Management
+mod4 + {F7,F8}
+    {rofimount,rofiumount}
+mod4 + {F9,F10,F11,F12}
+    {shutdown now,reboot,i3-msg exit,lock}
+
+
+# Audio Control
+XF86AudioMute
+    vol -m
+XF86Audio{Lower,Raise}Volume
+    vol -{d,u} 5
+ctrl + XF86Audio{Mute,LowerVolume,RaiseVolume}
+    mpc {toggle,prev,next}
+
+
+# Screen Capture
+Print
+    maim $HOME/$(date -Iseconds).jpg
+mod4 + Print
+    maim -s | xclip -selection clipboard -t image/png
+mod4 + shift + Print
+    maim -s $HOME/$(date -Iseconds).jpg
+
+
+# Misc
+F1
+    xdotool click 1
+F6
+    xdotool search --onlyvisible --name runescape windowactivate key $(xclip -o | sed 's/./& /g')

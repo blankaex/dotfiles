@@ -28,6 +28,7 @@ redshift &
 fcitx &
 wal -R &
 $HOME/.fehbg &
+sxhkd &
 
 # Launch WM
 exec i3

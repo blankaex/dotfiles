@@ -113,6 +113,9 @@ dotfiles:
   f_d_i3:
     dst: ~/.config/i3/
     src: desktop/.config/i3/
+  f_d_sxhkd:
+    dst: ~/.config/sxhkd/sxhkdrc
+    src: desktop/.config/sxhkd/sxhkdrc
   f_d_polybar:
     dst: ~/.config/polybar/
     src: desktop/.config/polybar/
