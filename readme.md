@@ -24,7 +24,7 @@ $ dotdrop install -p desktop
 ## Tools
 
 * [i3-gaps](https://github.com/Airblader/i3)
-* [sxhkd] (https://github.com/baskerville/sxhkd)
+* [sxhkd](https://github.com/baskerville/sxhkd)
 * [polybar](https://github.com/polybar/polybar)
 * [rofi](https://github.com/davatorium/rofi)
 * [dunst](https://dunst-project.org/)
