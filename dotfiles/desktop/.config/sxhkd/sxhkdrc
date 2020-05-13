@@ -5,20 +5,32 @@ mod4 + shift + q
 
 # Launch Processes
 mod4 + Return
-    $TERM
+    alacritty
 mod4 + d
     rofi -show run -m primary
 mod4 + t
-    $TERM -e ranger
-mod4 + o; {n,q,t,w}
-    {$TERM -e ncmpcpp,qbittorrent,thunderbird,$BROWSER}
+    alacritty -e ranger
+mod4 + o; n
+    alacritty -e ncmpcpp
+mod4 + o; q
+    qbittorrent
+mod4 + o; t
+    thunderbird
+mod4 + o; w
+    firefox
 
 
 # Device Management
 mod4 + {F7,F8}
-    {rofimount,rofiumount}
-mod4 + {F9,F10,F11,F12}
-    {shutdown now,reboot,i3-msg exit,lock}
+    rofi{mount,umount}
+mod4 + F9
+    confirm "Shut down?" "shutdown now"
+mod4 + F10
+    confirm "Restart?" "reboot"
+mod4 + F11
+    confirm "Log out?" "i3-msg exit"
+mod4 + F12
+    lock
 
 
 # Audio Control
