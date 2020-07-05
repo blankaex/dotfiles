@@ -1,6 +1,43 @@
-# Window Management
+# # Window Management
+# mod4 + q
+#     bspc node -c
+# # swap the current node and the biggest node
+# mod4 + space
+# 	bspc node -s biggest
+# # set the window state
+# mod4 + {t,shift + t,s,f}
+# 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+# # set the node flags
+# mod4 + shift + {m,x,y,z}
+# 	bspc node -g {marked,locked,sticky,private}
+# # focus the node in the given direction
+# mod4 + {_,shift + }{h,j,k,l}
+# 	bspc node -{f,s} {west,south,north,east}
+# # focus the node for the given path jump
+# mod4 + {p,b,comma,period}
+# 	bspc node -f @{parent,brother,first,second}
+# # focus or send to the given desktop
+# mod4 + {_,shift + }{1-9}
+# 	bspc {desktop -f,node -d} 'DVI-I-1:^{1-9}'
+# mod4 + {_,shift + }{F1,F2,F3,F4}
+# 	bspc {desktop -f,node -d} 'DVI-D-0:^{1-4}'
+# # expand a window by moving one of its side outward
+# mod4 + alt + {h,j,k,l}
+# 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+# # contract a window by moving one of its side inward
+# mod4 + alt + shift + {h,j,k,l}
+# 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+# # move a floating window
+# mod4 + {Left,Down,Up,Right}
+# 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+
+# Environment Management
 mod4 + shift + q
     xkill
+mod4 + shift + r
+    killall -SIGUSR1 sxhkd && i3-msg restart
+	# pkill -USR1 -x sxhkd && bspc wm -r
 
 
 # Launch Processes
@@ -10,6 +47,8 @@ mod4 + d
     rofi -show run -m primary
 mod4 + t
     alacritty -e ranger
+mod4 + o; k
+    keepassxc
 mod4 + o; n
     alacritty -e ncmpcpp
 mod4 + o; q
@@ -26,9 +65,10 @@ mod4 + {F7,F8}
 mod4 + F9
     confirm "Shut down?" "shutdown now"
 mod4 + F10
-    confirm "Restart?" "reboot"
+    confirm "Reboot?" "reboot"
 mod4 + F11
-    confirm "Log out?" "i3-msg exit"
+    confirm "Log out?" "bspc quit"
+    # confirm "Log out?" "i3-msg exit"
 mod4 + F12
     lock
 
@@ -38,12 +78,12 @@ XF86AudioMute
     vol -m
 XF86Audio{Lower,Raise}Volume
     vol -{d,u} 5
-mod4 + p; i
+mod4 + Insert
     mpc prev
-mod4 + p; o
-    mpc next
-mod4 + p; p
+mod4 + Home
     mpc toggle
+mod4 + Prior
+    mpc next
 
 
 # Screen Capture
@@ -53,10 +93,3 @@ mod4 + Print
     maim -su | xclip -selection clipboard -t image/png
 mod4 + shift + Print
     maim -su $HOME/$(date -Iseconds).jpg
-
-
-# Misc
-F1
-    xdotool click 1
-@F6
-    xdotool search --onlyvisible --class runescape windowactivate type $(xclip -o)

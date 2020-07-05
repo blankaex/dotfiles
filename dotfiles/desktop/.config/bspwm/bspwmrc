@@ -1,0 +1,13 @@
+#! /bin/sh
+
+bspc monitor DVI-I-1 -d 壱 弐 参 肆 伍 陸 漆 捌 玖
+bspc monitor DVI-D-0 -d 東 西 北 南
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+$HOME/.config/polybar/launch.sh

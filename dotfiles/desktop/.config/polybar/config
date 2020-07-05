@@ -57,6 +57,7 @@ inherit = bar/master
 monitor = ${env:MONITOR:DVI-I-1}
 
 modules-center = i3
+# modules-center = bspwm
 modules-right = date
 # tray-position = left
 
@@ -65,6 +66,7 @@ inherit = bar/master
 monitor = ${env:MONITOR:DVI-D-0}
 
 modules-center = i3
+# modules-center = bspwm
 
 [module/xwindow]
 type = internal/xwindow
@@ -99,19 +101,46 @@ label-unmounted-foreground = ${colors.foreground-alt}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
+; Only show workspaces defined on the same output as the bar
+; Default: true
+pin-workspaces = true
+
+; Output mode flags after focused state label
+; Default: false
+inline-mode = false
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = false
+
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Default: false
+fuzzy-match = false
+
+; Formatting options
+label-focused = %name%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
-label-occupied = %index%
+label-occupied = %name%
+label-occupied-underline = ${colors.secondary}
 label-occupied-padding = 2
 
-label-urgent = %index%!
+label-urgent = %name%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-label-empty = %index%
+label-empty = %name%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
 

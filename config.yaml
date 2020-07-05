@@ -102,6 +102,9 @@ dotfiles:
     src: core/.config/syncplay.ini
 
   # desktop
+  f_d_bspwm:
+    dst: ~/.config/bspwm/bspwmrc
+    src: desktop/.config/bspwm/bspwmrc
   f_d_dunstrc:
     dst: ~/.config/wal/templates/dunstrc
     src: desktop/.config/wal/templates/dunstrc
@@ -183,10 +186,12 @@ profiles:
     include:
       - core
     dotfiles:
+      - f_d_bspwm
       - f_d_dunstrc
       - f_d_fehbg
       - f_d_i3
       - f_d_polybar
+      - f_d_sxhkd
       - f_d_xinit
 
   laptop:
