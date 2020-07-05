@@ -32,3 +32,4 @@ sxhkd &
 
 # Launch WM
 exec i3
+# exec bspwm
