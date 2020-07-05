@@ -13,8 +13,7 @@
 # # focus the node in the given direction
 # mod4 + {_,shift + }{h,j,k,l}
 # 	bspc node -{f,s} {west,south,north,east}
-# # focus the node for the given path jump
-# mod4 + {p,b,comma,period}
+# # focus the node for the given path jump mod4 + {p,b,comma,period}
 # 	bspc node -f @{parent,brother,first,second}
 # # focus or send to the given desktop
 # mod4 + {_,shift + }{1-9}
@@ -67,8 +66,8 @@ mod4 + F9
 mod4 + F10
     confirm "Reboot?" "reboot"
 mod4 + F11
-    confirm "Log out?" "bspc quit"
-    # confirm "Log out?" "i3-msg exit"
+    confirm "Log out?" "i3-msg exit"
+    # confirm "Log out?" "bspc quit"
 mod4 + F12
     lock
 
