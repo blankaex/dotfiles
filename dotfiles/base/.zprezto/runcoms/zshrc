@@ -36,12 +36,14 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^v' edit-command-line
 
 # Aliases
+alias cron='crontab -e'
 alias diff='diff --color=auto'
 alias dotdrop='dotdrop --cfg=$HOME/.dotfiles/config.yaml'
 alias ncmpcpp='ncmpcpp --config $HOME/.config/ncmpcpp/config --bindings $HOME/.config/ncmpcpp/bindings'
 alias syncplay='syncplay --no-store --no-gui -p $SYNCPLAY_PASSWORD'
 alias rofi='rofi -m primary'
 alias xclip='xclip -selection clipboard'
+alias ytdl='youtube-dl'
 alias :q='exit'
 
 # Functions
