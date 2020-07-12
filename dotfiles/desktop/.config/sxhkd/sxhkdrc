@@ -3,7 +3,7 @@ mod4 + q
     bspc node -c
 # swap the current node and the biggest node
 mod4 + space
-	bspc node -s biggest
+	bspc node -s biggest.local
 # set the window state
 mod4 + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
