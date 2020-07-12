@@ -16,6 +16,7 @@ setxkbmap -option caps:super
 xcape -e "Super_L=Escape"
 
 # Configure screens
+xsetroot -cursor_name left_ptr &
 xrandr --output DVI-I-1 --auto --primary --pos 1080x340 --output DVI-D-0 --rotate left --pos 0x0
 xset -dpms
 xset s off
@@ -31,5 +32,6 @@ $HOME/.fehbg &
 sxhkd &
 
 # Launch WM
-exec i3
-# exec bspwm
+# exec i3
+echo "startup" > "$XDG_CACHE_HOME/xstatus"
+exec bspwm

@@ -3,11 +3,48 @@
 bspc monitor DVI-I-1 -d 壱 弐 参 肆 伍 陸 漆 捌 玖
 bspc monitor DVI-D-0 -d 東 西 北 南
 
-bspc config border_width         2
-bspc config window_gap          12
+bspc config border_width         1
+bspc config window_gap           8
 
-bspc config split_ratio          0.52
+bspc config top_padding          30
+bspc config bottom_padding       4
+bspc config left_padding         4
+bspc config right_padding        4
+
+bspc config split_ratio          0.55
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
+. "$HOME/.cache/wal/colors.sh"
+bspc config focused_border_color    $color5
+bspc config active_border_color     $color6
+bspc config normal_border_color     $color6
+bspc config presel_feedback_color   $color6
+
 $HOME/.config/polybar/launch.sh
+
+if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
+    # create recepticles
+    bspc node @東:/ -i
+    bspc node @東:/ -p south -o 0.25 -i
+
+    bspc node @西:/ -i
+    bspc node @西:/ -p south -o 0.25 -i
+
+    # set one-off rules to fill recepticles
+    bspc rule -a Alacritty:ncmpcpp -o node=@東:/1
+    bspc rule -a firefox:Navigator -o node=@東:/2
+
+    bspc rule -a Alacritty:weechat -o node=@西:/1
+    bspc rule -a Vivaldi-stable:vivaldi-stable -o node=@西:/2
+
+    # load processes to fill recepticles
+    alacritty --class ncmpcpp -e ncmpcpp --config $HOME/.config/ncmpcpp/config --bindings $HOME/.config/ncmpcpp/bindings &
+    firefox &
+
+    alacritty --class weechat -e weechat &
+    vivaldi-stable &
+
+    # prevent startup processes from launching on reload
+    echo "running" > "$XDG_CACHE_HOME/xstatus"
+fi
