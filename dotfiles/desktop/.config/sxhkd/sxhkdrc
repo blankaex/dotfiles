@@ -5,7 +5,7 @@ mod4 + q
 mod4 + space
 	bspc node -s biggest.local
 # set the window state
-mod4 + {t,shift + t,s,f}
+mod4 + {e,w,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 # set the node flags
 mod4 + shift + {m,x,y,z}
@@ -20,6 +20,12 @@ mod4 + {_,shift + }{1-9}
 	bspc {desktop -f,node -d} 'DVI-I-1:^{1-9}'
 mod4 + {_,shift + }{F1,F2,F3,F4}
 	bspc {desktop -f,node -d} 'DVI-D-0:^{1-4}'
+# hide focused window
+mod4 + shift + 0
+    bspc node focused -g hidden=on
+# unhide window at the top of the hidden stack
+mod4 + 0
+    bspc node $(bspc query -N -n .hidden | tail -n1) -g hidden=off
 # expand a window by moving one of its side outward
 mod4 + alt + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
