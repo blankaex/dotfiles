@@ -3,16 +3,16 @@
 getmount() { \
 	[ -z "$chosen" ] && exit 1
         # shellcheck disable=SC2086
-	mp="$(find $1 2>/dev/null | rofi -dmenu -i -p "Mount point")" || exit 1
+	mp="$(find $1 2>/dev/null | rofi -m primary -dmenu -i -p "Mount point")" || exit 1
 	[ "$mp" = "" ] && exit 1
 	if [ ! -d "$mp" ]; then
-		mkdiryn=$(printf "No\\nYes" | rofi -dmenu -i -p "$mp does not exist. Create it?") || exit 1
+		mkdiryn=$(printf "No\\nYes" | rofi -m primary -dmenu -i -p "$mp does not exist. Create it?") || exit 1
 		[ "$mkdiryn" = "Yes" ] && (mkdir -p "$mp" || sudo -A mkdir -p "$mp")
 	fi
 	}
 
 mountusb() { \
-	chosen="$(echo "$usbdrives" | rofi -dmenu -i -p "Mount")" || exit 1
+	chosen="$(echo "$usbdrives" | rofi -m primary -dmenu -i -p "Mount")" || exit 1
 	chosen="$(echo "$chosen" | awk '{print $1}')"
 	sudo -A mount "$chosen" 2>/dev/null && notify-send "💻 USB mounting" "$chosen mounted." && exit 0
 	alreadymounted=$(lsblk -nrpo "name,type,mountpoint" | awk '$3!~/\/boot|\/home$|SWAP/&&length($3)>1{printf "-not ( -path *%s -prune ) ",$3}')
@@ -26,7 +26,7 @@ mountusb() { \
 	}
 
 mountandroid() { \
-    chosen="$(echo "$anddrives" | rofi -dmenu -i -p "Device")" || exit 1
+    chosen="$(echo "$anddrives" | rofi -m primary -dmenu -i -p "Device")" || exit 1
     echo $anddrives
     chosen="$(echo "$chosen" | cut -d : -f 1)"
     if [ $(echo "$anddrives" | wc -l) -eq 1 ]; then
@@ -39,7 +39,7 @@ mountandroid() { \
 	}
 
 asktype() { \
-	choice="$(printf "USB\\nAndroid" | rofi -dmenu -i -p "Mount")" || exit 1
+	choice="$(printf "USB\\nAndroid" | rofi -m primary -dmenu -i -p "Mount")" || exit 1
 	case $choice in
 		USB) mountusb ;;
 		Android) mountandroid ;;

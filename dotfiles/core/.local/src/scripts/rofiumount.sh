@@ -2,20 +2,20 @@
 
 unmountusb() {
 	[ -z "$drives" ] && exit
-	chosen="$(echo "$drives" | rofi -dmenu -i -p "Unmount")" || exit 1
+	chosen="$(echo "$drives" | rofi -m primary -dmenu -i -p "Unmount")" || exit 1
 	chosen="$(echo "$chosen" | awk '{print $1}')"
 	[ -z "$chosen" ] && exit
 	sudo -A umount "$chosen" && notify-send "💻 USB unmounting" "$chosen unmounted."
 	}
 
 unmountandroid() { \
-    chosen="$( awk '/simple-mtpfs/ {print $2}' /etc/mtab | rofi -dmenu -i -p "Unmount")" || exit 1
+    chosen="$( awk '/simple-mtpfs/ {print $2}' /etc/mtab | rofi -m primary -dmenu -i -p "Unmount")" || exit 1
 	[ -z "$chosen" ] && exit
 	sudo -A umount -l "$chosen" && notify-send "🤖 Android unmounting" "$chosen unmounted."
 	}
 
 asktype() { \
-	choice="$(printf "USB\\nAndroid" | rofi -dmenu -i -p "Unmount")" || exit 1
+	choice="$(printf "USB\\nAndroid" | rofi -m primary -dmenu -i -p "Unmount")" || exit 1
 	case "$choice" in
 		USB) unmountusb ;;
 		Android) unmountandroid ;;
