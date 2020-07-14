@@ -27,21 +27,18 @@ if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
     # create recepticles
     bspc node @東:/ -i
     bspc node @東:/ -p south -o 0.25 -i
-
     bspc node @西:/ -i
     bspc node @西:/ -p south -o 0.25 -i
 
     # set one-off rules to fill recepticles
-    bspc rule -a Alacritty:ncmpcpp -o node=@東:/1
-    bspc rule -a firefox:Navigator -o node=@東:/2
-
-    bspc rule -a Alacritty:weechat -o node=@西:/1
-    bspc rule -a Vivaldi-stable:vivaldi-stable -o node=@西:/2
+    bspc rule -a Alacritty:ncmpcpp -o node=@東:/1 locked=on
+    bspc rule -a firefox:Navigator -o node=@東:/2 locked=on
+    bspc rule -a Alacritty:weechat -o node=@西:/1 locked=on
+    bspc rule -a Vivaldi-stable:vivaldi-stable -o node=@西:/2 locked=on
 
     # load processes to fill recepticles
     alacritty --class ncmpcpp -e ncmpcpp --config $HOME/.config/ncmpcpp/config --bindings $HOME/.config/ncmpcpp/bindings &
     firefox &
-
     alacritty --class weechat -e weechat &
     vivaldi-stable &
 
