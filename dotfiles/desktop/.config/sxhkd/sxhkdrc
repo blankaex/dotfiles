@@ -22,10 +22,10 @@ mod4 + {_,shift + }{F1,F2,F3,F4}
 	bspc {desktop -f,node -d} 'DVI-D-0:^{1-4}'
 # hide focused window
 mod4 + shift + 0
-    bspc node focused -g hidden=on
+    bspc node focused -g hidden=on -g sticky=on
 # unhide window at the top of the hidden stack
 mod4 + 0
-    bspc node $(bspc query -N -n .hidden | tail -n1) -g hidden=off
+    bspc node $(bspc query -N -n .hidden | tail -n1) -g hidden=off -g sticky=off
 # expand a window by moving one of its side outward
 mod4 + alt + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
