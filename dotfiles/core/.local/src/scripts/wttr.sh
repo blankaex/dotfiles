@@ -1,8 +1,9 @@
 #!/bin/sh
 
-if [ $(stat --format='%Y' "$XDG_CACHE_HOME/wttr") -lt $(date -d 'now - 1 day' +%s) ]; then
+# only update cached weather info if it's older than one day
+if [ $(stat -c '%Y' $XDG_CACHE_HOME/wttr) -lt $(date -d 'now - 1 day' +%s) ]; then
     curl wttr.in/$WTTR_LOCATION > $XDG_CACHE_HOME/wttr
 fi
 
-bspc rule -a Alacritty:wttr -o state=floating center=on rectangle=1024x700+0+0
+bspc rule -a Alacritty:wttr -o monitor=DVI-I-1 state=floating follow=on center=on rectangle=1024x700+0+0
 alacritty --class wttr -e less $XDG_CACHE_HOME/wttr
