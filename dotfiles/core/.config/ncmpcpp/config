@@ -100,3 +100,6 @@ enable_window_title = "yes"
 song_window_title_format = "{%a - }{%t}|{%f}"
 system_encoding = "utf8"
 volume_change_step = "5"
+
+# Album Art
+execute_on_song_change = "~/.config/ncmpcpp/art.sh"

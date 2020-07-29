@@ -77,12 +77,9 @@ dotfiles:
   f_mpv:
     dst: ~/.config/mpv/
     src: core/.config/mpv/
-  f_ncmpcpp_bindings:
-    dst: ~/.config/ncmpcpp/bindings
-    src: core/.config/ncmpcpp/bindings
-  f_ncmpcpp_config:
-    dst: ~/.config/ncmpcpp/bindings
-    src: core/.config/ncmpcpp/bindings
+  f_ncmpcpp:
+    dst: ~/.config/ncmpcpp/
+    src: core/.config/ncmpcpp/
   f_qbittorrent:
     dst: ~/.config/qBittorrent/rss/feeds.json
     src: core/.config/qBittorrent/rss/feeds.json
@@ -170,8 +167,7 @@ profiles:
       - f_gtk_themes
       - f_mpd
       - f_mpv
-      - f_ncmpcpp_bindings
-      - f_ncmpcpp_config
+      - f_ncmpcpp
       - f_qbittorrent
       - f_radare2rc
       - f_rofi
