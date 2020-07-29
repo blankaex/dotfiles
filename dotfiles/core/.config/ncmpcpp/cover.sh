@@ -9,7 +9,7 @@ function ImageLayer {
     ueberzug layer -sp json
 }
 
-COVER="/tmp/cover.png"
+COVER="$XDG_CACHE_HOME/cover.png"
 X_PADDING=0
 Y_PADDING=0
 

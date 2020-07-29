@@ -6,7 +6,7 @@
 #-------------------------------#
 
 MUSIC_DIR="$HOME/Music"
-COVER="/tmp/cover.png"
+COVER="$XDG_CACHE_HOME/cover.png"
 COVER_SIZE=285
 
 BORDERS=false
