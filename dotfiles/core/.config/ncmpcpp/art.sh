@@ -1,9 +1,4 @@
-#!/usr/bin/env sh
-
-#-------------------------------#
-# Generate current song cover   #
-# ffmpeg version                #
-#-------------------------------#
+#!/bin/sh
 
 MUSIC_DIR="$HOME/Music"
 COVER="$XDG_CACHE_HOME/cover.png"
@@ -27,8 +22,11 @@ function fallback_find_cover {
     if [ "$album_cover" == "" ]; then
         album_cover="$(find "$album" -type d -exec find {} -maxdepth 1 -type f -iregex ".*[.]\(jpe?g\|png\|gif\|bmp\)" \;)"
     fi
+    # if [ "$album_cover" == "" ]; then
+    #     album_cover="$(find "$album/.." -type d -exec find {} -maxdepth 1 -type f -iregex ".*\(cover?s\|folder?s\|artwork?s\|front?s\|scan?s\|booklet\).*?1[.]\(jpe?g\|png\|gif\|bmp\)" \;)"
+    # fi
     if [ "$album_cover" == "" ]; then
-        album_cover="$(find "$album/.." -type d -exec find {} -maxdepth 1 -type f -iregex ".*\(cover?s\|folder?s\|artwork?s\|front?s\|scan?s\|booklet\).*?1[.]\(jpe?g\|png\|gif\|bmp\)" \;)"
+        album_cover="$XDG_CONFIG_HOME/ncmpcpp/cover.png"
     fi
     album_cover="$(echo -n "$album_cover" | head -n1)"
 }

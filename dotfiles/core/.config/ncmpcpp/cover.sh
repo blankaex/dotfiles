@@ -1,9 +1,4 @@
-#!/usr/bin/env bash
-
-#-------------------------------#
-# Display current cover         #
-# ueberzug version              #
-#-------------------------------#
+#!/bin/sh
 
 function ImageLayer {
     ueberzug layer -sp json
