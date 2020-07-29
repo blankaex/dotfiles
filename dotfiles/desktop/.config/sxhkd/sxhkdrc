@@ -95,9 +95,9 @@ mod4 + Prior
 Print
     maim -u $HOME/$(date -Iseconds).jpg
 mod4 + Print
-    maim -su | xclip -selection clipboard -t image/png
+    maim -Bsu | xclip -selection clipboard -t image/png
 mod4 + shift + Print
-    maim -su $HOME/$(date -Iseconds).jpg
+    maim -Bsu $HOME/$(date -Iseconds).jpg
 
 
 # Misc
