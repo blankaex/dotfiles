@@ -157,10 +157,10 @@ profiles:
       - base
     dotfiles:
       - f_alacritty
-      - f_fcitx-config
-      - f_fcitx-skin
-      - f_fcitx-skin-conf
-      - f_fcitx-profile
+      # - f_fcitx-config
+      # - f_fcitx-skin
+      # - f_fcitx-skin-conf
+      # - f_fcitx-profile
       - f_gtk2
       - f_gtk3
       - f_gtk_icons
