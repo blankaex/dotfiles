@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 MUSIC_DIR="$HOME/Music"
 COVER="$XDG_CACHE_HOME/cover.png"
