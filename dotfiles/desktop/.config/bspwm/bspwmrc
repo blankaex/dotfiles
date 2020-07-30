@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 bspc monitor DVI-I-1 -d 壱 弐 参 肆 伍 陸 漆 捌 玖
 bspc monitor DVI-D-0 -d 東 西 北 南
@@ -39,7 +39,7 @@ if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
     bspc rule -a Vivaldi-stable:vivaldi-stable -o node=@西:/2 locked=on
 
     # load processes to fill recepticles
-    alacritty --class ncmpcpp -e tmux new-session "tmux source-file ~/.config/ncmpcpp/tmux_session" &
+    alacritty --class ncmpcpp -e tmux new-session "tmux source-file ~/.config/ncmpcpp/startup.tmux" &
     firefox &
     alacritty --class weechat -e weechat &
     vivaldi-stable &
