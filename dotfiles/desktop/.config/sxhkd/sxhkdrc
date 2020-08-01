@@ -42,7 +42,6 @@ mod4 + shift + q
     xkill
 mod4 + shift + r
 	pkill -USR1 -x sxhkd && STARTUP=true bspc wm -r
-    # killall -SIGUSR1 sxhkd && i3-msg restart
 
 
 # Launch Processes
@@ -73,7 +72,6 @@ mod4 + F10
     confirm "Reboot?" "reboot"
 mod4 + F11
     confirm "Log out?" "bspc quit"
-    # confirm "Log out?" "i3-msg exit"
 mod4 + F12
     lock
 
@@ -98,16 +96,3 @@ mod4 + Print
     maim -Bsu | xclip -selection clipboard -t image/png
 mod4 + shift + Print
     maim -Bsu $HOME/$(date -Iseconds).png
-
-
-# Misc
-# F1
-#     xdotool click 1
-# F2
-#     xdotool click --delay 2400 --repeat 5000 1 & notify-send "Started"
-#     xdotool click --delay 2400 --repeat 5000 1 & notify-send "Started"
-#     xdotool click --delay 5800 --repeat 28 1 && paplay "/media/storage/Audio/Theme Sounds/Ai-tan/ai_asterisk.wav"
-# F3
-#     killall xdotool && notify-send "Stopped"
-@F6
-    xdotool search --onlyvisible --class runescape windowactivate type $(xclip -o)

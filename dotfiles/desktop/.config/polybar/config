@@ -57,7 +57,6 @@ wm-restack = bspwm
 inherit = bar/master
 monitor = ${env:MONITOR:DVI-I-1}
 
-# modules-center = i3
 modules-center = bspwm
 modules-right = date
 # tray-position = left
@@ -66,7 +65,6 @@ modules-right = date
 inherit = bar/master
 monitor = ${env:MONITOR:DVI-D-0}
 
-# modules-center = i3
 modules-center = bspwm
 
 [module/xwindow]
