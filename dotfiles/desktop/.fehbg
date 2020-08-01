@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-tile '/media/storage/Pictures/Wallpapers/!/1460580309412.png' 
+feh --no-fehbg --bg-fill --no-xinerama '/media/storage/Pictures/Wallpapers/!/1460580309412.png' 
