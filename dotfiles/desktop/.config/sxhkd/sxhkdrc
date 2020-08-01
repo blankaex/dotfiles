@@ -93,11 +93,11 @@ mod4 + Prior
 
 # Screen Capture
 Print
-    maim -u $HOME/$(date -Iseconds).jpg
+    maim -u $HOME/$(date -Iseconds).png
 mod4 + Print
     maim -Bsu | xclip -selection clipboard -t image/png
 mod4 + shift + Print
-    maim -Bsu $HOME/$(date -Iseconds).jpg
+    maim -Bsu $HOME/$(date -Iseconds).png
 
 
 # Misc
