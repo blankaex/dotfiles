@@ -162,7 +162,7 @@ def_key "k"
 
 def_key "j"
   scroll_down
-#
+
 #def_key "["
 #  scroll_up_album
 #
@@ -175,24 +175,24 @@ def_key "j"
 #def_key "}"
 #  scroll_down_artist
 #
-#def_key "page_up"
-#  page_up
-#
-#def_key "page_down"
-#  page_down
-#
-#def_key "home"
-#  move_home
-#
-#def_key "end"
-#  move_end
-#
+def_key "ctrl-u"
+  page_up
+
+def_key "ctrl-d"
+  page_down
+
+def_key "g"
+  move_home
+
+def_key "G"
+  move_end
+
 #def_key "insert"
 #  select_item
 #
-#def_key "enter"
-#  enter_directory
-#
+def_key "l"
+  enter_directory
+
 #def_key "enter"
 #  toggle_output
 #
@@ -228,7 +228,7 @@ def_key "l"
 
 def_key "K"
   volume_up
-#
+
 #def_key "+"
 #  volume_up
 #
@@ -240,7 +240,7 @@ def_key "h"
 
 def_key "J"
   volume_down
-#
+
 #def_key "-"
 #  volume_down
 #
@@ -307,9 +307,9 @@ def_key "J"
 #def_key "<"
 #  previous
 #
-#def_key "ctrl-h"
-#  jump_to_parent_directory
-#
+def_key "h"
+  jump_to_parent_directory
+
 #def_key "ctrl-h"
 #  replay_song
 #
