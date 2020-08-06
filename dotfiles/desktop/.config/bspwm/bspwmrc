@@ -47,3 +47,5 @@ if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
     # prevent startup processes from launching on reload
     echo "running" > "$XDG_CACHE_HOME/xstatus"
 fi
+
+bspc rule -a Zathura state=tiled
