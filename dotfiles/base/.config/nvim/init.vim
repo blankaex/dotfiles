@@ -113,16 +113,13 @@ nmap <buffer> <silent> $ g$
 aug unicode
     au!
     au BufRead,BufNewFile *.ass imap -- —
-    au BufRead,BufNewFile *.md imap -- —
-    au BufRead,BufNewFile *.tex imap -- —
     au BufRead,BufNewFile *.yml,*.yaml imap -- —
 aug END
 
-aug spacing
+aug latex
     au!
-    au BufRead,BufNewFile *.html set shiftwidth=2 tabstop=2
-    au BufRead,BufNewFile *.json set shiftwidth=2 tabstop=2
-    au BufRead,BufNewFile *.yaml,*.yml set shiftwidth=2 tabstop=2
+    au BufWritePost *.tex silent !make
+    au VimLeave *.tex silent !make clean
 aug END
 
 aug ass
@@ -139,8 +136,9 @@ aug html
     highlight link htmlEndTag htmlTagName
 aug END
 
-aug latex
+aug spacing
     au!
-    au BufWritePost *.tex silent !make
-    au VimLeave *.tex silent !make clean
+    au BufRead,BufNewFile *.html set shiftwidth=2 tabstop=2
+    au BufRead,BufNewFile *.json set shiftwidth=2 tabstop=2
+    au BufRead,BufNewFile *.yaml,*.yml set shiftwidth=2 tabstop=2
 aug END

@@ -21,7 +21,7 @@ dotfiles:
   f_gitconfig:
     dst: ~/.gitconfig
     src: base/.gitconfig
-  f_nvim_init:
+  f_nvim:
     dst: ~/.config/nvim/init.vim
     src: base/.config/nvim/init.vim
     actions:
@@ -145,7 +145,7 @@ profiles:
   base:
     dotfiles:
       - f_gitconfig
-      - f_nvim_init
+      - f_nvim
       - f_ranger
       - f_wal
       - f_zprezto
