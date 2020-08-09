@@ -142,3 +142,17 @@ aug spacing
     au BufRead,BufNewFile *.json set shiftwidth=2 tabstop=2
     au BufRead,BufNewFile *.yaml,*.yml set shiftwidth=2 tabstop=2
 aug END
+
+aug eroge
+    au BufRead,BufNewFile *.yml,*.yaml imap RE Ren: "
+    au BufRead,BufNewFile *.yml,*.yaml imap MA Mafuyu: "
+    au BufRead,BufNewFile *.yml,*.yaml imap CO Cocoa: "
+    au BufRead,BufNewFile *.yml,*.yaml imap RO Reon: "
+    au BufRead,BufNewFile *.yml,*.yaml imap SO Solly: "
+    au BufRead,BufNewFile *.yml,*.yaml imap OW Owner: "
+    au BufRead,BufNewFile *.yml,*.yaml imap AA Ah...
+    au BufRead,BufNewFile *.yml,*.yaml imap MM Mmm...
+    au BufRead,BufNewFile *.yml,*.yaml imap NN Ngh...
+    au BufRead,BufNewFile *.yml,*.yaml imap SS *smooch*...
+    au BufRead,BufNewFile *.yml,*.yaml imap LL *slurp*...
+aug END
