@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # only update cached weather info if it's older than one day
-if [ $(stat -c '%Y' $XDG_CACHE_HOME/wttr) -lt $(date -d 'now - 1 day' +%s) ]; then
+if [ $(stat -c '%Y' $XDG_CACHE_HOME/wttr) -lt $(date -d 'now - 1 hour' +%s) ]; then
     curl wttr.in/$WTTR_LOCATION | awk 'NR>=2&&NR<=37' > $XDG_CACHE_HOME/wttr
 fi
 
