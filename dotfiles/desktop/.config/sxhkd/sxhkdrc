@@ -53,10 +53,10 @@ mod4 + t
     alacritty -e ranger
 mod4 + o; k
     keepassxc
-mod4 + o; n
-    alacritty -e ncmpcpp
 mod4 + o; q
     qbittorrent
+mod4 + o; s
+    twitch
 mod4 + o; t
     thunderbird
 mod4 + o; w
