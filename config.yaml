@@ -56,9 +56,6 @@ dotfiles:
   f_fcitx-skin-conf:
     dst: ~/.config/fcitx/conf/fcitx-classic-ui.config
     src: core/.config/fcitx/conf/fcitx-classic-ui.config
-  f_fcitx-profile:
-    dst: ~/.config/fcitx/profile
-    src: core/.config/fcitx/profile
   f_gtk2:
     dst: ~/.gtkrc-2.0
     src: core/.gtkrc-2.0
@@ -159,10 +156,9 @@ profiles:
       - base
     dotfiles:
       - f_alacritty
-      # - f_fcitx-config
-      # - f_fcitx-skin
-      # - f_fcitx-skin-conf
-      # - f_fcitx-profile
+      - f_fcitx-config
+      - f_fcitx-skin
+      - f_fcitx-skin-conf
       - f_gtk2
       - f_gtk3
       - f_gtk_icons
