@@ -80,6 +80,8 @@ dotfiles:
   f_ncmpcpp:
     dst: ~/.config/ncmpcpp/
     src: core/.config/ncmpcpp/
+    cmpignore:
+      - error.log
   f_qbittorrent:
     dst: ~/.config/qBittorrent/rss/feeds.json
     src: core/.config/qBittorrent/rss/feeds.json
