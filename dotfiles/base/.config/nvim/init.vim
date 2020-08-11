@@ -9,7 +9,16 @@ let mapleader =" "
 " Plugins
 "
 
-execute pathogen#infect()
+" execute pathogen#infect()
+call plug#begin('~/.config/nvim/plugins')
+Plug 'vim-scripts/fcitx.vim'
+Plug 'preservim/nerdtree'
+Plug 'dylanaraps/wal.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'stephpy/vim-yaml'
+call plug#end()
 
 
 "
@@ -91,6 +100,7 @@ nmap <silent><leader>c gcc
 nmap <silent><leader>n :NERDTreeToggle<cr>
 nmap <silent><leader>g :Goyo<cr>
 nmap <silent><leader>p :set cursorcolumn!<Bar>set cursorline!<cr>
+nmap <silent><leader>I :PlugInstall<cr>
 nmap <silent><leader><leader> :let @/ = ""<cr>
 
 " Switch splits with leader+[hjkl]
