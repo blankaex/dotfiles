@@ -19,6 +19,7 @@ Plug 'tpope/vim-surround'
 Plug 'stephpy/vim-yaml'
 Plug 'dense-analysis/ale'
 Plug 'Shougo/deoplete.nvim'
+Plug 'psliwka/vim-smoothie'
 call plug#end()
 call deoplete#custom#option('candidate_marks', ['A', 'S', 'D', 'F', 'G'])
 let g:deoplete#enable_at_startup = 1
