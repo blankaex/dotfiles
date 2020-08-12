@@ -9,7 +9,6 @@ let mapleader =" "
 " Plugins
 "
 
-" execute pathogen#infect()
 call plug#begin('~/.config/nvim/plugins')
 Plug 'vim-scripts/fcitx.vim'
 Plug 'preservim/nerdtree'
@@ -18,7 +17,11 @@ Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'stephpy/vim-yaml'
+Plug 'dense-analysis/ale'
+Plug 'Shougo/deoplete.nvim'
 call plug#end()
+call deoplete#custom#option('candidate_marks', ['A', 'S', 'D', 'F', 'G'])
+let g:deoplete#enable_at_startup = 1
 
 
 "
@@ -102,6 +105,11 @@ nmap <silent><leader>g :Goyo<cr>
 nmap <silent><leader>p :set cursorcolumn!<Bar>set cursorline!<cr>
 nmap <silent><leader>I :PlugInstall<cr>
 nmap <silent><leader><leader> :let @/ = ""<cr>
+imap <expr>A pumvisible() ? deoplete#insert_candidate(0) : 'A'
+imap <expr>S pumvisible() ? deoplete#insert_candidate(1) : 'S'
+imap <expr>D pumvisible() ? deoplete#insert_candidate(2) : 'D'
+imap <expr>F pumvisible() ? deoplete#insert_candidate(3) : 'F'
+imap <expr>G pumvisible() ? deoplete#insert_candidate(4) : 'G'
 
 " Switch splits with leader+[hjkl]
 nmap <silent><leader>h <C-W><C-H>
