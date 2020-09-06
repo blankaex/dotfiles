@@ -85,6 +85,8 @@ mod4 + Insert
     mpc prev
 mod4 + Home
     mpc toggle
+mod4 + End
+    mpc stop
 mod4 + Prior
     mpc next
 
