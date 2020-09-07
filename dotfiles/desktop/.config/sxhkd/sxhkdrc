@@ -85,10 +85,14 @@ mod4 + Insert
     mpc prev
 mod4 + Home
     mpc toggle
-mod4 + End
-    mpc stop
 mod4 + Prior
     mpc next
+mod4 + Delete
+    mpc volume -5
+mod4 + End
+    (mpc status | sed -n 2p | rg playing) && mpc stop || mpc play
+mod4 + Next
+    mpc volume +5
 
 
 # Screen Capture
