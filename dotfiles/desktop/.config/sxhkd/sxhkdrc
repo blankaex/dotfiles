@@ -90,7 +90,7 @@ mod4 + Prior
 mod4 + Delete
     mpc volume -5
 mod4 + End
-    (mpc status | sed -n 2p | rg playing) && mpc stop || mpc play
+    (mpc status | sed -n 2p | rg playing) && mpc stop || (mpc stop && mpc play)
 mod4 + Next
     mpc volume +5
 
