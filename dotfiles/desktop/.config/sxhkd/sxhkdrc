@@ -48,7 +48,7 @@ mod4 + shift + r
 mod4 + Return
     alacritty
 mod4 + d
-    rofi -show run -m primary
+    rofi -run-list-command ". $HOME/.zshrc" -run-command "/bin/zsh -ic '\{cmd\}'" -m primary -show run
 mod4 + t
     alacritty -e ranger
 mod4 + o; k
