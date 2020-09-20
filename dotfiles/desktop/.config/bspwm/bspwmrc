@@ -43,9 +43,11 @@ if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
     firefox &
     alacritty --class weechat -e weechat &
     vivaldi-stable &
+    qbittorrent &
 
     # prevent startup processes from launching on reload
     echo "running" > "$XDG_CACHE_HOME/xstatus"
 fi
 
 bspc rule -a Zathura state=tiled
+bspc rule -a steam_app_1084520 state=tiled
