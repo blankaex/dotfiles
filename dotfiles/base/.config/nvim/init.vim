@@ -94,9 +94,11 @@ nmap <silent><leader>y yy
 nmap <silent><leader>w :w<cr>
 nmap <silent><leader>q :q<cr>
 nmap <silent><leader>x :x<cr>
-nmap <silent><leader>f zA
-nmap <silent><leader>a zR
-nmap <silent><leader>s zM
+nmap <silent><leader>t zt
+nmap <silent><leader>g zz
+nmap <silent><leader>b zb
+nmap <silent><leader>k {
+nmap <silent><leader>j }
 
 " Custom
 nmap S :%s//g<Left><Left>
