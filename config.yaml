@@ -18,8 +18,8 @@ dotfiles:
     dst: ~/.config/ranger/
     src: base/.config/ranger/
   f_wal:
-    dst: ~/.config/wal/colorschemes/dark/blank.json
-    src: base/.config/wal/colorschemes/dark/blank.json
+    dst: ~/.config/wal/
+    src: base/.config/wal/
   f_zprezto:
     dst: ~/.zprezto/runcoms/
     src: base/.zprezto/runcoms/
@@ -80,9 +80,9 @@ dotfiles:
   f_d_bspwm:
     dst: ~/.config/bspwm/bspwmrc
     src: desktop/.config/bspwm/bspwmrc
-  f_d_dunstrc:
-    dst: ~/.config/wal/templates/dunstrc
-    src: desktop/.config/wal/templates/dunstrc
+  f_d_dunst:
+    dst: ~/.config/dunst/
+    src: desktop/.config/dunst/
   f_d_fehbg:
     dst: ~/.fehbg
     src: desktop/.fehbg
@@ -156,7 +156,7 @@ profiles:
       - core
     dotfiles:
       - f_d_bspwm
-      - f_d_dunstrc
+      - f_d_dunst
       - f_d_fehbg
       - f_d_i3
       - f_d_polybar
