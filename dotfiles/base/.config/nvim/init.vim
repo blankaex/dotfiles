@@ -95,7 +95,6 @@ nmap <silent><leader>w :w<cr>
 nmap <silent><leader>q :q<cr>
 nmap <silent><leader>x :x<cr>
 nmap <silent><leader>t zt
-nmap <silent><leader>g zz
 nmap <silent><leader>b zb
 nmap <silent><leader>k {
 nmap <silent><leader>j }
@@ -116,8 +115,8 @@ imap <expr>G pumvisible() ? deoplete#insert_candidate(4) : 'G'
 
 " Switch splits with leader+[hjkl]
 nmap <silent><leader>h <C-W><C-H>
-nmap <silent><leader>j <C-W><C-J>
-nmap <silent><leader>k <C-W><C-K>
+" nmap <silent><leader>j <C-W><C-J>
+" nmap <silent><leader>k <C-W><C-K>
 nmap <silent><leader>l <C-W><C-L>
 
 " Navigate display lines
