@@ -53,6 +53,8 @@ mod4 + t
     alacritty -e ranger
 mod4 + o; k
     keepassxc
+mod4 + o; l
+    lutris-launcher
 mod4 + o; q
     qbittorrent
 mod4 + o; s
