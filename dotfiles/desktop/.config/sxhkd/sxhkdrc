@@ -25,7 +25,7 @@ mod4 + shift + 0
     bspc node focused -g hidden=on -g sticky=on
 # unhide window at the top of the hidden stack
 mod4 + 0
-    bspwm-unhide
+    $HOME/.local/src/scripts/bspwm-unhide.sh
 # expand a window by moving one of its side outward
 mod4 + alt + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
@@ -54,35 +54,35 @@ mod4 + t
 mod4 + o; k
     keepassxc
 mod4 + o; l
-    lutris-launcher
+    $HOME/.local/src/scripts/lutris-launcher.sh
 mod4 + o; q
     qbittorrent
 mod4 + o; s
-    twitch
+    $HOME/.local/src/scripts/twitch.sh
 mod4 + o; t
     thunderbird
 mod4 + o; w
-    wttr
+    $HOME/.local/src/scripts/wttr.sh
 
 
 # Device Management
 mod4 + {F7,F8}
-    rofi{mount,umount}
+    $HOME/.local/src/scripts/rofi{mount,umount}.sh
 mod4 + F9
-    confirm "Shut down?" "shutdown now"
+    $HOME/.local/src/scripts/confirm.sh "Shut down?" "shutdown now"
 mod4 + F10
-    confirm "Reboot?" "reboot"
+    $HOME/.local/src/scripts/confirm.sh "Reboot?" "reboot"
 mod4 + F11
-    confirm "Log out?" "bspc quit"
+    $HOME/.local/src/scripts/confirm.sh "Log out?" "bspc quit"
 mod4 + F12
-    lock
+    $HOME/.local/src/scripts/lock.sh
 
 
 # Audio Control
 XF86AudioMute
-    vol -m
+    $HOME/.local/src/scripts/vol.sh -m
 XF86Audio{Lower,Raise}Volume
-    vol -{d,u} 5
+    $HOME/.local/src/scripts/vol.sh -{d,u} 5
 mod4 + Insert
     mpc prev
 mod4 + Home

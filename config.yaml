@@ -90,8 +90,8 @@ dotfiles:
     dst: ~/.config/i3/
     src: desktop/.config/i3/
   f_d_sxhkd:
-    dst: ~/.config/sxhkd/sxhkdrc
-    src: desktop/.config/sxhkd/sxhkdrc
+    dst: ~/.config/sxhkd/
+    src: desktop/.config/sxhkd/
   f_d_polybar:
     dst: ~/.config/polybar/
     src: desktop/.config/polybar/
@@ -116,10 +116,6 @@ dotfiles:
     dst: ~/.xinitrc
     src: laptop/.xinitrc
 
-  # scripts
-  f_scripts:
-    dst: ~/.local/src/scripts/
-    src: scripts/
 
 profiles:
   base:
@@ -149,7 +145,6 @@ profiles:
       - f_qbittorrent
       - f_radare2rc
       - f_rofi
-      - f_scripts
       - f_syncplay
 
   server:
