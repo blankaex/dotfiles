@@ -1,16 +1,6 @@
 dynvariables:
   user: whoami
 
-actions:
-  pre:
-    prezto-install: scripts/prezto-install.zsh
-
-  post:
-    dunst-link: scripts/dunst-link.sh
-    link-scripts: scripts/link-scripts.sh
-    vim-plug: scripts/vim-plug.sh
-    wal-apply: wal --theme blank
-
 config:
   create: true
   backup: false
@@ -24,21 +14,15 @@ dotfiles:
   f_nvim:
     dst: ~/.config/nvim/init.vim
     src: base/.config/nvim/init.vim
-    actions:
-      - vim-plug
   f_ranger:
     dst: ~/.config/ranger/
     src: base/.config/ranger/
   f_wal:
     dst: ~/.config/wal/colorschemes/dark/blank.json
     src: base/.config/wal/colorschemes/dark/blank.json
-    actions:
-      - wal-apply
   f_zprezto:
     dst: ~/.zprezto/runcoms/
     src: base/.zprezto/runcoms/
-    actions:
-      - prezto-install
   f_zprezto_theme:
     dst: ~/.zprezto/modules/prompt/functions/prompt_kyoto_setup
     src: base/.zprezto/modules/prompt/functions/prompt_kyoto_setup
@@ -88,11 +72,6 @@ dotfiles:
   f_rofi:
     dst: ~/.config/rofi/config
     src: core/.config/rofi/config
-  f_scripts:
-    dst: ~/.local/src/scripts/
-    src: core/.local/src/scripts/
-    actions:
-      - link-scripts
   f_syncplay:
     dst: /home/blankaex/.config/syncplay.ini
     src: core/.config/syncplay.ini
@@ -104,8 +83,6 @@ dotfiles:
   f_d_dunstrc:
     dst: ~/.config/wal/templates/dunstrc
     src: desktop/.config/wal/templates/dunstrc
-    actions:
-      - dunst-link
   f_d_fehbg:
     dst: ~/.fehbg
     src: desktop/.fehbg
@@ -126,8 +103,6 @@ dotfiles:
   f_l_dunstrc:
     dst: ~/.config/wal/templates/dunstrc
     src: laptop/.config/wal/templates/dunstrc
-    actions:
-      - dunst-link
   f_l_fehbg:
     dst: ~/.fehbg
     src: laptop/.fehbg
@@ -140,6 +115,11 @@ dotfiles:
   f_l_xinit:
     dst: ~/.xinitrc
     src: laptop/.xinitrc
+
+  # scripts
+  f_scripts:
+    dst: ~/.local/src/scripts/
+    src: scripts/
 
 profiles:
   base:
