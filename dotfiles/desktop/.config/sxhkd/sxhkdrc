@@ -25,7 +25,7 @@ mod4 + shift + 0
     bspc node focused -g hidden=on -g sticky=on
 # unhide window at the top of the hidden stack
 mod4 + 0
-    $HOME/.local/src/scripts/bspwm-unhide.sh
+    $HOME/.config/sxhkd/scripts/bspwm-unhide.sh
 # expand a window by moving one of its side outward
 mod4 + alt + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
@@ -54,35 +54,35 @@ mod4 + t
 mod4 + o; k
     keepassxc
 mod4 + o; l
-    $HOME/.local/src/scripts/lutris-launcher.sh
+    $HOME/.config/sxhkd/scripts/lutris-launcher.sh
 mod4 + o; q
     qbittorrent
 mod4 + o; s
-    $HOME/.local/src/scripts/twitch.sh
+    $HOME/.config/sxhkd/scripts/twitch.sh
 mod4 + o; t
     thunderbird
 mod4 + o; w
-    $HOME/.local/src/scripts/wttr.sh
+    $HOME/.config/sxhkd/scripts/wttr.sh
 
 
 # Device Management
 mod4 + {F7,F8}
-    $HOME/.local/src/scripts/rofi{mount,umount}.sh
+    $HOME/.config/sxhkd/scripts/rofi{mount,umount}.sh
 mod4 + F9
-    $HOME/.local/src/scripts/confirm.sh "Shut down?" "shutdown now"
+    $HOME/.config/sxhkd/scripts/confirm.sh "Shut down?" "shutdown now"
 mod4 + F10
-    $HOME/.local/src/scripts/confirm.sh "Reboot?" "reboot"
+    $HOME/.config/sxhkd/scripts/confirm.sh "Reboot?" "reboot"
 mod4 + F11
-    $HOME/.local/src/scripts/confirm.sh "Log out?" "bspc quit"
+    $HOME/.config/sxhkd/scripts/confirm.sh "Log out?" "bspc quit"
 mod4 + F12
-    $HOME/.local/src/scripts/lock.sh
+    $HOME/.config/sxhkd/scripts/lock.sh
 
 
 # Audio Control
 XF86AudioMute
-    $HOME/.local/src/scripts/vol.sh -m
+    $HOME/.config/sxhkd/scripts/vol.sh -m
 XF86Audio{Lower,Raise}Volume
-    $HOME/.local/src/scripts/vol.sh -{d,u} 5
+    $HOME/.config/sxhkd/scripts/vol.sh -{d,u} 5
 mod4 + Insert
     mpc prev
 mod4 + Home
