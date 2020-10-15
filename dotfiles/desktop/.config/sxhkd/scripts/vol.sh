@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # "vol" ascii -> dec
+LANG=en
 id="118111108"
 sink=`pactl list sinks | head -1 | sed 's/^Sink #\([0-9]\)$/\1/'`
 
