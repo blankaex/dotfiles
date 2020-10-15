@@ -220,7 +220,7 @@ timeout = 3
 
 [play_sound]
     summary = "*"
-    script = /home/blankaex/.local/src/scripts/notify-sound.sh
+    script = /home/blankaex/.config/dunst/notify-sound.sh
 
 #[espeak]
 #    summary = "*"
