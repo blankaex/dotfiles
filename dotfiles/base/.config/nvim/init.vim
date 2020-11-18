@@ -133,6 +133,8 @@ nmap <buffer> <silent> $ g$
 aug unicode
     au!
     au BufRead,BufNewFile *.ass imap -- —
+    au BufRead,BufNewFile *.md imap -- —
+    au BufRead,BufNewFile *.md imap == ---
     au BufRead,BufNewFile *.yml,*.yaml imap -- —
 aug END
 
