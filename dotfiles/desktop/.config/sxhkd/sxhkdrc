@@ -66,6 +66,8 @@ mod4 + o; w
 
 
 # Device Management
+mod4 + F6
+    $HOME/.config/sxhkd/scripts/vpn.sh
 mod4 + {F7,F8}
     $HOME/.config/sxhkd/scripts/rofi{mount,umount}.sh
 mod4 + F9
