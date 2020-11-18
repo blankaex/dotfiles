@@ -51,3 +51,4 @@ fi
 
 bspc rule -a Zathura state=tiled
 bspc rule -a steam_app_1084520 state=tiled
+bspc rule -a "Majsoul Plus" rectangle=1280x720+1240+480
