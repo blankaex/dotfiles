@@ -1,5 +1,5 @@
 #!/bin/sh
 
-game=$(lutris -l 2> /dev/null | head -n -1 | cut -d'|'  -f2 | awk '{$1=$1};1' | rofi -dmenu -i -m primary -p "Game") || exit 1
+game=$(lutris -lj 2> /dev/null | jq '.[].name' 2> /dev/null | tr -d '"'| rofi -dmenu -i -m primary -p "Game") || exit 1
 
-lutris lutris:rungame/$(lutris -l 2> /dev/null | rg "$game" | cut -d'|'  -f3 | awk '{$1=$1};1')
+lutris lutris:rungame/$(lutris -lj 2> /dev/null | jq ".[] | select(.name==\"$game\") | .slug" 2> /dev/null | tr -d '"')
