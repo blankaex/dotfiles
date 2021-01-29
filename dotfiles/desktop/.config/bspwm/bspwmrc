@@ -25,6 +25,8 @@ bspc config presel_feedback_color   $color6
 
 $HOME/.config/polybar/launch.sh
 
+pgrep bspswallow || $XDG_CONFIG_HOME/bspwm/bspswallow &
+
 if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
     # create recepticles
     bspc node @東:/ -i
