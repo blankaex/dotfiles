@@ -54,7 +54,7 @@ mod4 + t
 mod4 + o; k
     keepassxc
 mod4 + o; l
-    $HOME/.config/sxhkd/scripts/lutris-launcher.sh
+    $HOME/.config/sxhkd/scripts/lutris-launcher.rb
 mod4 + o; q
     qbittorrent
 mod4 + o; s
@@ -67,15 +67,15 @@ mod4 + o; w
 
 # Device Management
 mod4 + F6
-    $HOME/.config/sxhkd/scripts/vpn.sh
+    $HOME/.config/sxhkd/scripts/vpn.rb
 mod4 + {F7,F8}
     $HOME/.config/sxhkd/scripts/rofi{mount,umount}.sh
 mod4 + F9
-    $HOME/.config/sxhkd/scripts/confirm.sh "Shut down?" "shutdown now"
+    $HOME/.config/sxhkd/scripts/confirm.rb "Shut down?" "shutdown now"
 mod4 + F10
-    $HOME/.config/sxhkd/scripts/confirm.sh "Reboot?" "reboot"
+    $HOME/.config/sxhkd/scripts/confirm.rb "Reboot?" "reboot"
 mod4 + F11
-    $HOME/.config/sxhkd/scripts/confirm.sh "Log out?" "bspc quit"
+    $HOME/.config/sxhkd/scripts/confirm.rb "Log out?" "bspc quit"
 mod4 + F12
     $HOME/.config/sxhkd/scripts/lock.sh
 
