@@ -7,10 +7,6 @@
         "uid": "{21289cb0-0fa0-4474-bd4a-70ef19ff720d}",
         "url": "https://nyaa.si/?page=rss&u=Commie"
     },
-    "Erai-raws": {
-        "uid": "{55d79452-9ee0-437f-8474-92c04c4e6de4}",
-        "url": "https://nyaa.si/?page=rss&q=720p+-v0&c=0_0&f=0&u=Erai-raws"
-    },
     "FFF": {
         "uid": "{8d166f65-134e-492e-9d93-75baf3d17fb3}",
         "url": "https://nyaa.si/?page=rss&u=FFF"
@@ -35,6 +31,10 @@
         "uid": "{6ca3578e-5a08-430a-a9d5-a80051fed9c3}",
         "url": "https://nyaa.si/?page=rss&u=PA-Subs"
     },
+    "SubsPlease": {
+        "uid": "{f0c170e9-3903-4b45-8181-2a8a40523869}",
+        "url": "https://nyaa.si/?page=rss&q=subsplease+720&c=1_2&f=0"
+    },
     "UTW": {
         "uid": "{12d09cc4-f60e-4c69-b450-72dcdd80d51b}",
         "url": "https://nyaa.si/?page=rss&u=Unlimited+Translation+Works"
@@ -46,6 +46,10 @@
     "gg": {
         "uid": "{cf714c97-9345-4cdc-99d3-7b4cb9e6d71e}",
         "url": "https://nyaa.si/?page=rss&u=ggkthx"
+    },
+    "motbob": {
+        "uid": "{e1c10ac0-4a01-4204-a27c-726dae2ce186}",
+        "url": "https://nyaa.si/?page=rss&u=motbob"
     },
     "skiddiks": {
         "uid": "{fd9552ea-6094-4472-b0df-5eaaf1de9b6f}",
