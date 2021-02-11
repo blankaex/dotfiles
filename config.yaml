@@ -86,9 +86,6 @@ dotfiles:
   f_d_fehbg:
     dst: ~/.fehbg
     src: desktop/.fehbg
-  f_d_i3:
-    dst: ~/.config/i3/
-    src: desktop/.config/i3/
   f_d_sxhkd:
     dst: ~/.config/sxhkd/
     src: desktop/.config/sxhkd/
