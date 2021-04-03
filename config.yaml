@@ -96,23 +96,6 @@ dotfiles:
     dst: ~/.xinitrc
     src: desktop/.xinitrc
 
-  # laptop
-  f_l_dunstrc:
-    dst: ~/.config/wal/templates/dunstrc
-    src: laptop/.config/wal/templates/dunstrc
-  f_l_fehbg:
-    dst: ~/.fehbg
-    src: laptop/.fehbg
-  f_l_i3:
-    dst: ~/.config/i3/
-    src: laptop/.config/i3/
-  f_l_polybar:
-    dst: ~/.config/polybar/
-    src: laptop/.config/polybar/
-  f_l_xinit:
-    dst: ~/.xinitrc
-    src: laptop/.xinitrc
-
 
 profiles:
   base:
@@ -155,17 +138,6 @@ profiles:
       - f_d_bspwm
       - f_d_dunst
       - f_d_fehbg
-      - f_d_i3
       - f_d_polybar
       - f_d_sxhkd
       - f_d_xinit
-
-  laptop:
-    include:
-      - core
-    dotfiles:
-      - f_l_dunstrc
-      - f_l_fehbg
-      - f_l_i3
-      - f_l_polybar
-      - f_l_xinit
