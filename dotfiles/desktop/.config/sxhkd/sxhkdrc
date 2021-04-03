@@ -87,7 +87,7 @@ mod4 + F12
 XF86AudioMute
     $HOME/.config/sxhkd/scripts/vol.sh -m
 XF86Audio{Lower,Raise}Volume
-    $HOME/.config/sxhkd/scripts/vol.sh -{d,u} 5
+    $HOME/.config/sxhkd/scripts/vol.sh -{d,u} 10
 mod4 + Insert
     mpc prev
 mod4 + Home

@@ -3,7 +3,7 @@
 # "vol" ascii -> dec
 LANG=en
 id="118111108"
-sink=`pactl list sinks | head -1 | sed 's/^Sink #\([0-9]\)$/\1/'`
+sink=`pactl list sinks | rg "Sink #" | tail -n1 | sed 's/^Sink #\([0-9]\+\)$/\1/'`
 
 changeVol () 
 {
@@ -13,8 +13,7 @@ changeVol ()
 	fi
 
 	pactl set-sink-volume $sink $1%
-	vol=$(pactl list sinks | rg '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) |\
-        tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
+	vol=$(pactl list sinks | rg '^[[:space:]]Volume:' | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
 	dunstify -r $id "ボリューム："$vol
 }
 
