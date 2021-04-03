@@ -23,7 +23,6 @@ xset s off
 xset s noblank
 
 # Start services
-start-pulseaudio-x11 &
 dunst &
 redshift & 
 fcitx &
