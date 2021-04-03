@@ -10,9 +10,12 @@ mod4 + {w,e,s,f}
 # set the node flags
 mod4 + shift + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
-# focus the node in the given direction
+# focus/move the node in/to the given direction
 mod4 + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
+# rotate node around parent
+mod4 + ctrl + {h,l}
+    bspc node @parent -R {270,90}
 # focus the node for the given path jump mod4 + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 # focus or send to the given desktop
@@ -106,3 +109,6 @@ mod4 + Print
     maim -Bsu | xclip -selection clipboard -t image/png
 mod4 + shift + Print
     maim -Bsu $HOME/$(date -Iseconds).png
+
+# F1
+#     pgrep xdotool && pkill xdotool || xdotool click --delay 500 --repeat 5000 1
