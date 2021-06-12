@@ -41,7 +41,7 @@ if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
     bspc rule -a Vivaldi-stable:vivaldi-stable -o node=@西:/2 locked=on
 
     # load processes to fill recepticles
-    alacritty --class ncmpcpp -e tmux new-session "tmux source-file ~/.config/ncmpcpp/startup.tmux" &
+    alacritty --class ncmpcpp -e tmux new-session "tmux source-file ~/.config/ncmpcpp/session.tmux" &
     firefox &
     alacritty --class weechat -e weechat &
     vivaldi-stable &

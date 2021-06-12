@@ -109,6 +109,8 @@ mod4 + Print
     maim -Bsu | xclip -selection clipboard -t image/png
 mod4 + shift + Print
     maim -Bsu $HOME/$(date -Iseconds).png
+mod4 + ctrl + Print
+    maim -Bug 1920x1080+1080+340 $HOME/$(date -Iseconds).png
 
 # F1
 #     pgrep xdotool && pkill xdotool || xdotool click --delay 500 --repeat 5000 1
