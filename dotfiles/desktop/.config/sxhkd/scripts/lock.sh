@@ -5,15 +5,15 @@ a="ff"
 b="80"
 
 i3lock --blur=5 --clock --indicator --radius=150 --ring-width=5.0 \
-    --timecolor=$foreground$a --timestr='%H時%M分' --time-font='Source Han Sans JP' \
-    --datecolor=$foreground$a --datestr='%m月%d日' --date-font='Source Han Sans JP' \
-    --insidecolor=$color0$b --insidevercolor=$color0$b --insidewrongcolor=$color0$b  \
-    --ringcolor=$color6$a --ringvercolor=$color6$a --ringwrongcolor=$color3$a \
-    --line-uses-inside --separatorcolor=$color6$a \
-    --keyhlcolor=$color3$a --bshlcolor=$color3$a \
-    --verifcolor=$foreground$a --verif-font='Source Han Sans JP' \
-    --wrongcolor=$foreground$a --wrong-font='Source Han Sans JP' \
-    --veriftext='認証中' --wrongtext='認証失敗' --noinputtext='入力なし' \
-    --locktext='ロック中' --lockfailedtext='ロック失敗'
+    --time-color=$foreground$a --time-str='%H時%M分' --time-font='Source Han Sans JP' \
+    --date-color=$foreground$a --date-str='%m月%d日' --date-font='Source Han Sans JP' \
+    --inside-color=$color0$b --insidever-color=$color0$b --insidewrong-color=$color0$b  \
+    --ring-color=$color6$a --ringver-color=$color6$a --ringwrong-color=$color3$a \
+    --line-uses-inside --separator-color=$color6$a \
+    --keyhl-color=$color3$a --bshl-color=$color3$a \
+    --verif-color=$foreground$a --verif-font='Source Han Sans JP' \
+    --wrong-color=$foreground$a --wrong-font='Source Han Sans JP' \
+    --verif-text='認証中' --wrong-text='認証失敗' --noinput-text='入力なし' \
+    --lock-text='ロック中' --lockfailed-text='ロック失敗'
 
 exit 0

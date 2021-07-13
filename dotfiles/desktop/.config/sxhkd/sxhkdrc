@@ -66,6 +66,8 @@ mod4 + o; t
     thunderbird
 mod4 + o; w
     $HOME/.config/sxhkd/scripts/wttr.sh
+mod4 + o; e
+    cat $HOME/.local/share/emoji | rofi -dmenu -i -m primary -p "Emoji" | cut -d' ' -f1 | tr -d '\n' | xclip -sel clip
 
 
 # Device Management
