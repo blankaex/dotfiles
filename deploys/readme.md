@@ -1,4 +1,4 @@
-## dotfiles/
+## deploys/
 
 Contains deploy scripts.
 
