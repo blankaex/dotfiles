@@ -11,17 +11,19 @@ Repository for managing configuration files for Arch Linux.
 
 ## Requirements
 
-* [Dotdrop](https://github.com/deadc0de6/dotdrop)
+* [pyinfra](https://github.com/Fizzadar/pyinfra)
 
 ## Installation
 
-_Use at your own risk._
-
 ```
-$ dotdrop install -p desktop
+$ pyinfra @local deploy.py
+```
+Or alternatively over SSH:
+```
+$ pyinfra [HOST] deploy.py --user [SSH USERNAME] --key [PATH] [--key-password [PASSWORD]]
 ```
 
-## Tools
+## Utilities
 
 * [bspwm](https://github.com/baskerville/bspwm/)
 * [sxhkd](https://github.com/baskerville/sxhkd)

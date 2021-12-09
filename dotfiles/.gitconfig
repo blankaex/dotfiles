@@ -1,0 +1,8 @@
+[user]
+    name = blankaex
+    email = blankaex@protonmail.com
+    username = blankaex
+[credential]
+    helper = cache --timeout 3600
+[pull]
+    rebase = false

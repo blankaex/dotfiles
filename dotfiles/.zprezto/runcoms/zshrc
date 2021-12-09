@@ -1,0 +1,70 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+  source "/etc/profile.d/autojump.zsh"
+fi
+
+# Pywal cache & colours
+(cat ~/.cache/wal/sequences &)
+
+# Vi mode
+bindkey -v
+bindkey -v '^?' backward-delete-char
+bindkey '^r' history-incremental-search-backward
+bindkey '^s' history-incremental-search-forward
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
+# Command editing
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^v' edit-command-line
+
+# Aliases
+alias arena='LANG=EN arena'
+alias citra-old='LD_PRELOAD=/usr/lib/libcurl.so.3 ~/.local/src/citra-old/citra-qt'
+alias diff='diff --color=auto'
+alias dotdrop='dotdrop --cfg=$HOME/.dotfiles/config.yaml'
+alias erogays='vboxmanage startvm erogays'
+alias janhime='steam steam://rungameid/1084520'
+alias jantama='vivaldi-stable --new-window --start-fullscreen game.mahjongsoul.com'
+alias ncmpcpp='ncmpcpp --config $HOME/.config/ncmpcpp/config --bindings $HOME/.config/ncmpcpp/bindings'
+alias ncmpcpp-tmux='TERM=xterm-256color tmux new-session "tmux source-file ~/.config/ncmpcpp/session.tmux"'
+alias nndl='python $HOME/.local/src/youtube-dl/youtube_dl/__main__.py -u nightmare_blankaex@hotmail.com'
+alias scim='sc-im'
+alias syncplay='syncplay --no-store --no-gui -p $SYNCPLAY_PASSWORD'
+alias vbam='visualboyadvance-m'
+alias xclip='xclip -selection clipboard'
+alias ytdl='youtube-dl'
+alias :q='exit'
+
+# Functions
+function mkcdir()
+{
+    /bin/mkdir -p $@ && cd "$_"
+}
+
+function 0x0()
+{
+    curl -F file=@"$1" https://0x0.st
+}
+
+function spengbab()
+{
+    spongemock $@ | xclip
+}

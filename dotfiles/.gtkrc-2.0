@@ -1,0 +1,15 @@
+gtk-theme-name="ahoka"
+gtk-icon-theme-name="ahoka"
+gtk-font-name="Source Han Sans JP 8"
+gtk-cursor-theme-name="OpenZone_Fire"
+gtk-cursor-theme-size=0
+gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
+gtk-button-images=0
+gtk-menu-images=1
+gtk-enable-event-sounds=0
+gtk-enable-input-feedback-sounds=0
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle="hintfull"
+gtk-xft-rgba="rgb"
