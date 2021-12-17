@@ -48,6 +48,9 @@ mod4 + shift + q
     xkill
 mod4 + shift + r
 	pkill -USR1 -x sxhkd && STARTUP=true bspc wm -r
+mod4 + Pause
+$HOME/.config/sxhkd/scripts/notify-pause.sh
+
 
 
 # Launch Processes
@@ -108,8 +111,6 @@ mod4 + Next
 
 
 # Screen Functions
-mod4 + Pause
-    $HOME/.config/sxhkd/scripts/brightness.rb
 Print
     maim -u $HOME/$(date -Iseconds).png
 mod4 + Print
@@ -118,6 +119,3 @@ mod4 + shift + Print
     maim -Bsu $HOME/$(date -Iseconds).png
 mod4 + ctrl + Print
     maim -Bug 1920x1080+1080+340 $HOME/$(date -Iseconds).png
-
-# F1
-#     pgrep xdotool && pkill xdotool || xdotool click --delay 500 --repeat 5000 1
