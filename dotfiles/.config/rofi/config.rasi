@@ -1,4 +1,0 @@
-configuration {
-	font: "Source Han Code JP 9";
-}
-@theme  "~/.cache/wal/colors-rofi-dark.rasi"

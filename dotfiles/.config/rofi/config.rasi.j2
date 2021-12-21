@@ -1,0 +1,47 @@
+* {
+    font: "Source Han Code JP 9";
+
+    background: {{ colors.special.background }};
+    foreground: {{ colors.special.foreground }};
+    accent1: {{ colors.colors.color1 }};
+    accent2: {{ colors.colors.color2 }};
+    accent3: {{ colors.colors.color3 }};
+
+    alternate-active-background: @background;
+    alternate-active-foreground: @foreground;
+    alternate-normal-background: @background;
+    alternate-normal-foreground: @foreground;
+    alternate-urgent-background: @background;
+    alternate-urgent-foreground: @foreground;
+
+    selected-active-background: @accent1;
+    selected-active-foreground: @foreground;
+    selected-normal-background: @accent2;
+    selected-normal-foreground: @foreground;
+    selected-urgent-background: @accent3;
+    selected-urgent-foreground: @foreground;
+}
+
+#window {
+    border: 1;
+    border-color: @accent3;
+    padding: 15;
+}
+
+#inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry ];
+}
+
+#textbox-prompt-colon {
+    expand: false;
+    str: ":";
+    margin: 0px 0.3em 0em 0em;
+    text-color: @foreground;
+}
+
+#listview {
+    border: none;
+    spacing: 2px;
+    scrollbar: false;
+    padding: 8px 0px 0px;
+}

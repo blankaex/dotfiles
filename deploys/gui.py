@@ -133,10 +133,11 @@ def monitor(state=None, host=None, cfg=None):
 
 @deploy("Configure run dialog")
 def run_dialog(state=None, host=None, cfg=None):
-    files.sync(
+    files.template(
         name="Deploy Rofi configs",
-        src="dotfiles/.config/rofi",
-        dest=f"{cfg.home}/.config/rofi",
+        src="dotfiles/.config/rofi/config.rasi.j2",
+        dest=f"{cfg.home}/.config/rofi/config.rasi",
+        colors=cfg.colors,
         state=state,
         host=host
     )
@@ -147,7 +148,7 @@ def notification(state=None, host=None, cfg=None):
     # TODO template screen geometry
     files.template(
         name="Deploy Dunst config [1/2]",
-        src="dotfiles/.config//dunst/dunstrc.j2",
+        src="dotfiles/.config/dunst/dunstrc.j2",
         dest=f"{cfg.home}/.config/dunst/dunstrc",
         colors=cfg.colors,
         home=cfg.home,
@@ -158,7 +159,7 @@ def notification(state=None, host=None, cfg=None):
     # TODO template this
     files.template(
         name="Deploy Dunst config [2/2]",
-        src="dotfiles/.config//dunst/notify-sound.sh.j2",
+        src="dotfiles/.config/dunst/notify-sound.sh.j2",
         dest=f"{cfg.home}/.config/dunst/notify-sound.sh",
         state=state,
         host=host
