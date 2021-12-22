@@ -3,30 +3,7 @@ from pyinfra.operations import files
 from pyinfra.operations import pacman
 from pyinfra.operations import server
 
-
-@deploy("Install terminal emulator")
-def terminal(state=None, host=None, cfg=None):
-    pacman.packages(
-        name="Install terminal emulator",
-        packages=[
-            "alacritty"
-        ],
-        update=True,
-        upgrade=True,
-        sudo=True,
-        state=state,
-        host=host
-    )
-
-    files.template(
-        name="Deploy terminal emulator config",
-        src="dotfiles/.config/alacritty/alacritty.yml.j2",
-        dest=f"{cfg.home}/.config/alacritty/alacritty.yml",
-        colors=cfg.colors,
-        state=state,
-        host=host
-    )
-
+#TODO
 
 @deploy("Install browser")
 def browser(state=None, host=None, cfg=None):

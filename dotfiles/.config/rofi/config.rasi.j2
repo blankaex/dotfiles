@@ -1,11 +1,11 @@
 * {
     font: "Source Han Code JP 9";
 
-    background: {{ colors.special.background }};
-    foreground: {{ colors.special.foreground }};
-    accent1: {{ colors.colors.color1 }};
-    accent2: {{ colors.colors.color2 }};
-    accent3: {{ colors.colors.color3 }};
+    background: {{ colors.background }};
+    foreground: {{ colors.foreground }};
+    accent1: {{ colors.color4 }};
+    accent2: {{ colors.color4 }};
+    accent3: {{ colors.color2 }};
 
     alternate-active-background: @background;
     alternate-active-foreground: @foreground;
@@ -28,8 +28,12 @@
     padding: 15;
 }
 
+#entry { 
+    placeholder: ""; 
+}
+
 #inputbar {
-    children:   [ prompt,textbox-prompt-colon,entry ];
+    children:   [ prompt, textbox-prompt-colon, entry ];
 }
 
 #textbox-prompt-colon {

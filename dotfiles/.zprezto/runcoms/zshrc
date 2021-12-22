@@ -11,9 +11,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "/etc/profile.d/autojump.zsh"
 fi
 
-# Pywal cache & colours
-(cat ~/.cache/wal/sequences &)
-
 # Vi mode
 bindkey -v
 bindkey -v '^?' backward-delete-char
