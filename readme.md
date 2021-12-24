@@ -16,11 +16,11 @@ Repository for managing configuration files for Arch Linux.
 ## Installation
 
 ```
-$ pyinfra @local deploy.py
+$ pyinfra @local deploys/izanagi.py
 ```
 Or alternatively over SSH:
 ```
-$ pyinfra [HOST] deploy.py --user [SSH USERNAME] --key [PATH] [--key-password [PASSWORD]]
+$ pyinfra [HOST] deploys/izanagi.py --user [SSH USERNAME] --key [PATH] [--key-password [PASSWORD]]
 ```
 
 ## Utilities
@@ -30,7 +30,6 @@ $ pyinfra [HOST] deploy.py --user [SSH USERNAME] --key [PATH] [--key-password [P
 * [polybar](https://github.com/polybar/polybar)
 * [rofi](https://github.com/davatorium/rofi)
 * [dunst](https://dunst-project.org/)
-* [pywal](https://github.com/dylanaraps/pywal)
 * [alacritty](https://github.com/jwilm/alacritty)
 * [zsh](https://www.zsh.org/)
 * [prezto](https://github.com/sorin-ionescu/prezto)
