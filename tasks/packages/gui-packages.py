@@ -50,9 +50,3 @@ server.shell(
         f"svn checkout https://github.com/ahodesuka/dotfiles/trunk/.icons/ahoka {cfg.home}/.icons/ahoka"
     ],
 )
-
-files.sync(
-    name="Deploy gtk themes",
-    src="dotfiles/.themes",
-    dest=f"{home}/.themes"
-)

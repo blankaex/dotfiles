@@ -1,0 +1,2 @@
+# Filename format
+-o %(title)s.%(ext)s

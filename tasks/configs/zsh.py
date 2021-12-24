@@ -3,18 +3,10 @@ from os.path import basename
 from pyinfra import host
 from pyinfra.facts.server import *
 from pyinfra.operations import files
-from pyinfra.operations import pacman
 
 
 home = host.get_fact(Home)
 hostname = host.get_fact(Hostname)
-
-
-files.rsync(
-    name="Deploy git config",
-    src="dotfiles/.gitconfig",
-    dest=f"{home}/.gitconfig"
-)
 
 
 files.rsync(
@@ -55,26 +47,4 @@ files.rsync(
     name="Install Prezto theme",
     src="dotfiles/.zprezto/modules/prompt/functions/prompt_kyoto_setup",
     dest=f"{home}/.zprezto/modules/prompt/functions/prompt_kyoto_setup"
-)
-
-
-files.rsync(
-    name="Deploy Neovim configs",
-    src="dotfiles/.config/nvim",
-    dest=f"{home}/.config/nvim"
-)
-
-
-files.link(
-    name="Symlink vim -> nvim",
-    target="/usr/bin/nvim",
-    path="/usr/bin/vim",
-    sudo=True
-)
-
-
-files.rsync(
-    name="Deploy ranger configs",
-    src="dotfiles/.config/ranger",
-    dest=f"{home}/.config/ranger"
 )
