@@ -28,7 +28,6 @@ files.rsync(
 )
 
 
-#TODO check if this is still slow with rysnc
 files.rsync(
     name="Deploy gtk themes",
     src="dotfiles/.themes",

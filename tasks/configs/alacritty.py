@@ -9,7 +9,7 @@ hostname = host.get_fact(Hostname)
 
 
 files.template(
-    name="Deploy terminal emulator config",
+    name="Deploy alacritty config",
     src="dotfiles/.config/alacritty/alacritty.yml.j2",
     dest=f"{home}/.config/alacritty/alacritty.yml",
     colors=colors
