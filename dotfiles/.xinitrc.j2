@@ -9,7 +9,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 # Xresources colours
-[ -f ~/.cache/wal/colors.Xresources ] && xrdb -merge ~/.cache/wal/colors.Xresources
+xrdb -merge "$HOME/.Xresources"
 
 # Keyboard options
 setxkbmap -option caps:super
@@ -31,7 +31,6 @@ xset s noblank
 dunst &
 redshift & 
 fcitx &
-wal -R &
 $HOME/.fehbg &
 sxhkd &
 
