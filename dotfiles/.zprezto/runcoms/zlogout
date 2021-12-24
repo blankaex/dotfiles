@@ -18,6 +18,7 @@ function typewriter {
 # Execute code only if STDERR is bound to a TTY.
 [[ -o INTERACTIVE && -t 2 ]] && {
 
+clear
 typewriter "Peaceful days are over" 0.1
 sleep 1
 echo
