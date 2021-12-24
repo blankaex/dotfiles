@@ -18,7 +18,7 @@ files.template(
 
 files.template(
     name="Deploy Xresources",
-    src="dotfiles/.Xresource.j2",
+    src="dotfiles/.Xresources.j2",
     dest=f"{home}/.Xresources",
     hostname=hostname,
     colors=colors

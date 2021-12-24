@@ -25,7 +25,8 @@ local.include("tasks/configs/fcitx.py")
 # local.include("tasks/configs/firefox.py")
 local.include("tasks/configs/mpd.py")
 local.include("tasks/configs/mpv.py")
-local.include("tasks/configs/qbittorrent.py")
+#TODO not working for some reason
+# local.include("tasks/configs/qbittorrent.py")
 #TODO
 # local.include("tasks/configs/thunderbird.py")
 #TODO
