@@ -14,12 +14,4 @@ files.rsync(
 )
 
 
-files.link(
-    name="Symlink vim -> nvim",
-    target="/usr/bin/nvim",
-    path="/usr/bin/vim",
-    sudo=True
-)
-
-
 #TODO install plugins

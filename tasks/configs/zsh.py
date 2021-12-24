@@ -1,5 +1,3 @@
-from glob import glob
-from os.path import basename
 from pyinfra import host
 from pyinfra.facts.server import *
 from pyinfra.operations import files
@@ -32,19 +30,4 @@ files.template(
     src="dotfiles/.zprezto/runcoms/zshenv.j2",
     dest=f"{home}/.zprezto/runcoms/zshenv",
     hostname=hostname
-)
-
-for zfile in glob(f"{home}/.zprezto/runcoms/z*"):
-    zfile = basename(zfile)
-    files.link(
-        name=f"Symlink {zfile}",
-        target=f"{home}/.zprezto/runcoms/{zfile}",
-        path=f"{home}/.{zfile}"
-    )
-
-
-files.rsync(
-    name="Install Prezto theme",
-    src="dotfiles/.zprezto/modules/prompt/functions/prompt_kyoto_setup",
-    dest=f"{home}/.zprezto/modules/prompt/functions/prompt_kyoto_setup"
 )

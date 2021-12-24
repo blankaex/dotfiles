@@ -1,18 +1,18 @@
 from pyinfra import host
-from pyinfra.facts.server import *
+from pyinfra.facts.server import Home
 from pyinfra.operations import git
 from pyinfra.operations import files
 from pyinfra.operations import pacman
 
 
 home = host.get_fact(Home)
-hostname = host.get_fact(Hostname)
 
 
 pacman.packages(
     name="Install ranger",
     packages=[
-        "ranger"
+        "ranger",
+        "sxiv"
     ],
     update=True,
     upgrade=True,
