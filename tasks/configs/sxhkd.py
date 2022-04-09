@@ -18,6 +18,9 @@ files.template(
 
 files.rsync(
     name="Deploy sxhkd scripts",
-    src="dotfiles/.config/sxhkd/scripts",
-    dest=f"{home}/.config/sxhkd/scripts"
+    src="dotfiles/.config/sxhkd/scripts/",
+    dest=f"{home}/.config/sxhkd/scripts/",
+    flags=[
+        "-a"
+    ]
 )

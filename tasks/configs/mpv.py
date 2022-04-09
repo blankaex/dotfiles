@@ -9,6 +9,9 @@ hostname = host.get_fact(Hostname)
 
 files.rsync(
     name="Deploy mpv configs",
-    src="dotfiles/.config/mpv",
-    dest=f"{home}/.config/mpv"
+    src="dotfiles/.config/mpv/",
+    dest=f"{home}/.config/mpv/",
+    flags=[
+        "-a"
+    ]
 )

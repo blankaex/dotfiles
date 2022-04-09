@@ -10,9 +10,10 @@ hostname = host.get_fact(Hostname)
 
 files.rsync(
     name="Deploy bspwm configs [1/2]",
-    src="dotfiles/.config/bspwm",
-    dest=f"{home}/.config/bspwm",
+    src="dotfiles/.config/bspwm/",
+    dest=f"{home}/.config/bspwm/",
     flags=[
+        "-a",
         "--exclude '*.j2'"
     ]
 )

@@ -9,6 +9,9 @@ hostname = host.get_fact(Hostname)
 
 files.rsync(
     name="Deploy Redshift configs",
-    src="dotfiles/.config/redshift",
-    dest=f"{home}/.config/redshift"
+    src="dotfiles/.config/redshift/",
+    dest=f"{home}/.config/redshift/",
+    flags=[
+        "-a"
+    ]
 )

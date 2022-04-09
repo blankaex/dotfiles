@@ -45,6 +45,7 @@ alias ncmpcpp-tmux='TERM=xterm-256color tmux new-session "tmux source-file ~/.co
 alias nndl='python $HOME/.local/src/youtube-dl/youtube_dl/__main__.py -u nightmare_blankaex@hotmail.com'
 alias scim='sc-im'
 alias syncplay='syncplay --no-store --no-gui -p $SYNCPLAY_PASSWORD'
+alias taiko='vivaldi-stable --new-window --start-fullscreen taiko.bui.pm'
 alias vbam='visualboyadvance-m'
 alias xclip='xclip -selection clipboard'
 alias ytdl='youtube-dl'

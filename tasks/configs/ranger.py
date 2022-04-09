@@ -9,6 +9,9 @@ hostname = host.get_fact(Hostname)
 
 files.rsync(
     name="Deploy ranger configs",
-    src="dotfiles/.config/ranger",
-    dest=f"{home}/.config/ranger"
+    src="dotfiles/.config/ranger/",
+    dest=f"{home}/.config/ranger/",
+    flags=[
+        "-a"
+    ]
 )

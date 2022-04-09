@@ -10,6 +10,9 @@ hostname = host.get_fact(Hostname)
 #TODO
 files.rsync(
     name="Deploy yt-dlp configs",
-    src="dotfiles/.config/yt-dlp",
-    dest=f"{home}/.config/yt-dlp"
+    src="dotfiles/.config/yt-dlp/",
+    dest=f"{home}/.config/yt-dlp/",
+    flags=[
+        "-a"
+    ]
 )

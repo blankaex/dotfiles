@@ -9,6 +9,9 @@ hostname = host.get_fact(Hostname)
 
 files.rsync(
     name="Deploy qBittorrent configs",
-    src="dotfiles/.config/qbittorrent",
-    dest=f"{home}/.config/qbittorrent"
+    src="dotfiles/.config/qbittorrent/",
+    dest=f"{home}/.config/qbittorrent/",
+    flags=[
+        "-a"
+    ]
 )

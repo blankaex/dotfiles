@@ -9,8 +9,11 @@ hostname = host.get_fact(Hostname)
 
 files.rsync(
     name="Deploy Neovim configs",
-    src="dotfiles/.config/nvim",
-    dest=f"{home}/.config/nvim"
+    src="dotfiles/.config/nvim/",
+    dest=f"{home}/.config/nvim/",
+    flags=[
+        "-a"
+    ]
 )
 
 

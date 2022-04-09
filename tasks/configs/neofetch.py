@@ -9,6 +9,9 @@ hostname = host.get_fact(Hostname)
 
 files.rsync(
     name="Deploy neofetch configs",
-    src="dotfiles/.config/neofetch",
-    dest=f"{home}/.config/neofetch"
+    src="dotfiles/.config/neofetch/",
+    dest=f"{home}/.config/neofetch/",
+    flags=[
+        "-a"
+    ]
 )

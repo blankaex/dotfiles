@@ -9,9 +9,10 @@ hostname = host.get_fact(Hostname)
 
 files.rsync(
     name="Sync Prezto configs",
-    src="dotfiles/.zprezto/runcoms",
-    dest=f"{home}/.zprezto/runcoms",
+    src="dotfiles/.zprezto/runcoms/",
+    dest=f"{home}/.zprezto/runcoms/",
     flags=[
+        "-a",
         "--exclude '*.j2'"
     ]
 )
