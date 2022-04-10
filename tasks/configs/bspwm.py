@@ -23,6 +23,7 @@ files.template(
     name="Deploy bspwm configs [2/2]",
     src="dotfiles/.config/bspwm/bspwmrc.j2",
     dest=f"{home}/.config/bspwm/bspwmrc",
+    mode="755",
     hostname=hostname,
     colors=colors
 )

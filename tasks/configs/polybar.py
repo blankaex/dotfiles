@@ -19,5 +19,6 @@ files.template(
     name="Deploy polybar configs [2/2]",
     src="dotfiles/.config/polybar/launch.sh.j2",
     dest=f"{home}/.config/polybar/launch.sh",
+    mode="755",
     hostname=hostname
 )
