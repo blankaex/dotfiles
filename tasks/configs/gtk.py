@@ -9,11 +9,8 @@ hostname = host.get_fact(Hostname)
 
 files.rsync(
     name="Deploy gtk2 config",
-    src="dotfiles/.gtkrc-2.0/",
-    dest=f"{home}/.gtkrc-2.0/",
-    flags=[
-        "-a"
-    ]
+    src="dotfiles/.gtkrc-2.0",
+    dest=f"{home}/.gtkrc-2.0"
 )
 
 
