@@ -1,10 +1,10 @@
 from pyinfra import host
 from pyinfra.facts.server import *
 from pyinfra.operations import files
+from pyinfra.operations import server
 
 
 home = host.get_fact(Home)
-hostname = host.get_fact(Hostname)
 
 
 files.rsync(
@@ -17,4 +17,9 @@ files.rsync(
 )
 
 
-#TODO install plugins
+server.shell(
+    name="Install Neovim plugins",
+    commands=[
+        "nvim +'PlugInstall --sync' +qa"
+    ]
+)
