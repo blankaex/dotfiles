@@ -42,3 +42,13 @@ files.rsync(
         "-a"
     ]
 )
+
+
+files.rsync(
+    name="Deploy cursor themes",
+    src="dotfiles/.icons/default/",
+    dest=f"{home}/.icons/default/",
+    flags=[
+        "-a"
+    ]
+)
