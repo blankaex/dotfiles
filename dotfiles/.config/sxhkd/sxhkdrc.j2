@@ -31,7 +31,7 @@ mod4 + shift + 0
     bspc node focused -g hidden=on -g sticky=on
 # unhide window at the top of the hidden stack
 mod4 + 0
-    $HOME/.config/sxhkd/scripts/bspwm-unhide.sh
+    $HOME/.config/sxhkd/scripts/bspwm-unhide.rb
 # expand a window by moving one of its side outward
 mod4 + alt + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
@@ -49,7 +49,7 @@ mod4 + shift + q
 mod4 + shift + r
 	pkill -USR1 -x sxhkd && STARTUP=true bspc wm -r
 mod4 + Pause
-    $HOME/.config/sxhkd/scripts/notify-pause.sh
+    $HOME/.config/sxhkd/scripts/notify-pause.rb
 
 
 
@@ -67,7 +67,7 @@ mod4 + o; l
 mod4 + o; q
     qbittorrent
 mod4 + o; s
-    $HOME/.config/sxhkd/scripts/twitch.sh
+    $HOME/.config/sxhkd/scripts/twitch.rb
 mod4 + o; t
     thunderbird
 mod4 + o; w
@@ -79,16 +79,8 @@ mod4 + o; e
 # Device Management
 mod4 + F6
     $HOME/.config/sxhkd/scripts/vpn.rb
-mod4 + {F7,F8}
-    $HOME/.config/sxhkd/scripts/rofi{mount,umount}.sh
-mod4 + F9
-    $HOME/.config/sxhkd/scripts/confirm.rb "Shut down?" "shutdown now"
-mod4 + F10
-    $HOME/.config/sxhkd/scripts/confirm.rb "Reboot?" "reboot"
-mod4 + F11
-    $HOME/.config/sxhkd/scripts/confirm.rb "Log out?" "bspc quit"
 mod4 + F12
-    $HOME/.config/sxhkd/scripts/lock.sh
+    $HOME/.config/sxhkd/scripts/power.rb
 
 
 # Audio Control
