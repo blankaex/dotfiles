@@ -1,4 +1,4 @@
-#!/bin/env ruby 
+#!/usr/bin/env ruby 
 
 log = "/tmp/vpn.log"
 action = `printf "Connect\\nDisconnect" | rofi -dmenu -i -m primary -p "VPN"`.strip

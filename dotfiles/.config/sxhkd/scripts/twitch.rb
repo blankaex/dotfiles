@@ -1,4 +1,4 @@
-#!/bin/env ruby
+#!/usr/bin/env ruby
 
 cache = File.readlines("#{ENV["XDG_CACHE_HOME"]}/twitch")
 
