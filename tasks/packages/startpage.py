@@ -1,4 +1,5 @@
 from pyinfra import host
+from pyinfra.facts.server import *
 from pyinfra.operations import git
 from pyinfra.operations import systemd
 
@@ -18,8 +19,7 @@ files.template(
     src="root/etc/systemd/system/startpage.service.j2",
     dest=f"/etc/systemd/system/startpage.service",
     sudo=True,
-    home=home,
-    colors=colors
+    home=home
 )
 
 
