@@ -16,11 +16,15 @@ Repository for managing configuration files for Arch Linux.
 ## Installation
 
 ```
-$ pyinfra @local deploys/izanagi.py
+# packages
+$ pyinfra @local deploys/packages/izanami.py
+
+# configs
+$ pyinfra @local deploys/configs/izanami.py
 ```
 Or alternatively over SSH:
 ```
-$ pyinfra [HOST] deploys/izanagi.py --user [SSH USERNAME] --key [PATH] [--key-password [PASSWORD]]
+$ pyinfra [HOST] deploys/configs/izanagi.py --user [SSH USERNAME] --key [PATH]
 ```
 
 ## Utilities
