@@ -1,5 +1,6 @@
 from pyinfra import host
 from pyinfra.facts.server import *
+from pyinfra.operations import files
 from pyinfra.operations import git
 from pyinfra.operations import systemd
 
@@ -19,6 +20,7 @@ files.template(
     src="root/etc/systemd/system/startpage.service.j2",
     dest=f"/etc/systemd/system/startpage.service",
     sudo=True,
+    mode=644,
     home=home
 )
 
@@ -26,7 +28,7 @@ files.template(
 systemd.service(
     name="Enable startpage service",
     service="startpage",
+    sudo=True,
     running=True,
-    enabled=True,
-    user_mode=True
+    enabled=True
 )
