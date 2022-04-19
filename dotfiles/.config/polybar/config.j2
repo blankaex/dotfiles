@@ -67,7 +67,7 @@ inherit = bar/master
 monitor = ${env:MONITOR:DVI-D-0}
 
 modules-center = bspwm
-{% elif hostname == "izanami" -%}
+{% else -%}
 [bar/bar1]
 inherit = bar/master
 

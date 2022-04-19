@@ -22,7 +22,7 @@ mod4 + {_,shift + }{1-9}
 	bspc {desktop -f,node -d} 'DVI-I-1:^{1-9}'
 mod4 + {_,shift + }{F1,F2,F3,F4}
 	bspc {desktop -f,node -d} 'DVI-D-0:^{1-4}'
-{%- elif hostname == "izanami" -%}
+{%- else -%}
 mod4 + {_,shift + }{1-9}
 	bspc {desktop -f,node -d} '^{1-9}'
 {%- endif %}

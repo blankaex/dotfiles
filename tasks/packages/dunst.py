@@ -4,7 +4,8 @@ from pyinfra.operations import pacman
 pacman.packages(
     name="Install dunst",
     packages=[
-        "dunst"
+        "dunst",
+        "libnotify"
     ],
     update=True,
     upgrade=True,

@@ -7,6 +7,7 @@ from pyinfra.operations import server
 home = host.get_fact(Home)
 
 
+# TODO template this
 files.rsync(
     name="Deploy pywal configs",
     src="dotfiles/.config/wal/",

@@ -29,7 +29,6 @@ bspc config presel_feedback_color   "{{ colors.color4 }}"
 $HOME/.config/polybar/launch.sh
 
 pgrep bspswallow || $XDG_CONFIG_HOME/bspwm/bspswallow &
-
 {% if hostname == "izanagi" -%}
 # not waiting causes some non-deterministic behaviour
 # TODO: find something smarter to wait for
@@ -57,9 +56,5 @@ if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
     # prevent startup processes from launching on reload
     echo "running" > "$XDG_CACHE_HOME/xstatus"
 fi
-
-bspc rule -a Zathura state=tiled
-bspc rule -a steam_app_1084520 state=tiled
-bspc rule -a "kanjitomo-reader-Launcher" state=floating
-bspc rule -a "Majsoul Plus" rectangle=1280x720+1240+480
 {% endif -%}
+bspc rule -a Zathura state=tiled
