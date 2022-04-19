@@ -12,5 +12,6 @@ files.template(
     name="Deploy alacritty config",
     src="dotfiles/.config/alacritty/alacritty.yml.j2",
     dest=f"{home}/.config/alacritty/alacritty.yml",
-    colors=colors
+    colors=colors,
+    hostname=hostname
 )
