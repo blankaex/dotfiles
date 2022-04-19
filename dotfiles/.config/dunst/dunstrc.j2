@@ -24,7 +24,6 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    {% if hostname == "izanagi" -%}
     width = 500
 
     # The maximum height of a single notification, excluding the frame.
@@ -34,17 +33,9 @@
     origin = top-left
 
     # Offset from the origin
+    {% if hostname == "izanagi" -%}
     offset = 12x38
     {% else -%}
-    width = 400
-
-    # The maximum height of a single notification, excluding the frame.
-    height = 150
-
-    # Position the notification in the top right corner
-    origin = top-left
-
-    # Offset from the origin
     offset = 20x60
     {% endif %}
 
@@ -123,11 +114,10 @@
     # idle_threshold = 120
 
     ### Text ###
-
     {% if hostname == "izanagi" -%}
     font = Source Han Sans JP 11
     {% else -%}
-    font = Source Han Sans JP 9
+    font = Source Han Sans JP 14
     {% endif %}
 
     # The spacing between lines.  If the height is smaller than the
