@@ -5,7 +5,8 @@ pacman.packages(
     name="Install Pipewire",
     packages=[
         "pipewire",
-        "pipewire-pulse"
+        "pipewire-pulse",
+        "pavucontrol"
     ],
     update=True,
     upgrade=True,

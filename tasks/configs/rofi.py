@@ -12,5 +12,6 @@ files.template(
     name="Deploy Rofi configs",
     src="dotfiles/.config/rofi/config.rasi.j2",
     dest=f"{home}/.config/rofi/config.rasi",
-    colors=colors
+    colors=colors,
+    hostname=hostname
 )

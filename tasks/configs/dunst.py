@@ -14,7 +14,8 @@ files.template(
     src="dotfiles/.config/dunst/dunstrc.j2",
     dest=f"{home}/.config/dunst/dunstrc",
     colors=colors,
-    home=home
+    home=home,
+    hostname=hostname
 )
 
 
@@ -22,5 +23,6 @@ files.template(
 files.template(
     name="Deploy Dunst config [2/2]",
     src="dotfiles/.config/dunst/notify-sound.sh.j2",
-    dest=f"{home}/.config/dunst/notify-sound.sh"
+    dest=f"{home}/.config/dunst/notify-sound.sh",
+    mode=755
 )
