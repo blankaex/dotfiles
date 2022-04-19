@@ -8,6 +8,7 @@ local.include("tasks/packages/trizen.py")
 local.include("tasks/packages/nvim.py")
 local.include("tasks/packages/pywal.py")
 local.include("tasks/packages/ranger.py")
+local.include("tasks/packages/ripgrep.py")
 local.include("tasks/packages/zsh.py")
 
 # desktop environment
@@ -24,6 +25,7 @@ local.include("tasks/packages/sxhkd.py")
 local.include("tasks/packages/xorg.py")
 
 # user applications
+local.include("tasks/packages/ahoviewer.py")
 local.include("tasks/packages/alacritty.py")
 local.include("tasks/packages/fcitx.py")
 local.include("tasks/packages/firefox.py")
@@ -35,8 +37,4 @@ local.include("tasks/packages/thunderbird.py")
 local.include("tasks/packages/vivaldi.py")
 local.include("tasks/packages/weechat.py")
 local.include("tasks/packages/yt-dlp.py")
-
-# TODO
-# ahoviewer
-# ripgrep
-# zathura
+local.include("tasks/packages/zathura.py")

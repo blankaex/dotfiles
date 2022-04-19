@@ -9,6 +9,4 @@ local.include("tasks/packages/zsh.py")
 local.include("tasks/packages/pywal.py")
 local.include("tasks/packages/nvim.py")
 local.include("tasks/packages/ranger.py")
-
-# TODO
-# ripgrep
+local.include("tasks/packages/ripgrep.py")
