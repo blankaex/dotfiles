@@ -16,6 +16,7 @@ local.include("tasks/configs/polybar.py")
 local.include("tasks/configs/redshift.py")
 local.include("tasks/configs/rofi.py")
 local.include("tasks/configs/sxhkd.py")
+local.include("tasks/configs/synaptics.py")
 local.include("tasks/configs/xorg.py")
 
 # user applications

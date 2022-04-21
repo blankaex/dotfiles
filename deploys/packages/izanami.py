@@ -22,6 +22,7 @@ local.include("tasks/packages/polybar.py")
 local.include("tasks/packages/redshift.py")
 local.include("tasks/packages/rofi.py")
 local.include("tasks/packages/sxhkd.py")
+local.include("tasks/packages/synaptics.py")
 local.include("tasks/packages/xorg.py")
 
 # user applications
