@@ -18,12 +18,7 @@ xcape -e "Super_L=Escape"
 
 # Configure screens
 xsetroot -cursor_name left_ptr &
-{% if hostname == "izanagi" -%}
-xrandr --output DVI-I-1 --auto --primary --pos 1080x340 \
-    --output DVI-D-0 --rotate left --pos 0x0
-{% else -%}
 autorandr -c
-{%- endif %}
 xset -dpms
 xset s off
 xset s noblank

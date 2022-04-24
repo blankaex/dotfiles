@@ -1,6 +1,7 @@
 from pyinfra import host
 from pyinfra.facts.server import *
 from pyinfra.operations import files
+from pyinfra.operations import server
 
 
 home = host.get_fact(Home)
@@ -22,13 +23,5 @@ files.template(
     name="Deploy .zprofile",
     src="dotfiles/.zprezto/runcoms/zprofile.j2",
     dest=f"{home}/.zprezto/runcoms/zprofile",
-    hostname=hostname
-)
-
-
-files.template(
-    name="Deploy .zshenv",
-    src="dotfiles/.zprezto/runcoms/zshenv.j2",
-    dest=f"{home}/.zprezto/runcoms/zshenv",
     hostname=hostname
 )

@@ -10,6 +10,7 @@ pacman.packages(
         "xorg-xkill",
         "xorg-xprop",
         "xorg-xrandr",
+        "autorandr",
         "xcape"
     ],
     sudo=True

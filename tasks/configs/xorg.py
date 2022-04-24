@@ -8,11 +8,10 @@ home = host.get_fact(Home)
 hostname = host.get_fact(Hostname)
 
 
-files.template(
+files.rsync(
     name="Deploy xinit configs",
-    src="dotfiles/.xinitrc.j2",
-    dest=f"{home}/.xinitrc",
-    hostname=hostname
+    src="dotfiles/.xinitrc",
+    dest=f"{home}/.xinitrc"
 )
 
 
@@ -20,6 +19,5 @@ files.template(
     name="Deploy Xresources",
     src="dotfiles/.Xresources.j2",
     dest=f"{home}/.Xresources",
-    hostname=hostname,
     colors=colors
 )

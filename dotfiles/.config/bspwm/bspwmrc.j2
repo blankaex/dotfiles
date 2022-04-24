@@ -1,19 +1,11 @@
 #!/bin/sh
 
-{% if hostname == "izanagi" -%}
-bspc monitor DVI-I-1 -d 壱 弐 参 肆 伍 陸 漆 捌 玖
-bspc monitor DVI-D-0 -d 東 西 北 南
-{% else -%}
 bspc monitor -d 壱 弐 参 肆 伍 陸 漆 捌 玖
-{% endif %}
+# bspc monitor -d 東 西 北 南
 bspc config automatic_scheme    longest_side
 
 bspc config border_width        1
-{% if hostname == "izanagi" -%}
 bspc config window_gap          8
-{% else -%}
-bspc config window_gap          16
-{% endif %}
 
 bspc config top_padding         30
 bspc config bottom_padding      4

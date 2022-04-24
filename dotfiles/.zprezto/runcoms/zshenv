@@ -80,13 +80,11 @@ export WEECHAT_HOME=$XDG_CONFIG_HOME/weechat
 
 export KEYTIMEOUT=1
 
-{% if hostname == "izanagi" -%}
 #
 # Secrets
 #
 
 source $XDG_CONFIG_HOME/.secrets
-{% endif %}
 #
 # Paths
 #

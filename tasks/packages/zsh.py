@@ -48,6 +48,14 @@ for zfile in glob(f"{home}/.zprezto/runcoms/z*"):
     )
 
 
+server.shell(
+    name="Touch secret env vars",
+    commands=[
+      f"touch {home}/.config/.secrets"
+    ]
+)
+
+
 files.rsync(
     name="Install Prezto theme",
     src="dotfiles/.zprezto/modules/prompt/functions/prompt_kyoto_setup",
