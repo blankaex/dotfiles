@@ -24,6 +24,7 @@ local.include("tasks/configs/alacritty.py")
 local.include("tasks/configs/fcitx.py")
 local.include("tasks/configs/mpd.py")
 local.include("tasks/configs/mpv.py")
+local.include("tasks/configs/pacman.py")
 local.include("tasks/configs/yt-dlp.py")
 
 # TODO
