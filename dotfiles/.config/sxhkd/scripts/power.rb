@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 
 options = {
-    "Shut Down" =>  "systemctl poweroff",
+    "Shutdown"  =>  "systemctl poweroff",
     "Restart"   =>  "systemctl reboot",
     "Hibernate" =>  "systemctl hibernate",
+    "Suspend"   =>  "systemctl suspend",
     "Logout"    =>  "bspc quit",
     "Lock"      =>  "$HOME/.config/sxhkd/scripts/lock.rb"
 }
