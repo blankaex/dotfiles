@@ -1,12 +1,9 @@
-from pyinfra.operations import pacman
+from pyinfra.operations import server
 
 
-pacman.packages(
+server.shell(
     name="Install qBittorrent",
-    packages=[
-        "qbittorrent"
-    ],
-    update=True,
-    upgrade=True,
-    sudo=True
+    commands=[
+      "trizen -Syu --noconfirm qbittorrent-enhanced-qt5"
+    ]
 )
