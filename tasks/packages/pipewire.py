@@ -7,6 +7,7 @@ pacman.packages(
     packages=[
         "pipewire",
         "pipewire-pulse",
+        "pipewire-alsa",
         "pavucontrol"
     ],
     update=True,
