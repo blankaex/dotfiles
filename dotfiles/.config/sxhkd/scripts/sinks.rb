@@ -5,5 +5,5 @@ sinks = output.select{|line| line.include? "Name: "}.map{|line| line.split(": ")
 selection = `echo "#{sinks.join("\n")}" | rofi -dmenu -i -m primary -p "#{`pactl get-default-sink`}"`.strip
 
 if !selection.empty? and sinks.include? selection
-  exec "pactl set-default-sink #{selection}"
+    exec "pactl set-default-sink #{selection}"
 end
