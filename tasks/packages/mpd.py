@@ -1,4 +1,11 @@
+from pyinfra import host
+from pyinfra.facts.server import Home
+from pyinfra.operations import files
 from pyinfra.operations import pacman
+from pyinfra.operations import systemd
+
+
+home = host.get_fact(Home)
 
 
 pacman.packages(

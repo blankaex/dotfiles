@@ -1,5 +1,5 @@
-from pyinfra.operations import systemd
 from pyinfra.operations import pacman
+from pyinfra.operations import systemd
 
 
 pacman.packages(

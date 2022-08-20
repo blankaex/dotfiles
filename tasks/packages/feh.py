@@ -1,3 +1,4 @@
+from pyinfra import host
 from pyinfra.facts.server import *
 from pyinfra.operations import files
 from pyinfra.operations import pacman
@@ -18,16 +19,15 @@ pacman.packages(
     sudo=True
 )
 
+server.shell(
+    name="Create wallpaper directory",
+    commands=[
+        f"mkdir -p {home}/Pictures/wallpapers/"
+    ]
+)
+
 files.rsync(
     name="Deploy temporary wallpaper",
     src="config/wallpaper.jpg",
     dest=f"{home}/Pictures/wallpapers/wallpaper.jpg"
-)
-
-
-server.shell(
-    name="Apply temporary wallpaper",
-    commands=[
-        f"feh --bg-fill {home}/Pictures/wallpapers/wallpaper.jpg"
-    ]
 )
