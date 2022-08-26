@@ -8,7 +8,8 @@ pacman.packages(
         "adobe-source-code-pro-fonts",
         "adobe-source-han-sans-jp-fonts",
         "noto-fonts",
-        "noto-fonts-cjk"
+        "noto-fonts-cjk",
+        "noto-fonts-emoji"
     ],
     update=True,
     upgrade=True,
