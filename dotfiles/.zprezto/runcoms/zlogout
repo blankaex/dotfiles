@@ -25,5 +25,6 @@ echo
 typewriter "Let's survive" 0.1
 typewriter "..." 0.5
 sleep 1
+echo
 
 } >&2

@@ -2,6 +2,7 @@ from pyinfra import local
 
 # dependencies
 local.include("tasks/packages/git.py")
+local.include("tasks/packages/rsync.py")
 local.include("tasks/packages/trizen.py")
 
 # shell
