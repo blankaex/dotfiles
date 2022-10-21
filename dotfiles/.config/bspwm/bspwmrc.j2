@@ -31,7 +31,7 @@ if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
     bspc node @'^2':/ -p east -o 0.5 -i
 
     bspc rule -a Vivaldi-stable:vivaldi-stable -o node=@'^2':/1 locked=on
-    bspc rule -a Alacritty:ncmpcpp -o node=@'^2':/2 locked=on
+    bspc rule -a ncmpcpp -o node=@'^2':/2 locked=on
     bspc rule -a qBittorrent:qbittorrent -o desktop='^3'
 
     firefox &
