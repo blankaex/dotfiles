@@ -79,12 +79,14 @@ export WEECHAT_HOME=$XDG_CONFIG_HOME/weechat
 #
 
 export KEYTIMEOUT=1
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 #
 # Secrets
 #
 
 source $XDG_CONFIG_HOME/.secrets
+
 #
 # Paths
 #
