@@ -98,19 +98,12 @@ XF86Audio{Lower,Raise}Volume
     $HOME/.config/sxhkd/scripts/volume.rb -{d,u} 10
 XF86MonBrightness{Down,Up}
     $HOME/.config/sxhkd/scripts/brightness.rb -{d,u} 10
-mod4 + Insert
+XF86AudioPrev
     mpc prev
-mod4 + Home
-    mpc toggle
-mod4 + Prior
-    mpc next
-mod4 + Delete
-    mpc volume -5
-mod4 + End
+XF86AudioPlay
     (mpc status | sed -n 2p | rg playing) && mpc stop || (mpc stop && mpc play)
-mod4 + Next
-    mpc volume +5
-
+XF86AudioNext
+    mpc next
 
 # Screen Functions
 Print
