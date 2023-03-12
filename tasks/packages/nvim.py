@@ -8,14 +8,6 @@ from pyinfra.operations import server
 home = host.get_fact(Home)
 
 
-server.shell(
-    name="Remove vim",
-    commands=[
-      "trizen -R --noconfirm vim"
-    ]
-)
-
-
 pacman.packages(
     name="Install nvim",
     packages=[

@@ -6,6 +6,7 @@ pacman.packages(
     name="Install sxhkd",
     packages=[
         "sxhkd",
+        "ruby",
         "maim"
     ],
     update=True,
