@@ -17,9 +17,8 @@ git.repo(
 
 files.template(
     name="Deploy startpage service",
-    src="root/etc/systemd/system/startpage.service.j2",
-    dest=f"/etc/systemd/system/startpage.service",
-    sudo=True,
+    src="dotfiles/.config/systemd/user/startpage.service.j2",
+    dest=f"{home}/.config/systemd/user/startpage.service",
     mode=644,
     home=home
 )
@@ -28,7 +27,7 @@ files.template(
 systemd.service(
     name="Enable startpage service",
     service="startpage",
-    sudo=True,
     running=True,
-    enabled=True
+    enabled=True,
+    user_mode=True
 )
