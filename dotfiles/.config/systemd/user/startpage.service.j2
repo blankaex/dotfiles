@@ -2,8 +2,10 @@
 Description=Serves start page on localhost:2147
 
 [Service]
-User=blankaex
+Type=simple
 Restart=always
+StandardOutput=journal
+StandardError=journal
 ExecStart=/usr/bin/python -m http.server 2147 --directory {{ home }}/.local/src/devola
 
 [Install]
