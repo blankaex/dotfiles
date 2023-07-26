@@ -33,6 +33,7 @@ set t_Co=256
 set splitbelow
 set splitright
 set guicursor=
+set mouse=
 set scrolloff=3
 set sidescrolloff=5
 set display+=lastline
