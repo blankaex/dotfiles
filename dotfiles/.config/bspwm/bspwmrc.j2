@@ -17,31 +17,51 @@ bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 bspc config click_to_focus      any
 
-bspc config normal_border_color     "{{ colors.color4 }}"
-bspc config active_border_color     "{{ colors.color4 }}"
-bspc config focused_border_color    "{{ colors.color2 }}"
-bspc config presel_feedback_color   "{{ colors.color4 }}"
+bspc config normal_border_color     "#774646"
+bspc config active_border_color     "#774646"
+bspc config focused_border_color    "#b35959"
+bspc config presel_feedback_color   "#774646"
 
 bspc rule -a Zathura state=tiled
+bspc rule -a *:*:"Screen Sharing Tracker" hidden=on sticky=on
 bspc rule -a *:*:"RuneLite Launcher" state=floating
+bspc rule -a *:"net-runelite-client-RuneLite":"Picture in Picture" state=floating sticky=on
 
-{% if hostname == "izanami" -%}
 if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
-    bspc rule -a firefox:Navigator -o desktop='^1' locked=on
-    bspc node @'^2':/ -i
-    bspc node @'^2':/ -p east -o 0.5 -i
+    bspc rule -a KeePassXC -o hidden=on sticky=on
+    keepassxc &
+    if [ $(autorandr --current) == "docked" ]; then
+        bspc rule -a firefox:Navigator -o desktop='^1' locked=on
+        bspc node @'^2':/ -i
+        bspc node @'^2':/ -p east -o 0.5 -i
 
-    bspc rule -a Vivaldi-stable:vivaldi-stable -o node=@'^2':/1 locked=on
-    bspc rule -a ncmpcpp -o node=@'^2':/2 locked=on
+        bspc rule -a Vivaldi-stable:vivaldi-stable -o node=@'^2':/1 locked=on
+        bspc rule -a ncmpcpp -o node=@'^2':/2 locked=on
 
-    firefox &
-    vivaldi-stable &
-    sleep 1 # required for tmux to resize properly
-    alacritty --class ncmpcpp -e tmux new-session "tmux source-file ~/.config/ncmpcpp/session.tmux" &
+        firefox &
+        vivaldi-stable &
+        sleep 1 # required for tmux to resize properly
+        alacritty --class ncmpcpp -e tmux new-session "tmux source-file ~/.config/ncmpcpp/session.tmux" &
+    elif [ $(autorandr --current) == "undocked" ]; then
+        bspc rule -a firefox:Navigator -o desktop='^1' locked=on
+        bspc rule -a Vivaldi-stable:vivaldi-stable -o desktop='^2' locked=on
 
+        firefox &
+        vivaldi-stable &
+    elif [ $(autorandr --current) == "tv" ]; then
+        bspc node @'^2':/ -i
+        bspc node @'^2':/ -p east -o 0.5 -i
+
+        bspc rule -a ranger -o desktop='^1'
+        bspc rule -a Vivaldi-stable:vivaldi-stable -o node=@'^2':/1 locked=on
+        bspc rule -a firefox:Navigator -o node=@'^2':/2 locked=on
+
+        alacritty --class ranger -e ranger "/home/blankaex/Anime/archive" &
+        firefox &
+        vivaldi-stable &
+    fi
     echo "running" > "$XDG_CACHE_HOME/xstatus"
 fi
-{% endif -%}
 
 pgrep bspswallow || $XDG_CONFIG_HOME/bspwm/bspswallow &
 $HOME/.config/polybar/launch.sh
