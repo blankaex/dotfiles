@@ -1,2 +1,4 @@
 # Filename format
 -o %(title)s.%(ext)s
+# Cookies
+--cookies-from-browser firefox
