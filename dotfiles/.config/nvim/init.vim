@@ -28,6 +28,9 @@ call plug#end()
 
 syntax on
 colorscheme wal
+set nocompatible
+set notermguicolors
+set background=dark
 hi StatusLine ctermfg=2
 set t_Co=256
 set splitbelow
