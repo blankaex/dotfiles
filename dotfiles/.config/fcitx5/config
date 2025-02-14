@@ -45,7 +45,7 @@ ModifierOnlyKeyTimeout=250
 # デフォルトで有効にする
 ActiveByDefault=False
 # フォーカス時に状態をリセット
-resetStateWhenFocusIn=All
+resetStateWhenFocusIn=No
 # 入力状態を共有する
 ShareInputState=All
 # アプリケーションにプリエディットを表示する
