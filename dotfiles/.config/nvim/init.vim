@@ -10,7 +10,7 @@ let mapleader =" "
 "
 
 call plug#begin('~/.config/nvim/plugins')
-Plug 'vim-scripts/fcitx.vim'
+Plug 'h-hg/fcitx.nvim'
 Plug 'preservim/nerdtree'
 Plug 'dylanaraps/wal.vim'
 Plug 'junegunn/goyo.vim'
