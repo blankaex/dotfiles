@@ -3,8 +3,10 @@
 unless ARGV.empty?
   devices = {}
   for line in `bluetoothctl devices`.split("\n")
-    device = line.split(" ", 3)
-    devices[device[2]] = device[1]
+    if line.include? "Device"
+      device = line.split(" ", 3)
+      devices[device[2]] = device[1]
+    end
   end
   selection = `echo "#{devices.keys.join("\n")}" | rofi -dmenu -i -m primary -p "#{ARGV[0].capitalize}"`.strip
   unless selection.empty?
