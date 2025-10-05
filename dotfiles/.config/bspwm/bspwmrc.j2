@@ -53,6 +53,8 @@ if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
         firefox &
         vivaldi-stable &
     elif [ $(autorandr --current) == "tv" ]; then
+        xrandr --output DisplayPort-1 --set TearFree on
+
         bspc node @'^2':/ -i
         bspc node @'^2':/ -p east -o 0.5 -i
 
@@ -60,9 +62,10 @@ if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
         bspc rule -a Vivaldi-stable:vivaldi-stable -o node=@'^2':/1 locked=on
         bspc rule -a firefox:Navigator -o node=@'^2':/2 locked=on
 
-        alacritty --class ranger -e ranger "/home/blankaex/Anime/archive" &
+        alacritty --class ranger -e ranger "/home/blankaex/Anime" &
         firefox &
         vivaldi-stable &
+        pkill redshift &
     fi
     echo "running" > "$XDG_CACHE_HOME/xstatus"
 fi
