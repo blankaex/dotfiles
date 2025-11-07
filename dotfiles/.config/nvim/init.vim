@@ -80,7 +80,7 @@ set tm=500
 "
 set enc=utf-8
 set fileencoding=utf-8
-set fileencodings=ucs-bom,utf8,prc
+set fileencodings=ucs-bom,utf8,prc,sjis
 filetype plugin indent on
 au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
