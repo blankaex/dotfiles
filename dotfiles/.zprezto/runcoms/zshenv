@@ -32,9 +32,10 @@ export VISUAL='nvim'
 export PAGER='less'
 
 #
-# Language
+# Region & Language
 #
 
+export TZ='Asia/Tokyo'
 if [[ -z "$LANG" ]]; then
   export LANG='ja_JP.utf8'
   # export LANG='en_US.utf8'
@@ -69,12 +70,6 @@ if (( $#commands[(i)lesspipe(|.sh)] )); then
 fi
 
 #
-# Configs
-#
-
-export WEECHAT_HOME=$XDG_CONFIG_HOME/weechat
-
-#
 # Misc
 #
 
@@ -103,5 +98,6 @@ cdpath=(
 path=(
   $HOME/.local/bin
   $HOME/.gem/ruby/3.0.0/bin
+  $HOME/.local/share/gem/ruby/3.0.0/bin
   $path
 )
