@@ -1,14 +1,15 @@
 #!/usr/bin/env ruby 
 
 if ARGV.length == 2 and ["-u", "-d"].include? ARGV[0] and ARGV[1].to_i > 0
-    # clean this up
-    brightness = `brightnessctl`.split("\n")[1].split("(")[1].split("%")[0].to_i
-    value = case
+    brightness = `ddcutil getvcp 10`.split[8].chomp(',').to_i
+    brightness = case
         when ARGV[0] == "-u"
             brightness + ARGV[1].to_i
         when ARGV[0] == "-d"
             brightness - ARGV[1].to_i
     end
-    new = `brightnessctl s #{value}%`.split("\n")[2].split("(")[1].split("%")[0]
-    exec "dunstify -r 102 '明るさ: #{new}'"
+    if ( brightness >= 0 && brightness <= 100 )
+        system "ddcutil setvcp 10 #{brightness}"
+    end
+    exec "dunstify -r 102 '明るさ: #{brightness}'"
 end
