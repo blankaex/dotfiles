@@ -44,8 +44,7 @@ if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
 
         firefox &
         vivaldi-stable &
-        sleep 1 # required for tmux to resize properly
-        alacritty --class ncmpcpp -e tmux new-session "tmux source-file ~/.config/ncmpcpp/session.tmux" &
+        alacritty --class ncmpcpp -e ncmpcpp -s visualizer -S playlist &
     elif [ $(autorandr --current) == "undocked" ]; then
         bspc rule -a firefox:Navigator -o desktop='^1' locked=on
         bspc rule -a Vivaldi-stable:vivaldi-stable -o desktop='^2' locked=on
@@ -59,8 +58,8 @@ if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
         bspc node @'^2':/ -p east -o 0.5 -i
 
         bspc rule -a ranger -o desktop='^1'
-        bspc rule -a Vivaldi-stable:vivaldi-stable -o node=@'^2':/1 locked=on
-        bspc rule -a firefox:Navigator -o node=@'^2':/2 locked=on
+        bspc rule -a Vivaldi-stable:vivaldi-stable -o desktop='^2' locked=on
+        bspc rule -a firefox:Navigator -o desktop='^3' locked=on
 
         alacritty --class ranger -e ranger "/home/blankaex/Anime" &
         firefox &
