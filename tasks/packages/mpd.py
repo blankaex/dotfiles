@@ -13,8 +13,9 @@ pacman.packages(
     packages=[
         "mpd",
         "mpc",
-        "ncmpcpp",
-        "ueberzug",
+        "rmpc",
+        "ueberzugpp",
+        "cava",
         "inotify-tools"
     ],
     update=True,
@@ -29,11 +30,4 @@ systemd.service(
     running=True,
     enabled=True,
     user_mode=True
-)
-
-
-files.rsync(
-    name="Touch cover image",
-    src="dotfiles/.config/ncmpcpp/cover.png",
-    dest=f"{home}/.cache/cover.png"
 )

@@ -18,9 +18,9 @@ files.rsync(
 
 
 files.rsync(
-    name="Deploy ncmpcpp configs",
-    src="dotfiles/.config/ncmpcpp/",
-    dest=f"{home}/.config/ncmpcpp/",
+    name="Deploy rmpc configs",
+    src="dotfiles/.config/rmpc/",
+    dest=f"{home}/.config/rmpc/",
     flags=[
         "-a"
     ]
