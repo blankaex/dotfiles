@@ -215,8 +215,8 @@
         timestamp: false
     ),
     cava: (
-        bar_width: 1, // width of a single bar in columns
-        bar_spacing: 1, // free space between bars in columns
+        bar_width: 1,
+        bar_spacing: 0,
             bar_color: Rows([
             "red",
             "red",
