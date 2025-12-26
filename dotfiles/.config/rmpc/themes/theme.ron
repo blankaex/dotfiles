@@ -175,7 +175,7 @@
                                         off_style: (fg: "magenta"),
                                         oneshot_style: (fg: "magenta"),
                                     )))),
-                                    (kind: Property(Widget(ScanStatus))),
+                                    (kind: Property(Widget(ScanStatus)), style: (fg: "magenta")),
                                     (kind: Text("]"), style: (fg: "magenta")),
                                 ],
                                 align: Right,
