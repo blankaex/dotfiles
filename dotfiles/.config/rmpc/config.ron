@@ -52,7 +52,7 @@
         global: {
             ":":       CommandMode,
             "J":       VolumeDown,
-            "s":       Stop,
+            "S":       Stop,
             "K":       VolumeUp,
             "<Tab>":   NextTab,
             "<S-Tab>": PreviousTab,
@@ -115,7 +115,7 @@
             "D":         Delete,
             "B":         ShowInfo,
             "<C-z>":     ContextMenu(),
-            "<C-s>":     Save(kind: Modal(all: false, duplicates_strategy: Ask)),
+            "<C-s>":     Save(kind: Modal(all: true, duplicates_strategy: NonDuplicate)),
         },
         queue: {
             "c":       DeleteAll,
