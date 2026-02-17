@@ -29,13 +29,13 @@ $ pyinfra [HOST] deploys/configs/izanagi.py --user [SSH USERNAME] --key [PATH]
 
 ## Utilities
 
+* [zsh](https://github.com/zsh-users/zsh)
+* [prezto](https://github.com/sorin-ionescu/prezto)
+* [nvim](https://github.com/neovim/neovim)
+* [lf](https://github.com/gokcehan/lf)
+* [alacritty](https://github.com/jwilm/alacritty)
 * [bspwm](https://github.com/baskerville/bspwm/)
 * [sxhkd](https://github.com/baskerville/sxhkd)
 * [polybar](https://github.com/polybar/polybar)
 * [rofi](https://github.com/davatorium/rofi)
-* [dunst](https://dunst-project.org/)
-* [alacritty](https://github.com/jwilm/alacritty)
-* [zsh](https://www.zsh.org/)
-* [prezto](https://github.com/sorin-ionescu/prezto)
-* [ranger](https://github.com/ranger/ranger)
-* [nvim](https://neovim.io/)
+* [dunst](https://github.com/dunst-project/dunst)
