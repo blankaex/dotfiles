@@ -5,7 +5,7 @@ local.include("tasks/configs/git.py")
 local.include("tasks/configs/zsh.py")
 local.include("tasks/configs/pywal.py")
 local.include("tasks/configs/nvim.py")
-local.include("tasks/configs/ranger.py")
+local.include("tasks/configs/lf.py")
 
 # desktop environment
 local.include("tasks/configs/bspwm.py")
