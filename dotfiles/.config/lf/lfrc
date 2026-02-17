@@ -14,11 +14,15 @@ set autoquit true
 # Commands / Functions
 cmd q quit
 cmd open $set -f; rifle -p 0 $fx
-cmd autojump %lf -remote "send $id cd \"$(autojump "$1" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
+cmd autojump $lf -remote "send $id cd \"$(autojump "$1" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
 
 cmd forcepaste ${{
     mode=$(head -1 $HOME/.local/share/lf/files)
     list=$(sed 1d $HOME/.local/share/lf/files)
+    if [ "$#" -lt 1 ]; then
+        lf -remote "send $id echoerr no files to paste"
+        exit
+    fi
     if [ $mode = 'copy' ]; then
         cp -r $list .
     elif [ $mode = 'move' ]; then
@@ -84,9 +88,9 @@ map S $$SHELL
 
 map y
 map yy copy
-map yn $basename "$f" | xclip -selection clipboard
-map yp $printf "$f" | xclip -selection clipboard
-map yd $printf "$PWD" | xclip -selection clipboard
+map yn $basename "$f" | xclip -sel clipboard && lf -remote "send $id echomsg copied \'$(basename $f)\' to clipboard"
+map yp $printf "$f" | xclip -sel clipboard && lf -remote "send $id echomsg copied \'$f\' to clipboard"
+map yd $printf "$PWD" | xclip -sel clipboard && lf -remote "send $id echomsg copied \'$PWD\' to clipboard"
 map d
 map dd cut
 map dD delete
@@ -96,10 +100,10 @@ map po forcepaste
 map pl link
 
 map gj push :autojump<space>
-map gm %lf -remote "send $id cd /mnt"
-map gM %lf -remote "send $id cd /media"
-map gs %lf -remote "send $id cd /media/storage"
-map gc %lf -remote "send $id cd $HOME/.config"
+map gm $lf -remote "send $id cd /mnt"
+map gM $lf -remote "send $id cd /media"
+map gs $lf -remote "send $id cd /media/storage"
+map gc $lf -remote "send $id cd $HOME/.config"
 
 map c 
 map cd push :cd<space>
@@ -115,6 +119,7 @@ map b bulkrename
 
 map <c-l> clear
 map <c-r> reload
+map <c-t> &$TERM -e lf $PWD
 map <enter> shell
 
 map X extract

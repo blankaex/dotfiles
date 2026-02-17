@@ -15,5 +15,6 @@ export LF_UEBERZUG_TEMPDIR="$(mktemp -d -t lf-ueberzug-XXXXXX)"
 mkfifo "$LF_UEBERZUG_TEMPDIR/fifo"
 tail -f "$LF_UEBERZUG_TEMPDIR/fifo" | ueberzugpp layer --silent &
 UEBERZUGPID=$!
-lf
+export PATH="$PATH:${ZSH_ARGZERO:A:h}"
+lf $1
 cleanup
