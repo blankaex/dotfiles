@@ -12,6 +12,7 @@ local.include("tasks/packages/grc.py")
 local.include("tasks/packages/lf.py")
 local.include("tasks/packages/fzf.py")
 local.include("tasks/packages/eza.py")
+local.include("tasks/packages/bat.py")
 local.include("tasks/packages/ripgrep.py")
 local.include("tasks/packages/zsh.py")
 

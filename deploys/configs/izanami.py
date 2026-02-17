@@ -6,6 +6,8 @@ local.include("tasks/configs/zsh.py")
 local.include("tasks/configs/pywal.py")
 local.include("tasks/configs/nvim.py")
 local.include("tasks/configs/lf.py")
+local.include("tasks/configs/bat.py")
+local.include("tasks/configs/ripgrep.py")
 
 # desktop environment
 local.include("tasks/configs/bspwm.py")
