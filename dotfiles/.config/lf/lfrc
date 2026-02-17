@@ -71,8 +71,9 @@ cmd force_paste ${{
     elif [ $mode = 'move' ]; then
         mv -v "$@" .
     fi
-    lf -remote 'send load'
-    lf -remote 'send clear'
+    lf -remote "send load"
+    lf -remote "send clear"
+    lf -remote "send $id echomsg $@ overwritten"
 }}
 
 cmd delete ${{
@@ -176,9 +177,9 @@ map <c-n> push $mkdir<space>""<left>
 map <enter> shell
 
 map gb :git_branch
-map ga $git add $fx; lf -remote 'send reload'
-map gc $git commit; lf -remote 'send reload'
-map gC $git commit -a; lf -remote 'send reload'
+map ga $git add $fx; lf -remote "send $id reload"
+map gc $git commit; lf -remote "send $id reload"
+map gC $git commit -a; lf -remote "send $id reload"
 map gs $clear; git status; echo "Press any key to continue"; read -s -n1
 map gp $clear; git pull --rebase || true; echo "Press any key to continue"; read -s -n1
 map gP $clear; git push || true; echo "Press any key to continue"; read -s -n1
