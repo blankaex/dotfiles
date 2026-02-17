@@ -14,10 +14,14 @@ function +prompt_kyoto_precmd {
 
   _vci=$(git_super_status)
   if [ -z "$_vci" ]; then
-    _prompt_kyoto_symbol='ツ'
+    _prompt_kyoto_symbol='〉'
   else
-    _prompt_kyoto_symbol='メ'
-  fi 
+    _prompt_kyoto_symbol='》'
+  fi
+  _ppname=$(ps -p $PPID -o comm=)
+  if [ "$_ppname" != "$TERM" ]; then
+    _prompt_ppname="$_ppname "
+  fi
 }
 
 function prompt_kyoto_setup {
@@ -37,10 +41,9 @@ function prompt_kyoto_setup {
   PROMPT='
 %(?..%F{red}%B¬[%?]%b%f
 )%B%F{magenta}${PROMPTUSER:-`whoami`}%f%F{white}@%F{cyan}%m%f%b %F{green}${_prompt_kyoto_pwd}%f ${_vci}
-%F{255}${_prompt_kyoto_symbol}%f '
+%F{255}${_prompt_ppname}${_prompt_kyoto_symbol}%f'
   RPROMPT='${editor_info[keymap]}'
   SPROMPT='zsh: correct %F{magenta}%R%f to %F{green}%r%f [nyae]? '
 }
 
 prompt_kyoto_setup "$@"
-
