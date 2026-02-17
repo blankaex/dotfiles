@@ -30,8 +30,8 @@ case "$(basename "$file" | tr '[:upper:]' '[:lower:]')" in
 	preview "$file" "$@" ;;
 *) 
     info=$(file -Lib "$file")
-    if printf '%s\n' "$info" | rg -q '^text/'; then
-        cat "$file" 
+    if printf '%s\n' "$info" | rg -q -e 'text' -e 'ascii' -e 'utf-8'; then
+        bat -p --color=always "$file" 
     else
         printf '%s' "$info"
     fi
