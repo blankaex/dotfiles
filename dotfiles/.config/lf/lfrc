@@ -1,0 +1,121 @@
+# Options
+set shellopts '-eu'
+set ifs "\n"
+set info size
+set dircounts
+set scrolloff 10
+set period 1
+set icons true
+set hiddenfiles ".*:*.aux:*.log"
+set cleaner '~/.config/lf/cleaner'
+set previewer '~/.config/lf/previewer'
+set autoquit true
+
+# Commands / Functions
+cmd q quit
+cmd open $set -f; rifle -p 0 $fx
+cmd autojump %lf -remote "send $id cd \"$(autojump "$1" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
+
+cmd forcepaste ${{
+    mode=$(head -1 $HOME/.local/share/lf/files)
+    list=$(sed 1d $HOME/.local/share/lf/files)
+    if [ $mode = 'copy' ]; then
+        cp -r $list .
+    elif [ $mode = 'move' ]; then
+        mv $list .
+    fi
+    lf -remote 'send load'
+    lf -remote 'send clear'
+}}
+
+cmd delete ${{
+    clear
+	printf "%s\n\t" "$fx"
+	printf "delete?[Y/n]"
+	read -s -n1 ans
+	[ "$ans" = y -o -z "$ans" ] && rm -rf -- $fx
+}}
+
+cmd extract ${{
+    clear
+	printf "%s\n\t" "$fx"
+	printf "extract?[Y/n]"
+	read -s -n1 ans
+	[ "$ans" = y -o -z "$ans" ] && unar -- $fx
+}}
+
+cmd link ${{
+    set -- $(cat $HOME/.local/share/lf/files)
+    mode="$1"
+    shift
+    if [ "$#" -lt 1 ]; then
+        lf -remote "send $id echoerr no files to link"
+        exit
+    fi
+    ln -sr -t . -- "$@"
+    lf -remote "send clear"
+}}
+
+cmd bulkrename ${{
+    tmpfile_old="$(mktemp)"
+    tmpfile_new="$(mktemp)"
+
+    [ -n "$fs" ] && fs=$(basename -a $fs) || fs=$(ls)
+
+    echo "$fs" > "$tmpfile_old"
+    echo "$fs" > "$tmpfile_new"
+    $EDITOR "$tmpfile_new"
+
+    [ "$(wc -l < "$tmpfile_old")" -eq "$(wc -l < "$tmpfile_new")" ] || { rm -f "$tmpfile_old" "$tmpfile_new"; exit 1; }
+
+    paste "$tmpfile_old" "$tmpfile_new" | while IFS="$(printf '\t')" read -r src dst do
+        [ "$src" = "$dst" ] || [ -e "$dst" ] || mv -- "$src" "$dst"
+    done
+
+    rm -f "$tmpfile_old" "$tmpfile_new"
+    lf -remote "send $id unselect"
+}}
+
+# Bindings
+map J :updir; down; open
+map K :updir; up; open
+map E $$EDITOR "$f"
+map S $$SHELL
+
+map y
+map yy copy
+map yn $basename "$f" | xclip -selection clipboard
+map yp $printf "$f" | xclip -selection clipboard
+map yd $printf "$PWD" | xclip -selection clipboard
+map d
+map dd cut
+map dD delete
+map p
+map pp : paste; clear
+map po forcepaste
+map pl link
+
+map gj push :autojump<space>
+map gm %lf -remote "send $id cd /mnt"
+map gM %lf -remote "send $id cd /media"
+map gs %lf -remote "send $id cd /media/storage"
+map gc %lf -remote "send $id cd $HOME/.config"
+
+map c 
+map cd push :cd<space>
+map m
+map mk push :mkdir<space>""<left>
+
+map r push A<c-u>
+map I :rename; cmd-home
+map i :rename
+map A :rename; cmd-end
+map a :rename; cmd-right
+map b bulkrename
+
+map <c-l> clear
+map <c-r> reload
+map <enter> shell
+
+map X extract
+map Y $syncplay --no-store --no-gui -p $SYNCPLAY_PASSWORD "$f"

@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+cleanup() {
+	cleaner
+	kill "$UEBERZUGPID"
+	pkill -f "tail -f $LF_UEBERZUG_TEMPDIR/fifo"
+	rm -rf "$LF_UEBERZUG_TEMPDIR"
+}
+trap cleanup INT HUP
+
+# Set up temporary directory.
+export LF_UEBERZUG_TEMPDIR="$(mktemp -d -t lf-ueberzug-XXXXXX)"
+
+# Launch ueberzug & lf.
+mkfifo "$LF_UEBERZUG_TEMPDIR/fifo"
+tail -f "$LF_UEBERZUG_TEMPDIR/fifo" | ueberzugpp layer --silent &
+UEBERZUGPID=$!
+lf
+cleanup
