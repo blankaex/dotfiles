@@ -1,12 +1,13 @@
 #!/bin/sh
 
-# Load X stuff
+# Load X configs
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
 	for f in /etc/X11/xinit/xinitrc.d/*;  do
 		[ -x "f" ] && . "$f"
 	done
 	unset f
 fi
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
 # Xresources colours
 xrdb -merge "$HOME/.Xresources"
@@ -16,19 +17,22 @@ xrdb -merge "$HOME/.Xresources"
 setxkbmap -option caps:super # prevents https://bbs.archlinux.org/viewtopic.php?id=247759
 xcape -e "Super_L=Escape"
 
-# Configure screens
+# Configure xorg
 xsetroot -cursor_name left_ptr &
-autorandr -c
-xset -dpms
-xset s off
+xset s off -dpms
 xset s noblank
+xset r rate 330 50 # default 660 25
 
 # Start services
 dunst &
 redshift & 
-fcitx &
-$HOME/.fehbg &
+fcitx5 &
 sxhkd &
+xcompmgr &
+
+# Setup monitors
+autorandr -c
+$HOME/.fehbg &
 
 # Launch WM
 echo "startup" > "$XDG_CACHE_HOME/xstatus"
