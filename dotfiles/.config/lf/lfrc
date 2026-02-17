@@ -1,7 +1,7 @@
 # Options
 set shellopts '-eu'
 set ifs "\n"
-set info size
+set info custom
 set dircounts
 set scrolloff 10
 set period 1
@@ -10,6 +10,38 @@ set hiddenfiles ".*:*.aux:*.log"
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/previewer'
 set autoquit true
+
+# Hooks
+cmd on-load &{{
+    cd "$(dirname "$1")" || exit 1
+    [ "$(git rev-parse --is-inside-git-dir 2>/dev/null)" = false ] || exit 0
+    cmds=""
+    for file in "$@"; do
+        case "$file" in
+            */.git|*/.git/*) continue;;
+        esac
+        status=$(git status --porcelain --ignored -- "$file" | cut -c1-2 | head -n1)
+        if [ -n "$status" ]; then
+            cmds="${cmds}addcustominfo ${file} \"$status\"; "
+        else
+            cmds="${cmds}addcustominfo ${file} ''; "
+        fi
+    done
+    lf -remote "send $id :$cmds"
+}}
+
+cmd on-cd &{{
+    # display git repository status in your prompt
+    source /usr/share/git/completion/git-prompt.sh
+    GIT_PS1_SHOWDIRTYSTATE=auto
+    GIT_PS1_SHOWSTASHSTATE=auto
+    GIT_PS1_SHOWUNTRACKEDFILES=auto
+    GIT_PS1_SHOWUPSTREAM=auto
+    GIT_PS1_COMPRESSSPARSESTATE=auto
+    git="$(__git_ps1 " [GIT BRANCH:> %s]")" || true
+    fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%w\033[0m\033[33;1m$git\033[0m"
+    lf -remote "send $id set promptfmt \"$fmt\""
+}}
 
 # Commands / Functions
 cmd q quit
@@ -27,7 +59,7 @@ cmd link ${{
     fi
 }}
 
-cmd forcepaste ${{
+cmd force_paste ${{
     set -- $(cat $HOME/.local/share/lf/files)
     mode="$1"
     shift
@@ -62,21 +94,45 @@ cmd extract ${{
 cmd bulkrename ${{
     tmpfile_old="$(mktemp)"
     tmpfile_new="$(mktemp)"
-
     [ -n "$fs" ] && fs=$(basename -a $fs) || fs=$(ls)
-
     echo "$fs" > "$tmpfile_old"
     echo "$fs" > "$tmpfile_new"
     $EDITOR "$tmpfile_new"
-
     [ "$(wc -l < "$tmpfile_old")" -eq "$(wc -l < "$tmpfile_new")" ] || { rm -f "$tmpfile_old" "$tmpfile_new"; exit 1; }
-
     paste "$tmpfile_old" "$tmpfile_new" | while IFS="$(printf '\t')" read -r src dst do
         [ "$src" = "$dst" ] || [ -e "$dst" ] || mv -- "$src" "$dst"
     done
-
     rm -f "$tmpfile_old" "$tmpfile_new"
     lf -remote "send $id unselect"
+}}
+
+cmd fzf_search ${{
+    cmd="rg --column --line-number --no-heading --color=always --smart-case"
+    fzf --ansi --disabled --layout=reverse --header="Search in files" --delimiter=: \
+        --bind="start:reload([ -n {q} ] && $cmd -- {q} || true)" \
+        --bind="change:reload([ -n {q} ] && $cmd -- {q} || true)" \
+        --bind='enter:become(lf -remote "send $id select \"$(printf "%s" {1} | sed '\''s/\\/\\\\/g;s/"/\\"/g'\'')\"")' \
+        --preview='cat -- {1}'
+}}
+
+cmd 0x0 ${{
+    clear
+	printf "%s\n\t" "$f"
+	printf "upload to 0x0?[Y/n]"
+	read -s -n1 ans
+	if [ "$ans" = y -o -z "$ans" ]; then
+        res=$(curl -F file=@"$f" https://0x0.st)
+        printf "%s" "$res" | xclip -sel clipboard
+        echo "Uploaded $f to $res"
+        echo "Press any key to continue"
+        read -s -n1
+    fi
+}}
+
+cmd git_branch ${{
+    git branch | fzf | xargs git checkout
+    pwd_shell="$(pwd | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    lf -remote "send $id updir; cd \"$pwd_shell\""
 }}
 
 # Bindings
@@ -87,39 +143,50 @@ map S $$SHELL
 
 map y
 map yy copy
-map yn $basename "$f" | xclip -sel clipboard && lf -remote "send $id echomsg copied \'$(basename $f)\' to clipboard"
-map yp $printf "$f" | xclip -sel clipboard && lf -remote "send $id echomsg copied \'$f\' to clipboard"
-map yd $printf "$PWD" | xclip -sel clipboard && lf -remote "send $id echomsg copied \'$PWD\' to clipboard"
+map yn $basename "$f" | xclip -sel clipboard; lf -remote "send $id echomsg copied \'$(basename $f)\' to clipboard"
+map yp $printf "$f" | xclip -sel clipboard; lf -remote "send $id echomsg copied \'$f\' to clipboard"
+map yd $printf "$PWD" | xclip -sel clipboard; lf -remote "send $id echomsg copied \'$PWD\' to clipboard"
 map d
 map dd cut
-map dD delete
+map dD :delete
 map p
 map pp : paste; clear
-map po forcepaste
-map pl link
-
-map gj push :autojump<space>
-map gm $lf -remote "send $id cd /mnt"
-map gM $lf -remote "send $id cd /media"
-map gs $lf -remote "send $id cd /media/storage"
-map gc $lf -remote "send $id cd $HOME/.config"
+map po :force_paste
+map pl :link
 
 map c 
 map cd push :cd<space>
-map m
-map mk push :mkdir<space>""<left>
+map cj push :autojump<space>
+map cm $lf -remote "send $id cd /mnt"
+map cM $lf -remote "send $id cd /media"
+map cs $lf -remote "send $id cd /media/storage"
+map cc $lf -remote "send $id cd $HOME/.config"
 
 map r push A<c-u>
 map I :rename; cmd-home
 map i :rename
 map A :rename; cmd-end
 map a :rename; cmd-right
-map b bulkrename
+map b :bulkrename
 
 map <c-l> clear
 map <c-r> reload
 map <c-t> &$TERM -e lf $PWD
+map <c-n> push $mkdir<space>""<left>
 map <enter> shell
 
-map X extract
+map gb :git_branch
+map ga $git add $fx; lf -remote 'send reload'
+map gc $git commit; lf -remote 'send reload'
+map gC $git commit -a; lf -remote 'send reload'
+map gs $clear; git status; echo "Press any key to continue"; read -s -n1
+map gp $clear; git pull --rebase || true; echo "Press any key to continue"; read -s -n1
+map gP $clear; git push || true; echo "Press any key to continue"; read -s -n1
+
+map F :fzf_search
+map X :extract
+map U :0x0
 map Y $syncplay --no-store --no-gui -p $SYNCPLAY_PASSWORD "$f"
+map C $clear; ruri -t 8 $fx; echo "Press any key to continue"; read -s -n1
+#map O console open_with%space
+#map i chain shell sxiv -ato %d | head -n 1 | tr -d "\n" | xclip -sel clipboard; eval fm.notify("Path copied to clipboard.")
