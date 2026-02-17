@@ -16,17 +16,28 @@ cmd q quit
 cmd open $set -f; rifle -p 0 $fx
 cmd autojump $lf -remote "send $id cd \"$(autojump "$1" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
 
+cmd link ${{
+    set -- $(cat $HOME/.local/share/lf/files)
+    shift
+    if [ "$#" -lt 1 ]; then
+        lf -remote "send $id echoerr no files to link"
+    else
+        ln -sr -t . -- "$@"
+        lf -remote "send clear"
+    fi
+}}
+
 cmd forcepaste ${{
-    mode=$(head -1 $HOME/.local/share/lf/files)
-    list=$(sed 1d $HOME/.local/share/lf/files)
+    set -- $(cat $HOME/.local/share/lf/files)
+    mode="$1"
+    shift
     if [ "$#" -lt 1 ]; then
         lf -remote "send $id echoerr no files to paste"
         exit
-    fi
-    if [ $mode = 'copy' ]; then
-        cp -r $list .
+    elif [ $mode = 'copy' ]; then
+        cp -rv "$@" .
     elif [ $mode = 'move' ]; then
-        mv $list .
+        mv -v "$@" .
     fi
     lf -remote 'send load'
     lf -remote 'send clear'
@@ -46,18 +57,6 @@ cmd extract ${{
 	printf "extract?[Y/n]"
 	read -s -n1 ans
 	[ "$ans" = y -o -z "$ans" ] && unar -- $fx
-}}
-
-cmd link ${{
-    set -- $(cat $HOME/.local/share/lf/files)
-    mode="$1"
-    shift
-    if [ "$#" -lt 1 ]; then
-        lf -remote "send $id echoerr no files to link"
-        exit
-    fi
-    ln -sr -t . -- "$@"
-    lf -remote "send clear"
 }}
 
 cmd bulkrename ${{
