@@ -19,9 +19,6 @@ Configuration files for Arch Linux.
 
 ## Utilities
 
-* [zsh](https://github.com/zsh-users/zsh)
-* [prezto](https://github.com/sorin-ionescu/prezto)
-* [alacritty](https://github.com/jwilm/alacritty)
 * [bspwm](https://github.com/baskerville/bspwm/)
 * [sxhkd](https://github.com/baskerville/sxhkd)
 * [polybar](https://github.com/polybar/polybar)
