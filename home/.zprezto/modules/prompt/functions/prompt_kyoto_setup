@@ -19,9 +19,12 @@ function +prompt_kyoto_precmd {
     _prompt_kyoto_symbol='》'
   fi
   _ppname=$(ps -p $PPID -o comm=)
-  if [ "$_ppname" != "$TERM" ]; then
+  if [ "$_ppname" = "sshd-session" ]; then
+    _prompt_ppname="ssh "
+  elif [ "$_ppname" != "$TERM" ]; then
     _prompt_ppname="$_ppname "
   fi
+
 }
 
 function prompt_kyoto_setup {
