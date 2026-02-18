@@ -11,6 +11,7 @@ set hiddenfiles ".*:*.aux:*.log"
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/previewer'
 set promptfmt "\033[35;1m%u\033[37;1m@\033[36;1m%h\033[0m \033[32m%w\033[0m"
+set cursorpreviewfmt
 
 # Hooks
 cmd set-prompt &{{
@@ -31,7 +32,14 @@ cmd on-cd &{{
 # Commands / Functions
 cmd q quit
 cmd open $set -f; rifle -p 0 $fx
+cmd touch %IFS=" "; touch -- "$*"
+cmd mkdir %IFS=" "; mkdir -- "$*"
 cmd jump $lf -remote "send $id cd \"$(autojump "$1" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
+
+cmd bulk-rename ${{
+    vimv -- $(basename -a -- $fx)
+    lf -remote "send $id :load; unselect"
+}}
 
 cmd link ${{
     set -- $(cat $HOME/.local/share/lf/files)
@@ -44,7 +52,7 @@ cmd link ${{
     fi
 }}
 
-cmd force_paste ${{
+cmd force-paste ${{
     set -- $(cat $HOME/.local/share/lf/files)
     mode="$1"
     shift
@@ -77,28 +85,13 @@ cmd extract ${{
 	[ "$ans" = y -o -z "$ans" ] && unar -- $fx
 }}
 
-cmd bulkrename ${{
-    tmpfile_old="$(mktemp)"
-    tmpfile_new="$(mktemp)"
-    [ -n "$fs" ] && fs=$(basename -a $fs) || fs=$(ls)
-    echo "$fs" > "$tmpfile_old"
-    echo "$fs" > "$tmpfile_new"
-    $EDITOR "$tmpfile_new"
-    [ "$(wc -l < "$tmpfile_old")" -eq "$(wc -l < "$tmpfile_new")" ] || { rm -f "$tmpfile_old" "$tmpfile_new"; exit 1; }
-    paste "$tmpfile_old" "$tmpfile_new" | while IFS="$(printf '\t')" read -r src dst do
-        [ "$src" = "$dst" ] || [ -e "$dst" ] || mv -- "$src" "$dst"
-    done
-    rm -f "$tmpfile_old" "$tmpfile_new"
-    lf -remote "send $id unselect"
-}}
-
-cmd fzf_search ${{
+cmd fzf-search ${{
     cmd="rg --column --line-number --no-heading --color=always --smart-case"
     fzf --ansi --disabled --layout=reverse --header="Search in files" --delimiter=: \
         --bind="start:reload([ -n {q} ] && $cmd -- {q} || true)" \
         --bind="change:reload([ -n {q} ] && $cmd -- {q} || true)" \
         --bind='enter:become(lf -remote "send $id select \"$(printf "%s" {1} | sed '\''s/\\/\\\\/g;s/"/\\"/g'\'')\"")' \
-        --preview='cat -- {1}'
+        --preview='bat --color=always --highlight-line={2} -- {1}'
 }}
 
 cmd 0x0 ${{
@@ -125,40 +118,39 @@ map y
 map yy copy
 map yn $basename "$f" | xclip -sel clipboard; lf -remote "send $id echomsg copied \'$(basename $f)\' to clipboard"
 map yp $printf "$f" | xclip -sel clipboard; lf -remote "send $id echomsg copied \'$f\' to clipboard"
-map yd $printf "$PWD" | xclip -sel clipboard; lf -remote "send $id echomsg copied \'$PWD\' to clipboard"
 map d
 map dd cut
 map dD :delete
 map p
 map pp : paste; clear
-map po :force_paste
+map po :force-paste
 map pl :link
 
 map c 
 map cd push :cd<space>
 map gj push :jump<space>
-map gm $lf -remote "send $id cd /mnt"
-map gM $lf -remote "send $id cd /media"
-map gs $lf -remote "send $id cd /media/storage"
-map gc $lf -remote "send $id cd $HOME/.config"
+map gm cd "/mnt"
+map gM cd "/media"
+map gs cd "/media/storage"
+map gl %lf -remote "send $id select \"$(readlink -- "$f" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
 
 map r push A<c-u>
 map I :rename; cmd-home
 map i :rename
 map A :rename; cmd-end
 map a :rename; cmd-right
-map b :bulkrename
+map b :bulk-rename
 
 map <c-l> clear
 map <c-r> reload
 map <c-t> &$TERM -e lf $PWD
-map <c-n> push $mkdir<space>""<left>
+map <c-n> push :mkdir<space>
 map <enter> shell
 
-map F :fzf_search
+map F :fzf-search
 map X :extract
 map U :0x0
 map Y $syncplay --no-store --no-gui -p $SYNCPLAY_PASSWORD "$f"
 map C $clear; ruri -t 8 $fx; echo "Press any key to continue"; read -s -n1
+map T $sxiv -ato $PWD | head -n 1 | tr -d "\n" | xclip -sel clipboard
 #map O console open_with%space
-#map i chain shell sxiv -ato %d | head -n 1 | tr -d "\n" | xclip -sel clipboard; eval fm.notify("Path copied to clipboard.")
