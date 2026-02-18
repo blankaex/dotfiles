@@ -1,6 +1,6 @@
 # Dotfiles
 
-Repository for managing configuration files for Arch Linux.
+Configuration files for Arch Linux.
 
 ## Preview
 
@@ -11,21 +11,11 @@ Repository for managing configuration files for Arch Linux.
 
 ## Requirements
 
-* [pyinfra](https://github.com/Fizzadar/pyinfra)
+* [stow](https://www.gnu.org/software/stow/)
 
-## Installation
+## Usage
 
-```
-# packages
-$ pyinfra @local deploys/packages/izanami.py
-
-# configs
-$ pyinfra @local deploys/configs/izanami.py
-```
-Or alternatively over SSH:
-```
-$ pyinfra [HOST] deploys/configs/izanagi.py --user [SSH USERNAME] --key [PATH]
-```
+`make install` or `make uninstall`.
 
 ## Utilities
 

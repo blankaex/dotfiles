@@ -1,1 +1,0 @@
-/home/blankaex/.local/src/ranger-autojump/autojump.py
