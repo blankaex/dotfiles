@@ -25,6 +25,11 @@ cmd on-init &{{
     lf -remote "send $id set-prompt"
 }}
 
+cmd on-load &{{
+    # needed if resuming from a subshell
+    lf -remote "send $id set-prompt"
+}}
+
 cmd on-cd &{{
     lf -remote "send $id set-prompt"
 }}
