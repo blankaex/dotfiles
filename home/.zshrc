@@ -1,11 +1,4 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
-# Source Prezto.
+# Source dependencies
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
   source "/etc/profile.d/autojump.sh"
@@ -17,7 +10,6 @@ fi
 bindkey -v
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
-
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char

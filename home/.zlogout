@@ -1,10 +1,3 @@
-#
-# Executes commands at logout.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 function typewriter {
     text="$1"
     delay="$2"

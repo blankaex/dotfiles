@@ -1,10 +1,3 @@
-#
-# Executes commands at login post-zshrc.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 # Execute code that does not affect the current session in the background.
 {
   # Compile the completion dump to increase startup speed.
@@ -16,7 +9,6 @@
 
 # Execute code only if STDERR is bound to a TTY.
 [[ -o INTERACTIVE && -t 2 ]] && {
-
   QUOTES=(
     "Peaceful days are over. Let's survive.\n  --女神異聞録デビルサバイバー"
     "何でもは知らないわよ。知ってることだけ。\n  --羽川翼"
@@ -35,8 +27,6 @@
     "万物にはすべて綻びがある。\n --両儀式"
     "生きているのなら、神様だって殺してみせる。\n --両儀式"
   )
-  
   # Print a randomly-chosen message:
   echo $QUOTES[$(($RANDOM % ${#QUOTES} + 1))]
-
 } >&2

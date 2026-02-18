@@ -1,14 +1,4 @@
-#
-# Executes commands at login pre-zshrc.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
-#
-# Start Graphical Environment
-#
-
+# Start graphical environment on tty1
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx
 fi
