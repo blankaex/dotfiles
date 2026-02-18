@@ -21,8 +21,6 @@ Configuration files for Arch Linux.
 
 * [zsh](https://github.com/zsh-users/zsh)
 * [prezto](https://github.com/sorin-ionescu/prezto)
-* [nvim](https://github.com/neovim/neovim)
-* [lf](https://github.com/gokcehan/lf)
 * [alacritty](https://github.com/jwilm/alacritty)
 * [bspwm](https://github.com/baskerville/bspwm/)
 * [sxhkd](https://github.com/baskerville/sxhkd)
