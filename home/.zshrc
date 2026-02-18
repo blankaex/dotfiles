@@ -24,6 +24,7 @@ bindkey '^v' edit-command-line
 # Aliases (flags)
 alias cp='cp -iv'
 alias mv='mv -iv'
+alias sudo='sudo -E'
 alias diff='diff --color=auto'
 alias xclip='xclip -selection clipboard'
 alias ncmpcpp='ncmpcpp --config $HOME/.config/ncmpcpp/config --bindings $HOME/.config/ncmpcpp/bindings'

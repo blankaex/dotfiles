@@ -134,6 +134,7 @@ map pl :link
 map c 
 map cd push :cd<space>
 map gj push :jump<space>
+map g/ cd "/"
 map gm cd "/mnt"
 map gM cd "/media"
 map gs cd "/media/storage"
