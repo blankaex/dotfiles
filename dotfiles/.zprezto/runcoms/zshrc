@@ -9,17 +9,14 @@
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
   source "/etc/profile.d/autojump.sh"
+  source <(fzf --zsh)
+  source /etc/grc.zsh
 fi
 
 # Vi mode
 bindkey -v
-bindkey -v '^?' backward-delete-char
-bindkey '^r' history-incremental-search-backward
-bindkey '^s' history-incremental-search-forward
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
 
 zstyle ':completion:*' menu select
 zmodload zsh/complist
@@ -40,6 +37,7 @@ alias xclip='xclip -selection clipboard'
 alias ncmpcpp='ncmpcpp --config $HOME/.config/ncmpcpp/config --bindings $HOME/.config/ncmpcpp/bindings'
 
 # Aliases (programs)
+alias ls='eza'
 alias lf='lf-ueberzug'
 alias erogays='vboxmanage startvm erogays'
 alias mozc-dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
