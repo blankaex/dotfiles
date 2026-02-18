@@ -1,52 +1,37 @@
 # Options
 set shellopts '-eu'
 set ifs "\n"
-set info custom
+set info size
 set dircounts
 set scrolloff 10
 set period 1
 set icons true
+set autoquit true
 set hiddenfiles ".*:*.aux:*.log"
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/previewer'
-set autoquit true
+set promptfmt "\033[35;1m%u\033[37;1m@\033[36;1m%h\033[0m \033[32m%w\033[0m"
 
 # Hooks
-cmd on-load &{{
-    cd "$(dirname "$1")" || exit 1
-    [ "$(git rev-parse --is-inside-git-dir 2>/dev/null)" = false ] || exit 0
-    cmds=""
-    for file in "$@"; do
-        case "$file" in
-            */.git|*/.git/*) continue;;
-        esac
-        status=$(git status --porcelain --ignored -- "$file" | cut -c1-2 | head -n1)
-        if [ -n "$status" ]; then
-            cmds="${cmds}addcustominfo ${file} \"$status\"; "
-        else
-            cmds="${cmds}addcustominfo ${file} ''; "
-        fi
-    done
-    lf -remote "send $id :$cmds"
+cmd set-prompt &{{
+    git=$(zsh -c 'source "$HOME/.local/src/zsh-git-prompt/zshrc.sh"; print -P "$(git_super_status)"') || true
+    fmt="\033[35;1m%u\033[37;1m@\033[36;1m%h\033[0m \033[32m%w\033[0m $git"
+    lf -remote "send $id set promptfmt \"$fmt\""
+}}
+
+cmd on-init &{{
+    # needed if starting lf in a git repo
+    lf -remote "send $id set-prompt"
 }}
 
 cmd on-cd &{{
-    # display git repository status in your prompt
-    source /usr/share/git/completion/git-prompt.sh
-    GIT_PS1_SHOWDIRTYSTATE=auto
-    GIT_PS1_SHOWSTASHSTATE=auto
-    GIT_PS1_SHOWUNTRACKEDFILES=auto
-    GIT_PS1_SHOWUPSTREAM=auto
-    GIT_PS1_COMPRESSSPARSESTATE=auto
-    git="$(__git_ps1 " [GIT BRANCH:> %s]")" || true
-    fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%w\033[0m\033[33;1m$git\033[0m"
-    lf -remote "send $id set promptfmt \"$fmt\""
+    lf -remote "send $id set-prompt"
 }}
 
 # Commands / Functions
 cmd q quit
 cmd open $set -f; rifle -p 0 $fx
-cmd autojump $lf -remote "send $id cd \"$(autojump "$1" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
+cmd jump $lf -remote "send $id cd \"$(autojump "$1" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
 
 cmd link ${{
     set -- $(cat $HOME/.local/share/lf/files)
@@ -130,12 +115,6 @@ cmd 0x0 ${{
     fi
 }}
 
-cmd git_branch ${{
-    git branch | fzf | xargs git checkout
-    pwd_shell="$(pwd | sed 's/\\/\\\\/g;s/"/\\"/g')"
-    lf -remote "send $id updir; cd \"$pwd_shell\""
-}}
-
 # Bindings
 map J :updir; down; open
 map K :updir; up; open
@@ -157,11 +136,11 @@ map pl :link
 
 map c 
 map cd push :cd<space>
-map cj push :autojump<space>
-map cm $lf -remote "send $id cd /mnt"
-map cM $lf -remote "send $id cd /media"
-map cs $lf -remote "send $id cd /media/storage"
-map cc $lf -remote "send $id cd $HOME/.config"
+map gj push :jump<space>
+map gm $lf -remote "send $id cd /mnt"
+map gM $lf -remote "send $id cd /media"
+map gs $lf -remote "send $id cd /media/storage"
+map gc $lf -remote "send $id cd $HOME/.config"
 
 map r push A<c-u>
 map I :rename; cmd-home
@@ -175,14 +154,6 @@ map <c-r> reload
 map <c-t> &$TERM -e lf $PWD
 map <c-n> push $mkdir<space>""<left>
 map <enter> shell
-
-map gb :git_branch
-map ga $git add $fx; lf -remote "send $id reload"
-map gc $git commit; lf -remote "send $id reload"
-map gC $git commit -a; lf -remote "send $id reload"
-map gs $clear; git status; echo "Press any key to continue"; read -s -n1
-map gp $clear; git pull --rebase || true; echo "Press any key to continue"; read -s -n1
-map gP $clear; git push || true; echo "Press any key to continue"; read -s -n1
 
 map F :fzf_search
 map X :extract
