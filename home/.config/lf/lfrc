@@ -125,7 +125,7 @@ cmd git-merge ${{
 }}
 
 cmd git-rebase ${{
-    git branch | fzf | xargs git merge
+    git branch | fzf | xargs git rebase
 	read -s -n1
 }}
 
