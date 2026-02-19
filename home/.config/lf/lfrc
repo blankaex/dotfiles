@@ -43,7 +43,8 @@ cmd jump $lf -remote "send $id cd \"$(autojump "$1" | sed 's/\\/\\\\/g;s/"/\\"/g
 
 cmd bulk-rename ${{
     vimv -- $(basename -a -- $fx)
-    lf -remote "send $id :load; unselect"
+    lf -remote "send $id load"
+    lf -remote "send $id unselect"
 }}
 
 cmd link ${{
@@ -53,7 +54,7 @@ cmd link ${{
         lf -remote "send $id echoerr no files to link"
     else
         ln -sr -t . -- "$@"
-        lf -remote "send clear"
+        lf -remote "send $id clear"
     fi
 }}
 
@@ -69,9 +70,7 @@ cmd force-paste ${{
     elif [ $mode = 'move' ]; then
         mv -v "$@" .
     fi
-    lf -remote "send load"
-    lf -remote "send clear"
-    lf -remote "send $id echomsg $@ overwritten"
+    lf -remote "send $id clear"
 }}
 
 cmd delete ${{
@@ -80,6 +79,79 @@ cmd delete ${{
 	printf "delete?[Y/n]"
 	read -s -n1 ans
 	[ "$ans" = y -o -z "$ans" ] && rm -rf -- $fx
+}}
+
+cmd git-status ${{
+    clear
+    git status
+	read -s -n1
+}}
+
+cmd git-add ${{
+    echo "$fx" | xargs -d '\n' git add
+    lf -remote "send $id reload"
+}}
+
+cmd git-add-all ${{
+    git add -A
+    lf -remote "send $id reload"
+}}
+
+cmd git-commit ${{
+    git commit
+    lf -remote "send $id reload"
+}}
+
+cmd git-commit-all ${{
+    git commit -a
+    lf -remote "send $id reload"
+}}
+
+cmd git-pull ${{
+    clear
+    git pull
+	read -s -n1
+}}
+
+cmd git-push ${{
+    clear
+    git push
+	read -s -n1
+}}
+
+cmd git-merge ${{
+    git branch | fzf | xargs git merge
+	read -s -n1
+}}
+
+cmd git-rebase ${{
+    git branch | fzf | xargs git merge
+	read -s -n1
+}}
+
+cmd git-branch ${{
+    clear
+    branch=$(git branch | fzf)
+    echo ${branch##* } | xclip -sel clipboard
+}}
+
+cmd git-checkout ${{
+    git branch | fzf | xargs git checkout
+    lf -remote "send $id reload"
+}}
+
+cmd 0x0 ${{
+    clear
+	printf "%s\n\t" "$f"
+	printf "upload to 0x0?[Y/n]"
+	read -s -n1 ans
+	if [ "$ans" = y -o -z "$ans" ]; then
+        res=$(curl -F file=@"$f" https://0x0.st)
+        printf "%s" "$res" | xclip -sel clipboard
+        echo "Uploaded $f to $res"
+        echo "Press any key to continue"
+        read -s -n1
+    fi
 }}
 
 cmd extract ${{
@@ -97,20 +169,6 @@ cmd fzf-search ${{
         --bind="change:reload([ -n {q} ] && $cmd -- {q} || true)" \
         --bind='enter:become(lf -remote "send $id select \"$(printf "%s" {1} | sed '\''s/\\/\\\\/g;s/"/\\"/g'\'')\"")' \
         --preview='bat --color=always --highlight-line={2} -- {1}'
-}}
-
-cmd 0x0 ${{
-    clear
-	printf "%s\n\t" "$f"
-	printf "upload to 0x0?[Y/n]"
-	read -s -n1 ans
-	if [ "$ans" = y -o -z "$ans" ]; then
-        res=$(curl -F file=@"$f" https://0x0.st)
-        printf "%s" "$res" | xclip -sel clipboard
-        echo "Uploaded $f to $res"
-        echo "Press any key to continue"
-        read -s -n1
-    fi
 }}
 
 # Bindings
@@ -138,7 +196,7 @@ map g/ cd "/"
 map gm cd "/mnt"
 map gM cd "/media"
 map gs cd "/media/storage"
-map gl %lf -remote "send $id select \"$(readlink -- "$f" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
+map gl %test -L "$f" && lf -remote "send $id select \"$(readlink -- "$f" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
 
 map r push A<c-u>
 map I :rename; cmd-home
@@ -152,6 +210,18 @@ map <c-r> reload
 map <c-t> &$TERM -e lf $PWD
 map <c-n> push :mkdir<space>
 map <enter> shell
+
+map <c-g>s :git-status
+map <c-g>a :git-add
+map <c-g>A :git-add-all
+map <c-g>c :git-commit
+map <c-g>C :git-commit-all
+map <c-g>p :git-pull
+map <c-g>u :git-push
+map <c-g>m :git-merge
+map <c-g>r :git-rebase
+map <c-g>b :git-branch
+map <c-g>h :git-checkout
 
 map F :fzf-search
 map X :extract
