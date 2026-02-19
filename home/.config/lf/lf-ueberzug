@@ -12,9 +12,13 @@ trap cleanup INT HUP
 export LF_UEBERZUG_TEMPDIR="$(mktemp -d -t lf-ueberzug-XXXXXX)"
 
 # Launch ueberzug & lf.
-mkfifo "$LF_UEBERZUG_TEMPDIR/fifo"
-tail -f "$LF_UEBERZUG_TEMPDIR/fifo" | ueberzugpp layer --silent &
-UEBERZUGPID=$!
-export PATH="$PATH:${ZSH_ARGZERO:A:h}"
-lf $1
-cleanup
+if which ueberzugpp >> /dev/null; then
+    mkfifo "$LF_UEBERZUG_TEMPDIR/fifo"
+    tail -f "$LF_UEBERZUG_TEMPDIR/fifo" | ueberzugpp layer --silent &
+    UEBERZUGPID=$!
+    export PATH="$PATH:${ZSH_ARGZERO:A:h}"
+    lf $1
+    cleanup
+else
+    lf $1
+fi
