@@ -16,8 +16,7 @@ set cursorpreviewfmt
 # Hooks
 cmd set-prompt &{{
     git=$(zsh -c 'source "$HOME/.local/src/zsh-git-prompt/zshrc.sh"; print -P "$(git_super_status)"') || true
-    fmt="\033[35;1m%u\033[37;1m@\033[36;1m%h\033[0m \033[32m%w\033[0m $git"
-    lf -remote "send $id set promptfmt \"$fmt\""
+    lf -remote "send $id set promptfmt \"\033[35;1m%u\033[37;1m@\033[36;1m%h\033[0m \033[32m%w\033[0m $git\""
 }}
 
 cmd on-init &{{
@@ -71,6 +70,7 @@ cmd force-paste ${{
         mv -v "$@" .
     fi
     lf -remote "send $id clear"
+    lf -remote "send $id reload"
 }}
 
 cmd delete ${{
@@ -79,6 +79,7 @@ cmd delete ${{
 	printf "delete?[Y/n]"
 	read -s -n1 ans
 	[ "$ans" = y -o -z "$ans" ] && rm -rf -- $fx
+    lf -remote "send $id reload"
 }}
 
 cmd git-status ${{
