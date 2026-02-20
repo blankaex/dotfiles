@@ -110,22 +110,26 @@ cmd git-commit-all ${{
 cmd git-pull ${{
     clear
     git pull
+    lf -remote "send $id reload"
 	read -s -n1
 }}
 
 cmd git-push ${{
     clear
     git push
+    lf -remote "send $id reload"
 	read -s -n1
 }}
 
 cmd git-merge ${{
     git branch | fzf | xargs git merge
+    lf -remote "send $id reload"
 	read -s -n1
 }}
 
 cmd git-rebase ${{
     git branch | fzf | xargs git rebase
+    lf -remote "send $id reload"
 	read -s -n1
 }}
 
