@@ -1,5 +1,7 @@
 #!/bin/sh
 
+source $XDG_CACHE_HOME/wal/colors.sh
+
 bspc monitor -d 壱 弐 参 肆 伍 陸 漆 捌 玖
 
 bspc config automatic_scheme    alternate
@@ -17,10 +19,10 @@ bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 bspc config click_to_focus      any
 
-bspc config normal_border_color     "#774646"
-bspc config active_border_color     "#774646"
-bspc config focused_border_color    "#b35959"
-bspc config presel_feedback_color   "#774646"
+bspc config normal_border_color     "$color3"
+bspc config active_border_color     "$color3"
+bspc config focused_border_color    "$color6"
+bspc config presel_feedback_color   "$color3"
 
 bspc rule -a Zathura state=tiled
 bspc rule -a *:*:"Screen Sharing Tracker" hidden=on sticky=on
@@ -56,11 +58,11 @@ if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
     elif [ $(autorandr --current) == "tv" ]; then
         xrandr --output DisplayPort-1 --set TearFree on
 
-        bspc rule -a ranger -o desktop='^1'
+        bspc rule -a lf -o desktop='^1'
         bspc rule -a Vivaldi-stable:vivaldi-stable -o desktop='^2' locked=on
         bspc rule -a firefox:Navigator -o desktop='^3' locked=on
 
-        alacritty --class ranger -e ranger "/home/blankaex/Anime" &
+        alacritty --class lf -e lf "/home/blankaex/Anime" &
         firefox &
         vivaldi-stable &
         pkill redshift &
@@ -69,4 +71,5 @@ if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
 fi
 
 pgrep bspswallow || $XDG_CONFIG_HOME/bspwm/bspswallow &
-$HOME/.config/polybar/launch.sh
+$XDG_CONFIG_HOME/dunst/launch.sh
+$XDG_CONFIG_HOME/polybar/launch.sh

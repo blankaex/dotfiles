@@ -32,5 +32,6 @@ alias ncmpcpp='ncmpcpp --config $HOME/.config/ncmpcpp/config --bindings $HOME/.c
 # Aliases (programs)
 alias ls='eza'
 alias lf='/home/blankaex/.config/lf/lf-ueberzug'
+alias find='fd'
 alias erogays='vboxmanage startvm erogays'
 alias mozc-dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'

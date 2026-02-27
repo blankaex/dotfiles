@@ -3,7 +3,7 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-# Wal Colours
+# Pywal Colours
 source "$HOME/.cache/wal/colors.sh"
 
 # XDG Base Directories

@@ -24,7 +24,6 @@ xset s noblank
 xset r rate 330 50 # default 660 25
 
 # Start services
-dunst &
 redshift & 
 fcitx5 &
 sxhkd &

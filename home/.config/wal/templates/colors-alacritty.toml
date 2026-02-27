@@ -1,3 +1,54 @@
+[colors.primary]
+background = '{color0}'
+foreground = '{color7}'
+
+[colors.cursor]
+text   = '{color0}'
+cursor = '{color7}'
+
+[colors.vi_mode_cursor]
+text    = '{color0}'
+cursor  = '{color7}'
+
+[colors.search.matches]
+foreground = '{color0}'
+background = '{color7}'
+
+[colors.search.focused_match]
+foreground = 'CellBackground'
+background = 'CellForeground'
+
+[colors.line_indicator]
+foreground = 'None'
+background = 'None'
+
+[colors.footer_bar]
+foreground = '{color8}'
+background = '{color7}'
+
+[colors.selection]
+text       = 'CellBackground'
+background = 'CellForeground'
+
+[colors.normal]
+black   = '{color0}'
+red     = '{color1}'
+green   = '{color2}'
+yellow  = '{color3}'
+blue    = '{color4}'
+magenta = '{color5}'
+cyan    = '{color6}'
+white   = '{color7}'
+
+[colors.bright]
+black   = '{color8}'
+red     = '{color9}'
+green   = '{color10}'
+yellow  = '{color11}'
+blue    = '{color12}'
+magenta = '{color13}'
+cyan    = '{color14}'
+white   = '{color15}'
 
 [bell]
 animation = "EaseOutExpo"
@@ -6,30 +57,6 @@ duration = 0
 
 [colors]
 draw_bold_text_with_bright_colors = true
-
-[colors.bright]
-black = "#3d3a3b"
-blue = "#774646"
-cyan = "#4f3232"
-green = "#6b4949"
-magenta = "#b35959"
-red = "#8f505a"
-white = "#baba9e"
-yellow = "#996551"
-
-[colors.normal]
-black = "#131313"
-blue = "#774646"
-cyan = "#4f3232"
-green = "#b35959"
-magenta = "#8f505a"
-red = "#6b4949"
-white = "#c7c7c7"
-yellow = "#996551"
-
-[colors.primary]
-background = "#121010"
-foreground = "#c7c7c7"
 
 [cursor]
 style = "Underline"
@@ -637,7 +664,7 @@ multiplier = 3
 
 [selection]
 save_to_clipboard = false
-semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+semantic_escape_chars = ",│`|:\"' ()[]{{}}<>"
 
 [window]
 decorations = "full"
