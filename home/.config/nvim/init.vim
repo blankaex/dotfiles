@@ -132,6 +132,11 @@ nmap <buffer> <silent> $ g$
 " Types
 "
 
+aug folding
+    au!
+    au BufWinEnter * silent! loadview
+aug END
+
 aug unicode
     au!
     au BufRead,BufNewFile *.ass imap -- —
