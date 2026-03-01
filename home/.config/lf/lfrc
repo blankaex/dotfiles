@@ -124,25 +124,35 @@ cmd git-push ${{
 }}
 
 cmd git-merge ${{
-    git branch | fzf | xargs git merge
+    git branch | sk | xargs git merge
     lf -remote "send $id reload"
 	read -s -n1
 }}
 
 cmd git-rebase ${{
-    git branch | fzf | xargs git rebase
+    git branch | sk | xargs git rebase
     lf -remote "send $id reload"
 	read -s -n1
 }}
 
 cmd git-branch ${{
     clear
-    branch=$(git branch | fzf)
+    branch=$(git branch | sk)
     echo ${branch##* } | xclip -sel clipboard
 }}
 
+cmd git-branch-new ${{
+    clear
+	printf "New branch: "
+    read branch
+    if [ ! -z "$branch" ]; then
+        git checkout -b $(echo $branch | tr -d " ")
+        lf -remote "send $id reload"
+    fi
+}}
+
 cmd git-checkout ${{
-    git branch | fzf | xargs git checkout
+    git branch | sk | xargs git checkout
     lf -remote "send $id reload"
 }}
 
@@ -168,13 +178,16 @@ cmd extract ${{
 	[ "$ans" = y -o -z "$ans" ] && unar -- $fx
 }}
 
-cmd fzf-search ${{
+cmd fuzzy-search ${{
     cmd="rg --column --line-number --no-heading --color=always --smart-case"
-    fzf --ansi --disabled --layout=reverse --header="Search in files" --delimiter=: \
+    file=$(sk --ansi --disabled --layout=reverse --header="Search in files" --delimiter=: \
         --bind="start:reload([ -n {q} ] && $cmd -- {q} || true)" \
         --bind="change:reload([ -n {q} ] && $cmd -- {q} || true)" \
         --bind='enter:become(lf -remote "send $id select \"$(printf "%s" {1} | sed '\''s/\\/\\\\/g;s/"/\\"/g'\'')\"")' \
-        --preview='bat --color=always --highlight-line={2} -- {1}'
+        --preview='bat --color=always --highlight-line={2} -- {1}' | cut -d':' -f1)
+    if [ ! -z $file ]; then
+        lf -remote "send $id select $file"
+    fi
 }}
 
 # Bindings
@@ -227,9 +240,10 @@ map <c-g>u :git-push
 map <c-g>m :git-merge
 map <c-g>r :git-rebase
 map <c-g>b :git-branch
+map <c-g>B :git-branch-new
 map <c-g>h :git-checkout
 
-map F :fzf-search
+map F :fuzzy-search
 map X :extract
 map U :0x0
 map Y $syncplay --no-store --no-gui -p $SYNCPLAY_PASSWORD "$f"
