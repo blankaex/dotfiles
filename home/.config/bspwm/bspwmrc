@@ -41,30 +41,30 @@ if [ $(cat "$XDG_CACHE_HOME/xstatus") = "startup" ]; then
         bspc node @'^2':/ -i
         bspc node @'^2':/ -p east -o 0.5 -i
 
-        bspc rule -a Vivaldi-stable:vivaldi-stable -o node=@'^2':/1 locked=on
+        bspc rule -a Helium:helium -o node=@'^2':/1 locked=on
         bspc rule -a rmpc -o node=@'^2':/2 locked=on
 
         firefox &
-        vivaldi-stable &
+        helium-browser &
         alacritty --class rmpc -e rmpc &
         sleep 1
-        /usr/bin/vivaldi-stable --new-window --start-fullscreen https://game.mahjongsoul.com/index.html
+        helium-browser --new-window https://game.mahjongsoul.com/index.html
     elif [ $(autorandr --current) == "undocked" ]; then
         bspc rule -a firefox:Navigator -o desktop='^1' locked=on
-        bspc rule -a Vivaldi-stable:vivaldi-stable -o desktop='^2' locked=on
+        bspc rule -a Helium:helium -o desktop='^2' locked=on
 
         firefox &
-        vivaldi-stable &
+        helium-browser &
     elif [ $(autorandr --current) == "tv" ]; then
         xrandr --output DisplayPort-1 --set TearFree on
 
         bspc rule -a lf -o desktop='^1'
-        bspc rule -a Vivaldi-stable:vivaldi-stable -o desktop='^2' locked=on
+        bspc rule -a Helium:helium -o desktop='^2' locked=on
         bspc rule -a firefox:Navigator -o desktop='^3' locked=on
 
         alacritty --class lf -e lf "/home/blankaex/Anime" &
         firefox &
-        vivaldi-stable &
+        helium-browser &
         pkill redshift &
     fi
     echo "running" > "$XDG_CACHE_HOME/xstatus"

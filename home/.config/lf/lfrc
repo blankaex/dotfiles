@@ -185,8 +185,8 @@ map S $$SHELL
 
 map y
 map yy copy
-map yn $basename "$f" | xclip -sel clipboard; lf -remote "send $id echomsg copied \'$(basename $f)\' to clipboard"
-map yp $printf "$f" | xclip -sel clipboard; lf -remote "send $id echomsg copied \'$f\' to clipboard"
+map yn $basename "$f" | tr -d '\n' | xclip -sel clipboard; lf -remote "send $id echomsg copied \'$(basename $f)\' to clipboard"
+map yp $printf "$f" | tr -d '\n' | xclip -sel clipboard; lf -remote "send $id echomsg copied \'$f\' to clipboard"
 map d
 map dd cut
 map dD :delete
