@@ -90,7 +90,7 @@ cmd git-status ${{
 }}
 
 cmd git-add ${{
-    echo "$fx" | xargs -d '\n' git add
+    git status -s | rg "^\s*M" | cut -c 4- | sk -m | xargs git add
     lf -remote "send $id reload"
 }}
 
