@@ -32,19 +32,45 @@ cmd on-load &{{
 
 cmd on-cd &{{
     lf -remote "send $id set-prompt"
+    zoxide add "$PWD"
 }}
 
-# Commands / Functions
+# Command/shortcut overrides
 cmd q quit
 cmd open $set -f; rifle -p 0 $fx
 cmd touch %IFS=" "; touch -- "$*"
 cmd mkdir %IFS=" "; mkdir -- "$*"
 
+map E $$EDITOR "$f"
+map S $$SHELL
+map <c-l> clear
+map <c-r> reload
+map <c-t> &$TERM -e lf $PWD
+map <c-n> push :mkdir<space>
+map <enter> shell
+
+# Navigation
+map c 
+map cd push :cd<space>
+map g/ cd "/"
+map gm cd "/mnt"
+map gM cd "/media"
+map gs cd "/media/storage"
+map J :updir; down; open
+map K :updir; up; open
+
+map gl :follow-link
+cmd follow-link %{{
+    test -L "$f" && lf -remote "send $id select \"$(readlink -- "$f" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
+}}
+
+map gj push :jump<space>
 cmd jump %{{
     result="$(zoxide query --exclude "$PWD" "$@" | sed 's/\\/\\\\/g;s/"/\\"/g')"
     lf -remote "send $id cd \"$result\""
 }}
 
+map gJ :jump-interactive
 cmd jump-interactive ${{
     result="$( \
         zoxide query -ls -- "$@" \
@@ -66,23 +92,40 @@ cmd jump-interactive ${{
     fi
 }}
 
-cmd bulk-rename ${{
-    vimv -- $(basename -a -- $fx)
-    lf -remote "send $id load"
-    lf -remote "send $id unselect"
+# File Operations
+map y
+map yy copy
+map d
+map dd cut
+map p
+map pp : paste; clear
+map r push A<c-u>
+map I :rename; cmd-home
+map i :rename
+map A :rename; cmd-end
+map a :rename; cmd-right
+
+map yn :copy-name
+cmd copy-name ${{
+    basename "$f" | tr -d '\n' | xclip -sel clipboard; lf -remote "send $id echomsg copied \'$(basename $f)\' to clipboard"
 }}
 
-cmd link ${{
-    set -- $(cat $HOME/.local/share/lf/files)
-    shift
-    if [ "$#" -lt 1 ]; then
-        lf -remote "send $id echoerr no files to link"
-    else
-        ln -sr -t . -- "$@"
-        lf -remote "send $id clear"
-    fi
+map yp :copy-path
+cmd copy-path ${{
+    printf "$f" | tr -d '\n' | xclip -sel clipboard; lf -remote "send $id echomsg copied \'$f\' to clipboard"
 }}
 
+map dD :delete
+cmd delete ${{
+    clear
+	printf "%s\n\t" "$fx"
+	printf "delete?[Y/n]"
+	read -s -n1 ans
+	[ "$ans" = y -o -z "$ans" ] && rm -rf -- $fx
+    lf -remote "send $id reload"
+}}
+
+map po :force-paste
 cmd force-paste ${{
     set -- $(cat $HOME/.local/share/lf/files)
     mode="$1"
@@ -99,41 +142,58 @@ cmd force-paste ${{
     lf -remote "send $id reload"
 }}
 
-cmd delete ${{
-    clear
-	printf "%s\n\t" "$fx"
-	printf "delete?[Y/n]"
-	read -s -n1 ans
-	[ "$ans" = y -o -z "$ans" ] && rm -rf -- $fx
-    lf -remote "send $id reload"
+map pl :link
+cmd link ${{
+    set -- $(cat $HOME/.local/share/lf/files)
+    shift
+    if [ "$#" -lt 1 ]; then
+        lf -remote "send $id echoerr no files to link"
+    else
+        ln -sr -t . -- "$@"
+        lf -remote "send $id clear"
+    fi
 }}
 
+map b :bulk-rename
+cmd bulk-rename ${{
+    vimv -- $(basename -a -- $fx)
+    lf -remote "send $id load"
+    lf -remote "send $id unselect"
+}}
+
+# Git operations
+map <c-g>s :git-status
 cmd git-status ${{
     clear
     git status
 	read -s -n1
 }}
 
+map <c-g>a :git-add
 cmd git-add ${{
     git status -s | rg "^\s*M" | cut -c 4- | sk -m | xargs git add
     lf -remote "send $id reload"
 }}
 
+map <c-g>A :git-add-all
 cmd git-add-all ${{
     git add -A
     lf -remote "send $id reload"
 }}
 
+map <c-g>c :git-commit
 cmd git-commit ${{
     git commit
     lf -remote "send $id reload"
 }}
 
+map <c-g>C :git-commit-all
 cmd git-commit-all ${{
     git commit -a
     lf -remote "send $id reload"
 }}
 
+map <c-g>p :git-pull
 cmd git-pull ${{
     clear
     git pull
@@ -141,6 +201,7 @@ cmd git-pull ${{
 	read -s -n1
 }}
 
+map <c-g>u :git-push
 cmd git-push ${{
     clear
     git push
@@ -148,24 +209,28 @@ cmd git-push ${{
 	read -s -n1
 }}
 
+map <c-g>m :git-merge
 cmd git-merge ${{
     git branch | sk | xargs git merge
     lf -remote "send $id reload"
 	read -s -n1
 }}
 
+map <c-g>r :git-rebase
 cmd git-rebase ${{
     git branch | sk | xargs git rebase
     lf -remote "send $id reload"
 	read -s -n1
 }}
 
+map <c-g>b :git-branch
 cmd git-branch ${{
     clear
     branch=$(git branch | sk)
     echo ${branch##* } | xclip -sel clipboard
 }}
 
+map <c-g>B :git-branch-new
 cmd git-branch-new ${{
     clear
 	printf "New branch: "
@@ -176,11 +241,40 @@ cmd git-branch-new ${{
     fi
 }}
 
+map <c-g>h :git-checkout
 cmd git-checkout ${{
     git branch | sk | xargs git checkout
     lf -remote "send $id reload"
 }}
 
+# Custom functions
+map Y $syncplay --no-store --no-gui -p $SYNCPLAY_PASSWORD "$f"
+map C $clear; ruri -t 8 $fx; echo "Press any key to continue"; read -s -n1
+map T $sxiv -ato $PWD | head -n 1 | tr -d "\n" | xclip -sel clipboard
+
+map X :extract
+cmd extract ${{
+    clear
+	printf "%s\n\t" "$fx"
+	printf "extract?[Y/n]"
+	read -s -n1 ans
+	[ "$ans" = y -o -z "$ans" ] && unar -- $fx
+}}
+
+map F :fuzzy-search
+cmd fuzzy-search ${{
+    cmd="rg --column --line-number --no-heading --color=always --smart-case"
+    file=$(sk --ansi --disabled --layout=reverse --header="Search in files" --delimiter=: \
+        --bind="start:reload([ -n {q} ] && $cmd -- {q} || true)" \
+        --bind="change:reload([ -n {q} ] && $cmd -- {q} || true)" \
+        --bind='enter:become(lf -remote "send $id select \"$(printf "%s" {1} | sed '\''s/\\/\\\\/g;s/"/\\"/g'\'')\"")' \
+        --preview='bat --color=always --highlight-line={2} -- {1}' | cut -d':' -f1)
+    if [ ! -z $file ]; then
+        lf -remote "send $id select $file"
+    fi
+}}
+
+map U :0x0
 cmd 0x0 ${{
     clear
 	printf "%s\n\t" "$f"
@@ -194,85 +288,3 @@ cmd 0x0 ${{
         read -s -n1
     fi
 }}
-
-cmd extract ${{
-    clear
-	printf "%s\n\t" "$fx"
-	printf "extract?[Y/n]"
-	read -s -n1 ans
-	[ "$ans" = y -o -z "$ans" ] && unar -- $fx
-}}
-
-cmd fuzzy-search ${{
-    cmd="rg --column --line-number --no-heading --color=always --smart-case"
-    file=$(sk --ansi --disabled --layout=reverse --header="Search in files" --delimiter=: \
-        --bind="start:reload([ -n {q} ] && $cmd -- {q} || true)" \
-        --bind="change:reload([ -n {q} ] && $cmd -- {q} || true)" \
-        --bind='enter:become(lf -remote "send $id select \"$(printf "%s" {1} | sed '\''s/\\/\\\\/g;s/"/\\"/g'\'')\"")' \
-        --preview='bat --color=always --highlight-line={2} -- {1}' | cut -d':' -f1)
-    if [ ! -z $file ]; then
-        lf -remote "send $id select $file"
-    fi
-}}
-
-# Bindings
-map J :updir; down; open
-map K :updir; up; open
-map E $$EDITOR "$f"
-map S $$SHELL
-
-map y
-map yy copy
-map yn $basename "$f" | tr -d '\n' | xclip -sel clipboard; lf -remote "send $id echomsg copied \'$(basename $f)\' to clipboard"
-map yp $printf "$f" | tr -d '\n' | xclip -sel clipboard; lf -remote "send $id echomsg copied \'$f\' to clipboard"
-map d
-map dd cut
-map dD :delete
-map p
-map pp : paste; clear
-map po :force-paste
-map pl :link
-
-map c 
-map cd push :cd<space>
-map gj push :jump<space>
-map gJ :jump-interactive
-map g/ cd "/"
-map gm cd "/mnt"
-map gM cd "/media"
-map gs cd "/media/storage"
-map gl %test -L "$f" && lf -remote "send $id select \"$(readlink -- "$f" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
-
-map r push A<c-u>
-map I :rename; cmd-home
-map i :rename
-map A :rename; cmd-end
-map a :rename; cmd-right
-map b :bulk-rename
-
-map <c-l> clear
-map <c-r> reload
-map <c-t> &$TERM -e lf $PWD
-map <c-n> push :mkdir<space>
-map <enter> shell
-
-map <c-g>s :git-status
-map <c-g>a :git-add
-map <c-g>A :git-add-all
-map <c-g>c :git-commit
-map <c-g>C :git-commit-all
-map <c-g>p :git-pull
-map <c-g>u :git-push
-map <c-g>m :git-merge
-map <c-g>r :git-rebase
-map <c-g>b :git-branch
-map <c-g>B :git-branch-new
-map <c-g>h :git-checkout
-
-map F :fuzzy-search
-map X :extract
-map U :0x0
-map Y $syncplay --no-store --no-gui -p $SYNCPLAY_PASSWORD "$f"
-map C $clear; ruri -t 8 $fx; echo "Press any key to continue"; read -s -n1
-map T $sxiv -ato $PWD | head -n 1 | tr -d "\n" | xclip -sel clipboard
-#map O console open_with%space
