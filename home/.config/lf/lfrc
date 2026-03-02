@@ -11,13 +11,13 @@ set hiddenfiles ".*:*.aux:*.log"
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/previewer'
 set cursorpreviewfmt
-set promptfmt "\033[35;1m%u\033[37;1m@\033[36;1m%h\033[0m \033[32m%w\033[0m"
+set promptfmt "\033[35;1m%u\033[37;1m@\033[36;1m%h\033[0m \033[32m%d%f\033[0m"
 set rulerfmt  "%a| %p| \033[7;31m %m \033[0m| \033[7;33m %c \033[0m| \033[7;35m %s \033[0m| \033[7;36m %v \033[0m|f=`%f',| %d|  %i/%t  %P"
 
 # Hooks
 cmd set-prompt &{{
     git=$(zsh -c 'source "$HOME/.local/src/zsh-git-prompt/zshrc.sh"; print -P "$(git_super_status)"') || true
-    lf -remote "send $id set promptfmt \"\033[35;1m%u\033[37;1m@\033[36;1m%h\033[0m \033[32m%w\033[0m $git\""
+    lf -remote "send $id set promptfmt \"\033[35;1m%u\033[37;1m@\033[36;1m%h\033[0m \033[32m%d%f\033[0m $git\""
 }}
 
 cmd on-init &{{
