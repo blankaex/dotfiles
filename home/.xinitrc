@@ -27,12 +27,10 @@ xset r rate 330 50 # default 660 25
 redshift & 
 fcitx5 &
 sxhkd &
-xcompmgr &
+picom &
 
 # Setup monitors
 autorandr -c
-$HOME/.fehbg &
 
 # Launch WM
-echo "startup" > "$XDG_CACHE_HOME/xstatus"
 exec bspwm

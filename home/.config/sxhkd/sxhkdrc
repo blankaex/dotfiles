@@ -40,7 +40,7 @@ mod4 + {Left,Down,Up,Right}
 mod4 + shift + q
     xkill
 mod4 + shift + r
-	pkill -USR1 -x sxhkd && STARTUP=true bspc wm -r
+	pkill -USR1 -x sxhkd && bspc wm -r
 mod4 + Pause
     $HOME/.config/sxhkd/scripts/notify-pause.rb
 
