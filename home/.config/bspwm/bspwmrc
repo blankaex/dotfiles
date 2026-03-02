@@ -28,8 +28,8 @@ bspc config presel_feedback_color   "$color3"
 # Rules
 bspc rule -a Zathura state=tiled
 bspc rule -a *:*:"Screen Sharing Tracker" hidden=on sticky=on
-bspc rule -a *:*:"Vivaldi が画面を共有しています。" hidden=on sticky=on
-bspc rule -a *:*:"Vivaldi がウィンドウを共有しています。" hidden=on sticky=on
+bspc rule -a *:*:"meet.jit.si がウィンドウを共有しています。" hidden=on sticky=on
+bspc rule -a *:*:"meet.jit.si が画面を共有しています。" hidden=on sticky=on
 bspc rule -a *:*:"RuneLite Launcher" state=floating
 bspc rule -a *:"net-runelite-client-RuneLite":"Picture in Picture" state=floating sticky=on
 bspc rule -a *:"steam_app_1449850" state=pseudo_tiled # master duel
