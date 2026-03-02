@@ -72,6 +72,7 @@ cmd jump %{{
 
 map gJ :jump-interactive
 cmd jump-interactive ${{
+    clear
     result="$( \
         zoxide query -ls -- "$@" \
         | sk \
