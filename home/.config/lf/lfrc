@@ -262,7 +262,7 @@ cmd extract ${{
 	[ "$ans" = y -o -z "$ans" ] && unar -- $fx
 }}
 
-map F :fuzzy-search
+map <c-f> :fuzzy-search
 cmd fuzzy-search ${{
     cmd="rg --column --line-number --no-heading --color=always --smart-case"
     file=$(sk --ansi --disabled --layout=reverse --header="Search in files" --delimiter=: \
@@ -275,7 +275,7 @@ cmd fuzzy-search ${{
     fi
 }}
 
-map U :0x0
+map <c-u> :0x0
 cmd 0x0 ${{
     clear
 	printf "%s\n\t" "$f"
@@ -288,4 +288,11 @@ cmd 0x0 ${{
         echo "Press any key to continue"
         read -s -n1
     fi
+}}
+
+map U :szuru-upload
+cmd szuru-upload ${{
+    szuru $f
+    echo "Press any key to continue"
+    read -s -n1
 }}
