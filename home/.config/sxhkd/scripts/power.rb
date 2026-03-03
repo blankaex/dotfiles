@@ -6,7 +6,7 @@ options = {
     "Hibernate" =>  "systemctl hibernate",
     "Suspend"   =>  "systemctl suspend",
     "Logout"    =>  "bspc quit",
-    "Lock"      =>  "$HOME/.config/sxhkd/scripts/lock.rb"
+    "Lock"      =>  "$HOME/.config/bspwm/extensions/bsplock"
 }
 
 selection = `printf "#{options.keys.join("\\n")}" | rofi -dmenu -i -m primary -p "Power Menu"`.strip()

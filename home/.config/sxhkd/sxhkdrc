@@ -66,12 +66,10 @@ mod4 + o; e
 
 
 # Device Management
-mod4 + F4
-    $HOME/.config/sxhkd/scripts/mic-ptt.rb
 mod4 + F5
-    $HOME/.config/sxhkd/scripts/notify-pause.rb
+    $HOME/.config/sxhkd/scripts/mic-ptt.rb
 mod4 + F6
-    $HOME/.config/sxhkd/scripts/vpn.rb
+    $HOME/.config/sxhkd/scripts/notify-pause.rb
 mod4 + F7
     $HOME/.config/sxhkd/scripts/bluetooth.rb connect
 mod4 + F8
@@ -99,6 +97,7 @@ XF86AudioPlay
     (mpc status | sed -n 2p | rg playing) && mpc stop || (mpc stop && mpc play)
 XF86AudioNext
     mpc next
+
 
 # Screen Functions
 Print
