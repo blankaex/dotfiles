@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Configuration
-source $XDG_CACHE_HOME/wal/colors.sh
+source "$XDG_CACHE_HOME/wal/colors.sh"
 
 bspc monitor -d 壱 弐 参 肆 伍 陸 漆 捌 玖
 
@@ -25,16 +25,9 @@ bspc config active_border_color     "$color3"
 bspc config focused_border_color    "$color6"
 bspc config presel_feedback_color   "$color3"
 
-# Rules
-bspc rule -a Zathura state=tiled
-bspc rule -a *:*:"Screen Sharing Tracker" hidden=on sticky=on
-bspc rule -a *:*:"meet.jit.si がウィンドウを共有しています。" hidden=on sticky=on
-bspc rule -a *:*:"meet.jit.si が画面を共有しています。" hidden=on sticky=on
-bspc rule -a *:*:"RuneLite Launcher" state=floating
-bspc rule -a *:"net-runelite-client-RuneLite":"Picture in Picture" state=floating sticky=on
-bspc rule -a *:"steam_app_1449850" state=pseudo_tiled # master duel
+bspc config external_rules_command  "$XDG_CONFIG_HOME/bspwm/external_rules"
 
-# Startup programs
+# Startup actions
 if [ "$1" = 0 ]; then
     bspc rule -a KeePassXC -o hidden=on sticky=on
     keepassxc &
@@ -58,35 +51,38 @@ if [ "$1" = 0 ]; then
         sleep 1
         helium-browser --new-window https://game.mahjongsoul.com/index.html
     fi
-# Redundancy check to avoid multiple calls
-elif bspc query -D --names | rg -q "Desktop"; then
-    # Move workspaces to active monitor & delete default workspace
-    monitor=$(xrandr --listactivemonitors | awk 'NR>1 {print $NF}')
-    for desktop in $(bspc query -D --names); do
-        bspc desktop "$desktop" -m "$monitor"
-    done
-    bspc desktop "Desktop" --remove
+# Reload configuration actions
+else
+    # Redundancy check to avoid multiple calls
+    if bspc query -D --names | rg -q "Desktop"; then
+        # Move workspaces to active monitor & delete default workspace
+        monitor=$(xrandr --listactivemonitors | awk 'NR>1 {print $NF}')
+        for desktop in $(bspc query -D --names); do
+            bspc desktop "$desktop" -m "$monitor"
+        done
+        bspc desktop "Desktop" --remove
 
-    # Monitor-specific cleanup
-    case "$(autorandr --current)" in
-        # Returns "" when switching back from tv -> docked for some reason
-        ""|docked)
-            bspc monitor DisplayPort-1 --remove
-            pkill redshift
-            redshift &
-            ;;
-        tv)
-            bspc monitor DisplayPort-3 --remove
-            pkill redshift
-            ;;
-    esac
+        # Monitor-specific cleanup
+        case "$(autorandr --current)" in
+            # Returns "" when switching back from tv -> docked for some reason
+            ""|docked)
+                bspc monitor DisplayPort-1 --remove
+                pkill redshift
+                redshift &
+                ;;
+            tv)
+                bspc monitor DisplayPort-3 --remove
+                pkill redshift
+                ;;
+        esac
 
-    # Reload configuration
-    bspc wm -r
+        # Reload configuration
+        bspc wm -r
+    fi
 fi
 
 # (Re)launch services
 wal -R
-pgrep bspswallow || $XDG_CONFIG_HOME/bspwm/bspswallow &
-$XDG_CONFIG_HOME/dunst/launch.sh
-$XDG_CONFIG_HOME/polybar/launch.sh
+pgrep bspswallow || "$XDG_CONFIG_HOME/bspwm/bspswallow" &
+"$XDG_CONFIG_HOME/dunst/launch.sh"
+"$XDG_CONFIG_HOME/polybar/launch.sh"
