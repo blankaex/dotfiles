@@ -30,8 +30,11 @@ alias sudo='sudo -E'
 alias diff='diff --color=auto'
 alias xclip='xclip -selection clipboard'
 alias ncmpcpp='ncmpcpp --config $HOME/.config/ncmpcpp/config --bindings $HOME/.config/ncmpcpp/bindings'
+alias aichat='aichat -r default -s'
 
 # Aliases (programs)
+alias j='z'
+alias ji='zi'
 alias ls='eza'
 alias lf='/home/blankaex/.config/lf/lf-ueberzug'
 alias find='fd'
