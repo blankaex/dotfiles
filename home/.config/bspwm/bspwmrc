@@ -47,7 +47,7 @@ if [ "$1" = 0 ]; then
 
         firefox &
         helium-browser &
-        alacritty --class rmpc -e rmpc &
+        alacritty --class rmpc --title rmpc -e rmpc &
         sleep 1
         helium-browser --new-window https://game.mahjongsoul.com/index.html
     fi
