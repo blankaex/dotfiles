@@ -25,6 +25,7 @@ function +prompt_kyoto_precmd {
   elif [ "$_ppname" != "$TERM" ]; then
     _prompt_ppname="$_ppname "
   fi
+
 }
 
 function prompt_kyoto_setup {
