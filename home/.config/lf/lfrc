@@ -262,8 +262,17 @@ cmd extract ${{
 	[ "$ans" = y -o -z "$ans" ] && unar -- $fx
 }}
 
-map <c-f> :fuzzy-search
-cmd fuzzy-search ${{
+map <c-f> :fuzzy-search-file
+cmd fuzzy-search-file ${{
+    file=$(fd | sk)
+    if [ ! -z $file ]; then
+        lf -remote "send $id cd \"$(dirname $file)\""
+        lf -remote "send $id select \"$(basename $file)\""
+    fi
+}}
+
+map F :fuzzy-search-content
+cmd fuzzy-search-content ${{
     cmd="rg --column --line-number --no-heading --color=always --smart-case"
     file=$(sk --ansi --disabled --layout=reverse --header="Search in files" --delimiter=: \
         --bind="start:reload([ -n {q} ] && $cmd -- {q} || true)" \
@@ -271,7 +280,7 @@ cmd fuzzy-search ${{
         --bind='enter:become(lf -remote "send $id select \"$(printf "%s" {1} | sed '\''s/\\/\\\\/g;s/"/\\"/g'\'')\"")' \
         --preview='bat --color=always --highlight-line={2} -- {1}' | cut -d':' -f1)
     if [ ! -z $file ]; then
-        lf -remote "send $id select $file"
+        lf -remote "send $id select \"$file\""
     fi
 }}
 
