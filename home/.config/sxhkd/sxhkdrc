@@ -45,7 +45,6 @@ mod4 + Pause
     $HOME/.config/sxhkd/scripts/notify-pause.rb
 
 
-
 # Launch Processes
 mod4 + Return
     alacritty
@@ -66,10 +65,6 @@ mod4 + o; e
 
 
 # Device Management
-mod4 + F5
-    $HOME/.config/sxhkd/scripts/mic-ptt.rb
-mod4 + F6
-    $HOME/.config/sxhkd/scripts/notify-pause.rb
 mod4 + F7
     $HOME/.config/sxhkd/scripts/bluetooth.rb connect
 mod4 + F8
@@ -79,12 +74,14 @@ mod4 + F9
 mod4 + F10
     $HOME/.config/sxhkd/scripts/sinks.rb
 mod4 + F11
-    $HOME/.config/sxhkd/scripts/screens.rb
+    $HOME/.config/sxhkd/scripts/notify-pause.rb
 mod4 + F12
     $HOME/.config/sxhkd/scripts/power.rb
 
 
 # Audio Control
+mod4 + r
+    $HOME/.config/sxhkd/scripts/microphone.rb
 XF86AudioMute
     $HOME/.config/sxhkd/scripts/volume.rb -m
 XF86Audio{Lower,Raise}Volume
