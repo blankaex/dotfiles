@@ -46,8 +46,8 @@
     scrollbar: None,
     song_table_format: [
         (
-            prop: (kind: Property(Title), style: (fg: "red"),
-                default: (kind: Text("Unknown"), style: (fg: "red"))
+            prop: (kind: Property(Title), style: (fg: "cyan"),
+                default: (kind: Text("Unknown"), style: (fg: "cyan"))
             ),
             width: "70%",
         ),
