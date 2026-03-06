@@ -69,10 +69,10 @@ print_events = false
 render_timer = false
 
 [font]
-size = 10.0
+size = 11.0
 
 [font.bold]
-family = "Source Han Code JP"
+family = "MomiageMono Nerd Font"
 style = "Bold"
 
 [font.glyph_offset]
@@ -80,11 +80,11 @@ x = 0
 y = 0
 
 [font.italic]
-family = "Source Han Code JP"
+family = "MomiageMono Nerd Font"
 style = "Italic"
 
 [font.normal]
-family = "Source Han Code JP"
+family = "MomiageMono Nerd Font"
 
 [font.offset]
 x = 0
