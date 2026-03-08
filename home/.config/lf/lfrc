@@ -301,6 +301,7 @@ cmd 0x0 ${{
 
 map U :szuru-upload
 cmd szuru-upload ${{
+    clear
     szuru $f
     echo "Press any key to continue"
     read -s -n1
