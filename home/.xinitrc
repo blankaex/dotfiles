@@ -12,6 +12,11 @@ dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XA
 # Xresources colours
 xrdb -merge "$HOME/.Xresources"
 
+# Keyboard options
+# check fcitx settings if this is being overridden on window focus
+setxkbmap -option caps:super # prevents https://bbs.archlinux.org/viewtopic.php?id=247759
+xcape -e "Super_L=Escape"
+
 # Configure xorg
 xsetroot -cursor_name left_ptr &
 xset s off -dpms
