@@ -8,7 +8,7 @@ configuration {{
 }}
 
 * {{
-    font: "Source Han Code JP 12";
+    font: "Monospace 14";
 
     active-background: {color2};
     active-foreground: @foreground;

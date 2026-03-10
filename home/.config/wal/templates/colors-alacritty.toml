@@ -72,7 +72,7 @@ render_timer = false
 size = 11.0
 
 [font.bold]
-family = "MomiageMono Nerd Font"
+family = "Monospace"
 style = "Bold"
 
 [font.glyph_offset]
@@ -80,11 +80,11 @@ x = 0
 y = 0
 
 [font.italic]
-family = "MomiageMono Nerd Font"
+family = "Monospace"
 style = "Italic"
 
 [font.normal]
-family = "MomiageMono Nerd Font"
+family = "Monospace"
 
 [font.offset]
 x = 0
