@@ -28,30 +28,38 @@ bspc config presel_feedback_color   "$color3"
 bspc config external_rules_command  "$XDG_CONFIG_HOME/bspwm/extensions/external_rules"
 
 # Startup actions
-if [ "$1" = 0 ]; then
+if [ "$1" -eq 0 ]; then
     bspc rule -a KeePassXC -o hidden=on sticky=on
     keepassxc &
-    if [ $(autorandr --current) == "undocked" ]; then
-        bspc rule -a firefox:Navigator -o desktop='^1' locked=on
-        bspc rule -a Helium:helium -o desktop='^2' locked=on
 
-        firefox &
-        helium-browser &
-    else
-        bspc rule -a firefox:Navigator -o desktop='^1' locked=on
-        bspc node @'^2':/ -i
-        bspc node @'^2':/ -p east -o 0.5 -i
+    # Profile-specific actions
+    case "$(autorandr --current)" in
+        docked)
+            bspc rule -a firefox:Navigator -o desktop='^1' locked=on
+            bspc node @'^2':/ -i
+            bspc node @'^2':/ -p east -o 0.5 -i
 
-        bspc rule -a Helium:helium -o node=@'^2':/1 locked=on
-        bspc rule -a rmpc -o node=@'^2':/2 locked=on
+            bspc rule -a Helium:helium -o node=@'^2':/1 locked=on
+            bspc rule -a rmpc -o node=@'^2':/2 locked=on
 
-        firefox &
-        helium-browser &
-        alacritty --class rmpc --title rmpc -e rmpc &
-        sleep 1
-        helium-browser --new-window https://game.mahjongsoul.com/index.html
-    fi
-# Reload configuration actions
+            firefox &
+            helium-browser &
+            alacritty --class rmpc --title rmpc -e rmpc &
+
+            bspc rule -a Helium:helium -o desktop='^3'
+            helium-browser --new-window https://game.mahjongsoul.com/index.html
+            ;;
+        undocked)
+            if [ "$(nmcli g status | awk 'NR==2 {print $1}')" == "接続済み" ]; then
+                bspc rule -a firefox:Navigator -o desktop='^1' locked=on
+                bspc rule -a Helium:helium -o desktop='^2' locked=on
+
+                firefox &
+                helium-browser &
+            fi
+            ;;
+    esac
+# Reload actions
 else
     # Redundancy check to avoid multiple calls
     if bspc query -D --names | rg -q "Desktop"; then
@@ -66,8 +74,7 @@ else
         case "$(autorandr --current)" in
             docked)
                 bspc monitor DisplayPort-1 --remove
-                pkill redshift
-                redshift &
+                pgrep redshift || redshift &
                 ;;
             tv)
                 bspc monitor DisplayPort-3 --remove
