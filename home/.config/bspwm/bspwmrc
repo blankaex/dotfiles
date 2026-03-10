@@ -64,8 +64,7 @@ else
 
         # Monitor-specific cleanup
         case "$(autorandr --current)" in
-            # Returns "" when switching back from tv -> docked for some reason
-            ""|docked)
+            docked)
                 bspc monitor DisplayPort-1 --remove
                 pkill redshift
                 redshift &
