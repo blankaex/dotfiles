@@ -9,7 +9,7 @@
 [init]
 	defaultBranch = master
 [core]
-    pager = delta
+    pager = delta -n --paging=always
 [interactive]
     diffFilter = delta --color-only
 [delta]

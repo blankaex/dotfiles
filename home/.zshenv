@@ -16,6 +16,7 @@ export BROWSER='firefox'
 export EDITOR='nvim'
 export VISUAL='nvim'
 export PAGER='less'
+export LESS=
 export MANPAGER='bat -plman'
 
 # Region & Language
