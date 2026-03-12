@@ -37,7 +37,6 @@ cmd on-cd &{{
 
 # Command/shortcut overrides
 cmd q quit
-cmd open $set -f; rifle -p 0 $fx
 cmd touch %IFS=" "; touch -- "$*"
 cmd mkdir %IFS=" "; mkdir -- "$*"
 
@@ -160,6 +159,11 @@ cmd bulk-rename ${{
     vimv -- $(basename -a -- $fx)
     lf -remote "send $id load"
     lf -remote "send $id unselect"
+}}
+
+map O push :open-with<space>
+cmd open-with ${{
+    exec $1 $f
 }}
 
 # Git operations

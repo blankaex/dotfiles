@@ -1,0 +1,31 @@
+[Default Applications]
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
+audio/aac=mpv.desktop
+audio/flac=mpv.desktop
+audio/mpeg=mpv.desktop
+audio/ogg=mpv.desktop
+audio/opus=mpv.desktop
+audio/wav=mpv.desktop
+audio/webm=mpv.desktop
+image/bmp=ahoviewer.desktop
+image/gif=ahoviewer.desktop
+image/jpeg=ahoviewer.desktop
+image/png=ahoviewer.desktop
+image/svg+xml=ahoviewer.desktop
+image/webp=ahoviewer.desktop
+image/x-icon=ahoviewer.desktop
+video/3gpp=mpv.desktop
+video/mp4=mpv.desktop
+video/mpeg=mpv.desktop
+video/ogg=mpv.desktop
+video/quicktime=mpv.desktop
+video/webm=mpv.desktop
+video/x-flv=mpv.desktop
+video/x-matroska=mpv.desktop
+video/x-msvideo=mpv.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/webcal=helium.desktop
+
+[Added Associations]
+application/x-bittorrent=firefox.desktop;
