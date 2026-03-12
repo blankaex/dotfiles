@@ -21,7 +21,7 @@ xcape -e "Super_L=Escape"
 xsetroot -cursor_name left_ptr &
 xset s off -dpms
 xset s noblank
-xset r rate 330 50 # default 660 25
+xset r rate 220 60 # default 660 25
 
 # Start services
 redshift & 
