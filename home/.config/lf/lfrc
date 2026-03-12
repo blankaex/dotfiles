@@ -39,8 +39,22 @@ cmd on-cd &{{
 cmd q quit
 cmd touch %IFS=" "; touch -- "$*"
 cmd mkdir %IFS=" "; mkdir -- "$*"
+cmd open ${{
+    case "$f" in
+        *.mkv|*.mp4|*.avi|*.ts|*.webm|*.mov|*.wmv|*.flv|*.m4v|*.mpg|*.mpeg|*.ogv|*.vob)
+            mpv $fx;;
+        *.wav|*.mp3|*.flac|*.m4[ab]|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus)
+            mpv $fx;;
+        *.bmp|*.jpg|*.jpeg|*.png|*.gif|*.xpm)
+            ahoviewer $fx >/dev/null 2>&1 &;;
+        *.pdf)
+            zathura $fx >/dev/null 2>&1 &;;
+        *)
+            vim $fx;;
+    esac
+}}
 
-map E $$EDITOR "$f"
+map E $$EDITOR "$fx"
 map S $$SHELL
 map <c-l> clear
 map <c-r> reload
@@ -162,8 +176,8 @@ cmd bulk-rename ${{
 }}
 
 map O push :open-with<space>
-cmd open-with ${{
-    exec $1 $f
+cmd open-with &{{
+    exec "$@" $fx
 }}
 
 # Git operations
