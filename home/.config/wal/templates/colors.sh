@@ -37,7 +37,7 @@ export SKIM_DEFAULT_COMMAND="
     fd --type f || git ls-tree -r --name-only HEAD || rg --files || find .
 "
 export SKIM_CTRL_R_OPTS="
-    --no-sort
+    --tiebreak index,score
 "
 export SKIM_DEFAULT_OPTIONS="
     --color fg:7,bg:0,hl:1,fg+:232,bg+:1,hl+:255
