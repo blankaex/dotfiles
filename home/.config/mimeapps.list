@@ -1,7 +1,0 @@
-[Default Applications]
-x-scheme-handler/http=firefox.desktop
-x-scheme-handler/https=firefox.desktop
-x-scheme-handler/webcal=helium.desktop
-
-[Added Associations]
-application/x-bittorrent=firefox.desktop
