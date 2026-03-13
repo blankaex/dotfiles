@@ -40,7 +40,7 @@ cmd q quit
 cmd touch %IFS=" "; touch -- "$*"
 cmd mkdir %IFS=" "; mkdir -- "$*"
 cmd open ${{
-    case "$f" in
+    case "${f,,}" in
         *.mkv|*.mp4|*.avi|*.ts|*.webm|*.mov|*.wmv|*.flv|*.m4v|*.mpg|*.mpeg|*.ogv|*.vob)
             mpv $fx;;
         *.wav|*.mp3|*.flac|*.m4[ab]|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus)
