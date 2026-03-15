@@ -1,7 +1,6 @@
 # Source dependencies
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-  source "/etc/profile.d/autojump.sh"
   source "/etc/grc.zsh"
   source "/usr/share/skim/key-bindings.zsh"
   source <(sk --shell zsh)
