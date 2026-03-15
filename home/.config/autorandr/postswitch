@@ -11,8 +11,9 @@ if bspc query -D --names | rg -q "Desktop"; then
     done
     bspc desktop "Desktop" --remove
     bspc monitor $old --remove
+    wal -Re
 
-    # Monitor-specific cleanup
+    # Monitor-specific actions
     case "$(autorandr --current)" in
         docked)
             pgrep redshift || redshift &
@@ -21,6 +22,4 @@ if bspc query -D --names | rg -q "Desktop"; then
             pkill redshift
             ;;
     esac
-
-    wal -Re
 fi
