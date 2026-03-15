@@ -2,6 +2,6 @@
 
 case $1 in
 "RuneLite")
-    paplay "/media/storage/audio/Theme Sounds/Misc/long-pop.wav"
+    paplay "$XDG_CONFIG_HOME/dunst/sounds/long-pop.wav"
     ;;
 esac
