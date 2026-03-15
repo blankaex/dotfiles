@@ -8,6 +8,7 @@ cursor-style = underline
 cursor-style-blink = false
 shell-integration-features = no-cursor
 
+scrollbar = never
 window-decoration = none
 window-padding-x = 10
 window-padding-y = 5
