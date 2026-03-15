@@ -47,11 +47,11 @@ mod4 + Pause
 
 # Launch Processes
 mod4 + Return
-    alacritty
+   ghostty 
 mod4 + d
     rofi -run-list-command ". $HOME/.zshrc" -run-command "/bin/zsh -ic '\{cmd\}'" -m primary -show run
 mod4 + t
-    alacritty -e "/home/blankaex/.config/lf/lf-ueberzug"
+    ghostty -e "/home/blankaex/.config/lf/lf-ueberzug"
 mod4 + o; k
     keepassxc
 mod4 + o; l
