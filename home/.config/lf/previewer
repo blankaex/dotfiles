@@ -11,7 +11,7 @@ preview() {
 }
 
 file="$1"; shift
-    case "$(basename "$file" | tr '[:upper:]' '[:lower:]')" in
+case "$(basename "$file" | tr '[:upper:]' '[:lower:]')" in
     *.tar*)
         tar tf "$file" ;;
     *.zip)
@@ -20,12 +20,16 @@ file="$1"; shift
         unrar l "$file" ;;
     *.7z)
         7z l "$file" ;;
-    *.jpg|*.jpeg|*.png|*.bmp|*.svg|*.gif)
+    *.mkv|*.mp4|*.avi|*.ts|*.webm|*.mov|*.wmv|*.flv|*.m4v|*.mpg|*.mpeg|*.ogv|*.vob)
+        ffprobe -pretty -hide_banner "$file" 2>&1 ;;
+    *.wav|*.mp3|*.flac|*.m4[ab]|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus)
+        ffprobe -pretty -hide_banner "$file" 2>&1 ;;
+    *.bmp|*.jpg|*.jpeg|*.png|*.gif|*.xpm|*.svg)
         preview "$file" "$@" ;;
     *) 
         info=$(file -Lib "$file")
-        if printf '%s\n' "$info" | rg -q -e 'text' -e 'ascii' -e 'utf-8'; then
-            bat -p --color=always "$file" 
+        if printf '%s\n' "$info" | rg -qi -e 'text' -e 'ascii' -e 'utf-8'; then
+            bat -p "$file" 
         else
             printf '%s' "$info"
         fi

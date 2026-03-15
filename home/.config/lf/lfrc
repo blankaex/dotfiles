@@ -45,7 +45,7 @@ cmd open ${{
             mpv $fx;;
         *.wav|*.mp3|*.flac|*.m4[ab]|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus)
             mpv $fx;;
-        *.bmp|*.jpg|*.jpeg|*.png|*.gif|*.xpm)
+        *.bmp|*.jpg|*.jpeg|*.png|*.gif|*.xpm|*.svg)
             ahoviewer $fx >/dev/null 2>&1 &;;
         *.pdf)
             zathura $fx >/dev/null 2>&1 &;;
