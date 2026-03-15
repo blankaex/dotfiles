@@ -28,8 +28,8 @@ bspc config presel_feedback_color   "$color3"
 bspc config external_rules_command  "$XDG_CONFIG_HOME/bspwm/extensions/external_rules"
 
 # Startup actions
-if [ "$1" -eq 0 ]; then
-    bspc rule -a KeePassXC -o hidden=on sticky=on
+if [ "$1" = 0 ]; then
+    bspc rule -a KeePassXC -o hidden=on sticky=on locked=on
     keepassxc &
 
     # Profile-specific actions
@@ -45,12 +45,9 @@ if [ "$1" -eq 0 ]; then
             firefox &
             helium-browser &
             alacritty --class rmpc --title rmpc -e rmpc &
-
-            bspc rule -a Helium:helium -o desktop='^3'
-            helium-browser --new-window https://game.mahjongsoul.com/index.html
             ;;
         undocked)
-            if [ "$(nmcli g status | awk 'NR==2 {print $1}')" == "接続済み" ]; then
+            if [ "$(nmcli g status | awk 'NR==2 {print $1}')" = "接続済み" ]; then
                 bspc rule -a firefox:Navigator -o desktop='^1' locked=on
                 bspc rule -a Helium:helium -o desktop='^2' locked=on
 
@@ -59,36 +56,9 @@ if [ "$1" -eq 0 ]; then
             fi
             ;;
     esac
-# Reload actions
-else
-    # Redundancy check to avoid multiple calls
-    if bspc query -D --names | rg -q "Desktop"; then
-        # Move workspaces to active monitor & delete default workspace
-        monitor=$(xrandr --listactivemonitors | awk 'NR>1 {print $NF}')
-        for desktop in $(bspc query -D --names); do
-            bspc desktop "$desktop" -m "$monitor"
-        done
-        bspc desktop "Desktop" --remove
-
-        # Monitor-specific cleanup
-        case "$(autorandr --current)" in
-            docked)
-                bspc monitor DisplayPort-1 --remove
-                pgrep redshift || redshift &
-                ;;
-            tv)
-                bspc monitor DisplayPort-3 --remove
-                pkill redshift
-                ;;
-        esac
-
-        # Reload configuration
-        bspc wm -r
-    fi
 fi
 
 # (Re)launch services
-wal -R
 pgrep bspswallow || "$XDG_CONFIG_HOME/bspwm/extensions/bspswallow" &
 "$XDG_CONFIG_HOME/dunst/launch.sh"
 "$XDG_CONFIG_HOME/polybar/launch.sh"

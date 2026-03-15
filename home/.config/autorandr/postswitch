@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Redundancy check
+if bspc query -D --names | rg -q "Desktop"; then
+    # Move workspaces to new monitor
+    new=$(xrandr --listactivemonitors | awk 'NR>1 {print $NF}')
+    old=$(bspc query -M --names | rg -v $new)
+    bspc monitor $old -a 0
+    for desktop in $(bspc query -D --names); do
+        bspc desktop "$desktop" -m $new
+    done
+    bspc desktop "Desktop" --remove
+    bspc monitor $old --remove
+
+    # Monitor-specific cleanup
+    case "$(autorandr --current)" in
+        docked)
+            pgrep redshift || redshift &
+            ;;
+        tv)
+            pkill redshift
+            ;;
+    esac
+
+    wal -Re
+fi

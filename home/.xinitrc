@@ -31,6 +31,7 @@ picom &
 
 # Setup monitors
 autorandr -c
+wal -Re
 
 # Launch WM
 exec bspwm
