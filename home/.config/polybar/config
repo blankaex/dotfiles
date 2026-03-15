@@ -121,11 +121,11 @@ fuzzy-match = false
 ; Formatting options
 label-focused = %name%
 label-focused-background = ${colors.background-alt}
-label-focused-overline= ${colors.primary}
+label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
 label-occupied = %name%
-label-occupied-overline = ${colors.secondary}
+label-occupied-underline = ${colors.secondary}
 label-occupied-padding = 2
 
 label-urgent = %name%
