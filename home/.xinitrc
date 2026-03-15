@@ -24,10 +24,10 @@ xset s noblank
 xset r rate 220 60 # default 660 25
 
 # Start services
+picom -b
 redshift & 
-fcitx5 &
+fcitx5 -d
 sxhkd &
-picom &
 
 # Setup monitors
 autorandr -c
