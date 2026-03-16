@@ -12,29 +12,27 @@ preview() {
 
 file="$1"; shift
 case "$(basename "$file" | tr '[:upper:]' '[:lower:]')" in
-*.tar*) tar tf "$file" ;;
-*.zip) unzip -l "$file" ;;
-*.rar) unrar l "$file" ;;
-*.7z) 7z l "$file" ;;
-# *.avi|*.mp4|*.mkv|*.webm)
-# 	thumbnail="$LF_UEBERZUG_TEMPDIR/thumbnail.png"
-# 	ffmpeg -y -i "$file" -vframes 1 "$thumbnail"
-# 	preview "$thumbnail" "$@"
-# 	;;
-# *.pdf)
-# 	thumbnail="$LF_UEBERZUG_TEMPDIR/thumbnail.png"
-# 	gs -o "$thumbnail" -sDEVICE=png16m -dLastPage=1 "$file" >/dev/null
-# 	preview "$thumbnail" "$@"
-# 	;;
-*.jpg|*.jpeg|*.png|*.bmp|*.svg|*.gif)
-	preview "$file" "$@" ;;
-*) 
-    info=$(file -Lib "$file")
-    if printf '%s\n' "$info" | rg -q -e 'text' -e 'ascii' -e 'utf-8'; then
-        bat -p --color=always "$file" 
-    else
-        printf '%s' "$info"
-    fi
-    ;;
+    *.tar*)
+        tar tf "$file" ;;
+    *.zip)
+        unzip -l "$file" ;;
+    *.rar)
+        unrar l "$file" ;;
+    *.7z)
+        7z l "$file" ;;
+    *.mkv|*.mp4|*.avi|*.ts|*.webm|*.mov|*.wmv|*.flv|*.m4v|*.mpg|*.mpeg|*.ogv|*.vob)
+        ffprobe -pretty -hide_banner "$file" 2>&1 ;;
+    *.wav|*.mp3|*.flac|*.m4[ab]|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus)
+        ffprobe -pretty -hide_banner "$file" 2>&1 ;;
+    *.bmp|*.jpg|*.jpeg|*.png|*.gif|*.xpm|*.svg)
+        preview "$file" "$@" ;;
+    *) 
+        info=$(file -Lib "$file")
+        if printf '%s\n' "$info" | rg -qi -e 'text' -e 'ascii' -e 'utf-8'; then
+            bat -p "$file" 
+        else
+            printf '%s' "$info"
+        fi
+        ;;
 esac
 return 127 # nonzero retcode required for lf previews to reload
