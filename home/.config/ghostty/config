@@ -8,6 +8,9 @@ cursor-style = underline
 cursor-style-blink = false
 shell-integration-features = no-cursor
 
+window-inherit-working-directory = false
+gtk-single-instance = false
+
 scrollbar = never
 window-decoration = none
 window-padding-x = 10
