@@ -23,4 +23,8 @@ case "$title:$class:$instance" in
     "masterduel":*steam*:*)
         echo "state=pseudo_tiled"
         ;;
+    # ygo omega
+    "YGO Omega":"YGO Omega.x86_64":*)
+        echo "state=fullscreen"
+        ;;
 esac
