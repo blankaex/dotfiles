@@ -47,13 +47,19 @@ if [ "$1" = 0 ]; then
             alacritty --class rmpc --title rmpc -e rmpc &
             ;;
         undocked)
-            if [ "$(nmcli g status | awk 'NR==2 {print $1}')" = "接続済み" ]; then
-                bspc rule -a firefox:Navigator -o desktop='^1' locked=on
-                bspc rule -a Helium:helium -o desktop='^2' locked=on
+            # Wait max 10 seconds to see if we have internet before launching
+            for _ in $(seq 1 10); do
+                if [ "$(nmcli -t -f CONNECTIVITY g)" = "full" ]; then
+                    bspc rule -a firefox:Navigator -o desktop='^1' locked=on
+                    bspc rule -a Helium:helium -o desktop='^2' locked=on
 
-                firefox &
-                helium-browser &
-            fi
+                    firefox &
+                    helium-browser &
+                    break
+                fi
+
+                sleep 1
+            done
             ;;
     esac
 fi
