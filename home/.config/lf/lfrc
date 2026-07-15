@@ -72,6 +72,7 @@ map g/ cd "/"
 map gm cd "/mnt"
 map gM cd "/media"
 map ga cd "/media/anime"
+map gA cd "/media/android"
 map gs cd "/media/storage"
 map J :updir; down; open
 map K :updir; up; open
