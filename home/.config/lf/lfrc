@@ -71,6 +71,7 @@ map cd push :cd<space>
 map g/ cd "/"
 map gm cd "/mnt"
 map gM cd "/media"
+map ga cd "/media/anime"
 map gs cd "/media/storage"
 map J :updir; down; open
 map K :updir; up; open
@@ -311,7 +312,7 @@ cmd fuzzy-search-content ${{
     fi
 }}
 
-map <c-u> :0x0
+map <c-o> :0x0
 cmd 0x0 ${{
     clear
 	printf "%s\n\t" "$f"
