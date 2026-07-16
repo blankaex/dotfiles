@@ -38,7 +38,7 @@ alias ls='eza'
 alias lf='/home/blankaex/.config/lf/lf-ueberzug'
 alias find='fd'
 alias amount='simple-mtpfs /media/android'
-alias aumount='fusermount -u simple-mtpfs /media/android'
+alias aumount='fusermount -u /media/android'
 alias erogays='vboxmanage startvm erogays'
 alias mozc-dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
 
