@@ -7,7 +7,7 @@ set scrolloff 10
 set period 1
 set icons true
 set autoquit true
-set hiddenfiles ".*:*.aux:*.log"
+set hiddenfiles ".*:*.aux:*.log:lost+found"
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/previewer'
 set cursorpreviewfmt
@@ -70,10 +70,9 @@ map c
 map cd push :cd<space>
 map g/ cd "/"
 map gm cd "/mnt"
-map gM cd "/media"
-map ga cd "/media/anime"
-map gA cd "/media/android"
-map gs cd "/media/storage"
+map gs cd "/mnt/storage"
+map ga cd "/mnt/storage/anime"
+map gt cd "/mnt/cache/torrents/completed"
 map J :updir; down; open
 map K :updir; up; open
 
@@ -280,7 +279,7 @@ cmd git-checkout ${{
 # Custom functions
 map Y $syncplay --no-store --no-gui -p $SYNCPLAY_PASSWORD "$f"
 map C $clear; ruri -t 8 $fx; echo "Press any key to continue"; read -s -n1
-map T $sxiv -ato $PWD | head -n 1 | tr -d "\n" | xclip -sel clipboard
+map T $nsxiv -ato $PWD | head -n 1 | tr -d "\n" | xclip -sel clipboard
 
 map X :extract
 cmd extract ${{
