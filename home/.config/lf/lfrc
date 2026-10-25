@@ -68,23 +68,34 @@ map ot :set sortby time; set info time
 # Navigation
 map c 
 map cd push :cd<space>
-map g/ cd "/"
-map gm cd "/mnt"
-map gs cd "/mnt/storage"
-map ga cd "/mnt/storage/anime"
-map gt cd "/mnt/cache/torrents/completed"
 map J :updir; down; open
 map K :updir; up; open
 
+map g/ :jump-to /
+map gm :jump-to /mnt
+map gs :jump-to /mnt/storage
+map ga :jump-to /mnt/storage/anime
+map gt :jump-to /mnt/cache/torrents/completed
+cmd jump-to %{{
+    printf '%s\n' "$PWD" > "${XDG_RUNTIME_DIR:-/tmp}/lf-prev-$id"
+    lf -remote "send $id cd \"$1\""
+}}
+
 map gl :follow-link
 cmd follow-link %{{
-    test -L "$f" && lf -remote "send $id select \"$(readlink -- "$f" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
+    if test -L "$f"; then
+        printf '%s\n' "$PWD" > "${XDG_RUNTIME_DIR:-/tmp}/lf-prev-$id"
+        lf -remote "send $id select \"$(readlink -- "$f" | sed 's/\\/\\\\/g;s/"/\\"/g')\""
+    fi
 }}
 
 map gj push :jump<space>
 cmd jump %{{
     result="$(zoxide query --exclude "$PWD" "$@" | sed 's/\\/\\\\/g;s/"/\\"/g')"
-    lf -remote "send $id cd \"$result\""
+    if [ -n "$result" ]; then
+        printf '%s\n' "$PWD" > "${XDG_RUNTIME_DIR:-/tmp}/lf-prev-$id"
+        lf -remote "send $id cd \"$result\""
+    fi
 }}
 
 map gJ :jump-interactive
@@ -106,7 +117,19 @@ cmd jump-interactive ${{
         || true \
     )"
     if [ ! -z "$result" ]; then
+        printf '%s\n' "$PWD" > "${XDG_RUNTIME_DIR:-/tmp}/lf-prev-$id"
         lf -remote "send $id cd \"${result:7}\""
+    fi
+}}
+
+map gb :jump-back
+cmd jump-back %{{
+    prev="${XDG_RUNTIME_DIR:-/tmp}/lf-prev-$id"
+    dest="$(cat "$prev" 2>/dev/null)"
+
+    if [ -n "$dest" ] && [ -d "$dest" ]; then
+        printf '%s\n' "$PWD" > "$prev"
+        lf -remote "send $id cd \"$dest\""
     fi
 }}
 
