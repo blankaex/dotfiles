@@ -17,6 +17,10 @@ case "$title:$class:$instance" in
         ;;
     # runelite picture-in-picture
     "Picture in Picture":*runelite*:*)
+        echo "sticky=on state=floating"
+        ;;
+    # bolt launcher
+    "Bolt Launcher":bolt-launcher:bolt)
         echo "state=floating"
         ;;
     # master duel
