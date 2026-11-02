@@ -67,6 +67,8 @@ mod4 + o; e
 
 
 # Device Management
+mod4 + F6
+    $HOME/.config/sxhkd/scripts/vpn.rb
 mod4 + F7
     $HOME/.config/sxhkd/scripts/bluetooth.rb connect
 mod4 + F8
