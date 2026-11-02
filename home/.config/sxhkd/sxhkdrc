@@ -54,44 +54,34 @@ mod4 + d
     rofi -run-list-command ". $HOME/.zshrc" -run-command "/bin/zsh -ic '\{cmd\}'" -m primary -show run
 mod4 + t
     ghostty -e "/home/blankaex/.config/lf/lf-ueberzug"
-mod4 + o; k
-    keepassxc
 mod4 + o; l
     $HOME/.config/sxhkd/scripts/lutris-launcher.rb
 mod4 + o; r
     $HOME/.config/sxhkd/scripts/record.sh
-mod4 + o; t
-    thunderbird
 mod4 + o; e
     cat $HOME/.local/share/emoji | rofi -dmenu -i -m primary -p "Emoji" | cut -d' ' -f1 | tr -d '\n' | xclip -sel clip
 
 
-# Device Management
+# Workstation Management
 mod4 + F6
     $HOME/.config/sxhkd/scripts/vpn.rb
-mod4 + F7
-    $HOME/.config/sxhkd/scripts/bluetooth.rb connect
-mod4 + F8
-    $HOME/.config/sxhkd/scripts/bluetooth.rb disconnect
-mod4 + F9
-    $HOME/.config/sxhkd/scripts/sources.rb
-mod4 + F10
-    $HOME/.config/sxhkd/scripts/sinks.rb
+mod4 + F{7,8}
+    $HOME/.config/sxhkd/scripts/bluetooth.rb -{c,d}
+mod4 + F{9,10}
+    $HOME/.config/sxhkd/scripts/audio.rb -{i,o}
 mod4 + F11
     $HOME/.config/sxhkd/scripts/notify-pause.rb
 mod4 + F12
     $HOME/.config/sxhkd/scripts/power.rb
 
 
-# Audio Control
+# Device Control
 mod4 + r
     $HOME/.config/sxhkd/scripts/microphone.rb
-XF86AudioMute
-    $HOME/.config/sxhkd/scripts/volume.rb -m
-XF86Audio{Lower,Raise}Volume
-    $HOME/.config/sxhkd/scripts/volume.rb -{d,u} 10
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+    $HOME/.config/sxhkd/scripts/volume.rb -{u,d,m}
 XF86MonBrightness{Down,Up}
-    $HOME/.config/sxhkd/scripts/brightness.rb -{d,u} 10
+    $HOME/.config/sxhkd/scripts/brightness.rb -{d,u}
 XF86AudioPrev
     mpc prev
 XF86AudioPlay

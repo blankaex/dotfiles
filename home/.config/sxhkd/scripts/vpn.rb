@@ -2,10 +2,12 @@
 
 if system "ip link show ivpn > /dev/null 2>&1"
   system "sudo wg-quick down ivpn"
-  notification = $?.success? ? "dunstify -r 102 VPN無効" : "dunstify -r 102 VPNエラー"
+  notification = $?.success? ? "VPN無効" : "VPNエラー"
 else
-  system "sudo wg-quick up ivpn"
-  notification = $?.success? ? "dunstify -r 102 -t 0 VPN有効" : "dunstify -r 102 VPNエラー"
+  system "dunstify -r 104 VPN接続中"
+  success = system "sudo wg-quick up ivpn"
+  ip = `curl -4 ifconfig.co`
+  notification = success ? "-t 0 VPN有効 #{ip}" : "VPNエラー"
 end
 
-system(notification)
+exec "dunstify -r 104 #{notification}"
